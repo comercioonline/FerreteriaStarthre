@@ -445,7 +445,7 @@
     }
   </script>
   <body>
-    <!-- Modal de detalles del producto -->
+      <!-- Modal de detalles del producto -->
     <div class="modal" id="productModal">
       <div class="modal-content">
         <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -453,8 +453,9 @@
         <h3 id="modalTitle"></h3>
         <p>Información detallada del producto...</p>
         <p class="precio">(-)</p>
-        <a href="#" class="whatsapp-btn" id="whatsappBtn" onclick="contactWhatsApp(document.getElementById('').textContent)">
+        <a href="#" class="whatsapp-btn" id="whatsappBtn" onclick="contactWhatsApp(document.getElementById('modalTitle').textContent)">  
           <img src="https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/WhatsApp.svg" alt="WhatsApp">
+          Contactar por WhatsApp
         </a>
       </div>
     </div>
