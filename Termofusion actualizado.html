@@ -445,6 +445,21 @@
     }
   </script>
   <body>
+    <!-- Cookie Consent Banner -->
+      <div id="cookieConsent" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 hidden z-50">
+          <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+              <p class="mb-4 md:mb-0">Utilizamos cookies para mejorar tu experiencia. Al continuar navegando aceptas su uso.</p>
+              <div class="flex space-x-4">
+                  <button id="acceptCookies" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+                      Aceptar
+                  </button>
+                  <button id="rejectCookies" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                      Rechazar
+                  </button>
+                  <a href="#" class="text-blue-300 hover:text-blue-400 underline">Política de cookies</a>
+              </div>
+          </div>
+      </div>
       <!-- Modal de detalles del producto -->
     <div class="modal" id="productModal">
       <div class="modal-content">
