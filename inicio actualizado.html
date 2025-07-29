@@ -402,6 +402,28 @@
     </footer>
 
     <script>
+        // Cookie utility functions
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i=0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
+            }
+            return null;
+        }
+
         // Image caching functionality
         function cacheImages() {
             const imageUrls = [
@@ -413,29 +435,42 @@
                 'https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/Venta%20mayorista.png'
             ];
 
-            imageUrls.forEach(url => {
-                if (localStorage.getItem(url)) {
-                    return; // Already cached
-                }
-                
-                fetch(url)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        const reader = new FileReader();
-                        reader.onload = () => {
-                            localStorage.setItem(url, reader.result);
-                        };
-                        reader.readAsDataURL(blob);
-                    });
-            });
+            // Check if we should cache (once per day)
+            const lastCacheDate = getCookie('lastImageCache');
+            const today = new Date().toDateString();
+            
+            if (lastCacheDate !== today) {
+                imageUrls.forEach(url => {
+                    if (localStorage.getItem(url)) {
+                        return; // Already cached
+                    }
+                    
+                    fetch(url)
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                                localStorage.setItem(url, reader.result);
+                                setCookie('cached_' + encodeURIComponent(url), '1', 30); // Store for 30 days
+                            };
+                            reader.readAsDataURL(blob);
+                        });
+                });
+                setCookie('lastImageCache', today, 1); // Update cache date
+            }
         }
 
         // Load cached images
         function loadCachedImages() {
             document.querySelectorAll('img').forEach(img => {
-                const cachedImage = localStorage.getItem(img.src);
-                if (cachedImage) {
-                    img.src = cachedImage;
+                const url = img.src;
+                const isCached = getCookie('cached_' + encodeURIComponent(url));
+                
+                if (isCached) {
+                    const cachedImage = localStorage.getItem(url);
+                    if (cachedImage) {
+                        img.src = cachedImage;
+                    }
                 }
             });
         }
