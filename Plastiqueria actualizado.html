@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta http-equiv="Cache-Control" content="max-age=31536000, public">
   <title>Plastiqueria</title>
   <style>
     :root {
@@ -444,6 +445,92 @@
         closeModal();
       }
     }
+  
+const CACHE_NAME = 'image-cache-v1';
+const IMAGE_CACHE_URLS = [
+  // List of image paths to cache
+  'Imagenes de Plastiqueria/caldero1.webp',
+  'Imagenes de Plastiqueria/Cesto de basura.jpg',
+  'Imagenes de Plastiqueria/Cesto grande.jpg',
+  'Imagenes de Plastiqueria/coladores1.jpg',
+  'Imagenes de Plastiqueria/Cubos Plasticos.jpg',
+  'Imagenes de Plastiqueria/Cubo de aluminio.jpg',
+  'Imagenes de Plastiqueria/cucharon.jpg',
+  'Imagenes de Plastiqueria/Destupidor.JPG',
+  'Imagenes de Plastiqueria/Embudo de cafeterea.jpg',
+  'Imagenes de Plastiqueria/Escoba.webp',
+  'Imagenes de Plastiqueria/Espumadera.webp',
+  'Imagenes de Plastiqueria/Guayo.jpg',
+  'Imagenes de Plastiqueria/guisopo para baño.jpg',
+  'Imagenes de Plastiqueria/Haraganes.jpg',
+  'Imagenes de Plastiqueria/jarra plastica.jpg',
+  'Imagenes de Plastiqueria/jarro de aluminio.webp',
+  'Imagenes de Plastiqueria/Palangana.webp',
+  'Imagenes de Plastiqueria/Pozuelos.jpg',
+  'Imagenes de Plastiqueria/recogedor1.png',
+  'Imagenes de Plastiqueria/sarten2.jpg'
+];
+
+// Install event - cache all images
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        return cache.addAll(IMAGE_CACHE_URLS);
+      })
+  );
+});
+
+// Fetch event - serve from cache if available
+self.addEventListener('fetch', event => {
+  // Check if this is an image request
+  if (event.request.url.match(/\.(jpe?g|png|gif|webp|svg)$/)) {
+    event.respondWith(
+      caches.match(event.request)
+        .then(cachedResponse => {
+          // Return cached image if found
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          
+          // Otherwise fetch from network, cache it, and return it
+          return fetch(event.request).then(response => {
+            // Don't cache if response is not OK
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+            
+            // Clone the response
+            const responseToCache = response.clone();
+            
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
+              });
+              
+            return response;
+          });
+        })
+    );
+  }
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', event => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+}); 
+
   </script>
   <body>
     <!-- Modal de detalles del producto -->
