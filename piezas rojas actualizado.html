@@ -6,7 +6,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Piezas Rojas</title>
-  <style>
+   <style>
     :root {
       --primary: #e63946;
       --secondary: #457b9d;
@@ -44,7 +44,16 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .menu.container {
+        padding: 0 0.5rem;
+      }
+      .logo img {
+        height: 40px;
+      }
     }
     
     .logo img {
@@ -123,6 +132,18 @@
       display: flex;
       gap: 0.5rem;
       color: #333;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    @media (max-width: 640px) {
+      .search-bar {
+        padding: 0.5rem;
+        max-width: 100%;
+      }
+      .search-bar input {
+        flex-grow: 1;
+      }
     }
     
     .search-bar input {
@@ -173,8 +194,15 @@
     
     .box-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .box-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+      }
     }
     
     .box {
@@ -191,10 +219,16 @@
     }
     
     .box img {
-      width: 130%;
-      height: 330px;
+      width: 100%;
+      height: 180px;
       object-fit: cover;
       border-bottom: 1px solid #eee;
+    }
+
+    @media (min-width: 640px) {
+      .box img {
+        height: 330px;
+      }
     }
     
     .product-txt {
@@ -250,12 +284,22 @@
 
     .modal-content {
       background-color: white;
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 8px;
       max-width: 500px;
-      width: 90%;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       position: relative;
+      margin: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .modal-content {
+        padding: 2rem;
+        width: 90%;
+      }
     }
 
     .close-modal {
@@ -348,11 +392,8 @@
       margin: 0 auto;
     }
     
-    
     @media (max-width: 768px) {
       .menu-icono {
-        order: 2;
-        margin-left: auto;
         display: block;
       }
       
@@ -385,12 +426,11 @@
       }
       
       .search-bar {
-        padding: 5%;
-        margin-top: 0.3rem;
-        width: 100%;
+       padding: 5%;
+       margin-top: 0.3rem;
+       width: 100%;
       }
     }
-  </style>
   <script>
     // Guardar todos los productos inicialmente
     const allProducts = document.getElementById('lista-1').innerHTML;
@@ -905,4 +945,5 @@ self.addEventListener('activate', event => {
     </script>
 </body>
 </html>
+
 
