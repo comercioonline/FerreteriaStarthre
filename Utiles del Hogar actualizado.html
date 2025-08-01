@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Utiles del Hogar</title>
@@ -195,6 +196,9 @@
       height: 330px;
       object-fit: cover;
       border-bottom: 1px solid #eee;
+      /* Cache control for images */
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
     
     .product-txt {
@@ -390,6 +394,15 @@
 
   </style>
   <script>
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => console.log('SW registered'))
+          .catch(err => console.log('SW registration failed: ', err));
+      });
+    }
+
     // Guardar todos los productos inicialmente
     const allProducts = document.getElementById('lista-1').innerHTML;
     
@@ -498,7 +511,7 @@
           <h2>Utiles del Hogar</h2>
           <div class="box-container" id="lista-1"> 
                     <div class="box">
-                         <img src="Imagenes de Productos Utiles del Hogar/Adaptador.jpg" alt="">
+                         <img src="Imagenes de Productos Utiles del Hogar/Adaptador.jpg" alt="" loading="lazy" width="280" height="330">
                          <div class="product-txt">
                          <h3>Adaptador Negro Universa</h3>
                          <p>Disponible</p>
@@ -1215,6 +1228,93 @@
             </div>
         </div>
     </footer>
+    <script>
+const CACHE_NAME = 'ferreteria-cache-v1';
+const ASSETS_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/script.js',
+  // Agrega aquí otros assets importantes
+];
 
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Cache abierto');
+        return cache.addAll(ASSETS_TO_CACHE);
+      })
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  // Cache-first strategy for images with long cache
+  if (event.request.url.match(/\.(jpe?g|png|gif|svg|webp)$/)) {
+    event.respondWith(
+      caches.match(event.request)
+        .then((cachedResponse) => {
+          // Return cached image if found
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          
+          // Otherwise fetch from network, cache and return
+          return fetch(event.request)
+            .then((response) => {
+              // Don't cache if response is not ok
+              if (!response.ok) {
+                return response;
+              }
+              
+              // Clone the response and cache it
+              const responseToCache = response.clone();
+              caches.open(CACHE_NAME)
+                .then((cache) => {
+                  cache.put(event.request, responseToCache);
+                });
+              
+              return response;
+            });
+        })
+    );
+  } else {
+    // Network-first strategy for other assets
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // If response is good, cache it
+          if (response.ok) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache if network fails
+          return caches.match(event.request);
+        })
+    );
+  }
+});
+
+self.addEventListener('activate', (event) => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+ </script>
 </body>
 </html>
