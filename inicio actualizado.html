@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -401,7 +404,111 @@
         </div>
     </footer>
 
+    <!-- Service Worker Registration -->
     <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+
+        // IndexedDB setup
+        const openDB = () => {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open('FerreteriaDB', 1);
+                
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('images')) {
+                        db.createObjectStore('images', { keyPath: 'url' });
+                    }
+                    if (!db.objectStoreNames.contains('data')) {
+                        db.createObjectStore('data', { keyPath: 'key' });
+                    }
+                };
+                
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        };
+
+        // Store image in IndexedDB
+        const storeImage = async (url) => {
+            try {
+                const db = await openDB();
+                const tx = db.transaction('images', 'readwrite');
+                const store = tx.objectStore('images');
+                
+                // Check if already exists
+                const exists = await new Promise(resolve => {
+                    const req = store.get(url);
+                    req.onsuccess = () => resolve(!!req.result);
+                    req.onerror = () => resolve(false);
+                });
+                
+                if (!exists) {
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    store.put({ url, blob, timestamp: Date.now() });
+                }
+            } catch (error) {
+                console.error('Error storing image:', error);
+            }
+        };
+
+        // Get image from IndexedDB
+        const getImage = async (url) => {
+            try {
+                const db = await openDB();
+                const tx = db.transaction('images', 'readonly');
+                const store = tx.objectStore('images');
+                
+                return new Promise((resolve) => {
+                    const req = store.get(url);
+                    req.onsuccess = () => resolve(req.result ? URL.createObjectURL(req.result.blob) : null);
+                    req.onerror = () => resolve(null);
+                });
+            } catch (error) {
+                console.error('Error retrieving image:', error);
+                return null;
+            }
+        };
+
+        // Store data in IndexedDB
+        const storeData = async (key, value) => {
+            try {
+                const db = await openDB();
+                const tx = db.transaction('data', 'readwrite');
+                const store = tx.objectStore('data');
+                store.put({ key, value, timestamp: Date.now() });
+            } catch (error) {
+                console.error('Error storing data:', error);
+            }
+        };
+
+        // Get data from IndexedDB
+        const getData = async (key) => {
+            try {
+                const db = await openDB();
+                const tx = db.transaction('data', 'readonly');
+                const store = tx.objectStore('data');
+                
+                return new Promise((resolve) => {
+                    const req = store.get(key);
+                    req.onsuccess = () => resolve(req.result ? req.result.value : null);
+                    req.onerror = () => resolve(null);
+                });
+            } catch (error) {
+                console.error('Error retrieving data:', error);
+                return null;
+            }
+        };
+
         // Cookie utility functions
         function setCookie(name, value, days) {
             let expires = "";
@@ -425,7 +532,7 @@
         }
 
         // Image caching functionality
-        function cacheImages() {
+        async function cacheImages() {
             const imageUrls = [
                 'https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/piezas%20rojas.png',
                 'https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/Termo%20Fusion.png',
@@ -435,50 +542,54 @@
                 'https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/Venta%20mayorista.png'
             ];
 
-            // Check if we should cache (once per day)
-            const lastCacheDate = getCookie('lastImageCache');
-            const today = new Date().toDateString();
+            // Cache images in IndexedDB
+            imageUrls.forEach(url => storeImage(url));
             
-            if (lastCacheDate !== today) {
-                imageUrls.forEach(url => {
-                    if (localStorage.getItem(url)) {
-                        return; // Already cached
-                    }
-                    
-                    fetch(url)
-                        .then(response => response.blob())
-                        .then(blob => {
-                            const reader = new FileReader();
-                            reader.onload = () => {
-                                localStorage.setItem(url, reader.result);
-                                setCookie('cached_' + encodeURIComponent(url), '1', 30); // Store for 30 days
-                            };
-                            reader.readAsDataURL(blob);
-                        });
+            // Also cache in Service Worker cache
+            if ('caches' in window) {
+                caches.open('ferreteria-images').then(cache => {
+                    cache.addAll(imageUrls.filter(url => url.startsWith('http')));
                 });
-                setCookie('lastImageCache', today, 1); // Update cache date
             }
         }
 
         // Load cached images
-        function loadCachedImages() {
-            document.querySelectorAll('img').forEach(img => {
+        async function loadCachedImages() {
+            const images = document.querySelectorAll('img');
+            
+            for (const img of images) {
                 const url = img.src;
-                const isCached = getCookie('cached_' + encodeURIComponent(url));
+                // Try IndexedDB first
+                const cachedUrl = await getImage(url);
+                if (cachedUrl) {
+                    img.src = cachedUrl;
+                    continue;
+                }
                 
-                if (isCached) {
-                    const cachedImage = localStorage.getItem(url);
-                    if (cachedImage) {
-                        img.src = cachedImage;
+                // Fallback to Service Worker cache
+                if ('caches' in window) {
+                    const cache = await caches.match(url);
+                    if (cache) {
+                        const blob = await cache.blob();
+                        img.src = URL.createObjectURL(blob);
                     }
                 }
-            });
+            }
         }
 
         // Call these functions when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            cacheImages();
-            loadCachedImages();
+        document.addEventListener('DOMContentLoaded', async () => {
+            await cacheImages();
+            await loadCachedImages();
+            
+            // Store some example data
+            await storeData('lastVisit', new Date().toISOString());
+            
+            // Example of retrieving data
+            const lastVisit = await getData('lastVisit');
+            if (lastVisit) {
+                console.log('Last visit was:', new Date(lastVisit).toLocaleString());
+            }
         });
 
         function sendWhatsAppRequest() {
@@ -530,6 +641,59 @@
                 }
             });
         });
+        // sw.js - Service Worker
+const CACHE_NAME = 'ferreteria-cache-v1';
+const IMAGE_CACHE = 'ferreteria-images';
+const ASSETS = [
+  '/',
+  '/index.html',
+  '/styles/main.css',
+  '/scripts/main.js'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(ASSETS))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME && cache !== IMAGE_CACHE) {
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  // Cache-first strategy for images
+  if (event.request.url.match(/\.(jpe?g|png|gif|svg)$/)) {
+    event.respondWith(
+      caches.match(event.request)
+        .then((cachedResponse) => {
+          return cachedResponse || fetch(event.request).then((response) => {
+            return caches.open(IMAGE_CACHE).then((cache) => {
+              cache.put(event.request, response.clone());
+              return response;
+            });
+          });
+        })
+    );
+  } else {
+    // Network-first strategy for other assets
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request))
+    );
+  }
+});
     </script>
 </body>
 </html>
