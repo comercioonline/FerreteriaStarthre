@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <style>
+    /* Estilos generales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    
+    /* Header y navegación */
+    .header {
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 15px 0;
+    }
+    
+    .menu.container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo img {
+      height: 50px;
+      transition: transform 0.3s;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+    
+    .menu-icono {
+      display: none;
+      width: 30px;
+      cursor: pointer;
+    }
+    
+    #menu {
+     display: none;
+    }
+
+
+   .navbar ul {
+    display: flex;
+    list-style: none;
+    }
+    
+    .navbar ul li {
+      position: relative;
+      margin-left: 30px;
+    }
+    
+    .navbar ul li a {
+      display: block;
+      text-decoration: none;
+      color: #4a4a4a;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    
+    .navbar ul li a:hover {
+      background-color: #ff6b6b;
+      color: white;
+    }
+    
+    .navbar ul li ul {
+      display: none;
+      position: absolute;
+      background-color: white;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      min-width: 200px;
+      z-index: 1;
+    }
+    
+    .navbar ul li:hover ul {
+      display: block;
+    }
+    
+    .navbar ul li ul li {
+      margin: 5px 0;
+    }
+    
+  /* barra de busqueda */
+     .search-bar {
+      display: flex;
+      margin-left: 20px;
+    }
+    
+    .search-bar input {
+      padding: 8px 15px;
+      border: 2px solid #ff6b6b;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+    }
+    
+    .search-bar button {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 0 20px 20px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .search-bar button:hover {
+      background-color: #ff6b6b;
+    }
+    
+    
+    
+    /* Contenido principal */
+    .container-cover {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .container-info-cover {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .container-info-cover h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .container-info-cover p {
+      color: white;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    /* Sección de ofertas */
+    .oferts {
+      padding: 50px 0;
+    }
+    
+    .ofert-1 {
+      background-color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .ofert-1:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+    
+    .b1 {
+      border-left: 5px solid #ff6b6b;
+    }
+    
+    .b2 {
+      border-left: 5px solid #48dbfb;
+    }
+    
+    .b3 {
+      border-left: 5px solid #1dd1a1;
+    }
+    
+    .ofert-txt {
+      padding: 10px;
+    }
+    
+    .ofert-txt h3 {
+      color: #ff6b6b;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .ofert-txt h4 {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    
+    .ofert-img {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .ofert-img img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Sección de testimonios */
+    .testimonial {
+      padding: 50px 0;
+      background-color: #f1f2f6;
+    }
+    
+    .testimonial h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+      font-size: 2rem;
+    }
+    
+    .testimonial-content {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    
+    .testimonial-1 {
+      background-color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      width: calc(50% - 30px);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .testimonial-1:hover {
+      transform: scale(1.05);
+    }
+    
+    .testimonial-1 p {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    
+    .testimonial-1 h4 {
+      color: #ff6b6b;
+      font-weight: bold;
+    }
+    
+    .testimonial-1 img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 5px solid #f8f9fa;
+    }
+    
+    /* Sección de horario */
+  .horario-txt {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .txt {
+    flex: 1 1 300px;
+    min-width: 250px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .txt h4 {
+    color: #333;
+    border-bottom: 2px solid #ff6b6b;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+
+  .txt p {
+    margin: 8px 0;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .facebook {
+    height: 50px;
+  }
+
+  .whatsapp {
+    height: 55px;
+  }
+
+  .instagram {
+    height: 50px;
+  }
+
+  @media (max-width: 768px) {
+    .horario-txt {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .txt {
+      flex: 1 1 100%;
+    }
+  }
+    
+     @media (max-width: 768px) {
+      .navbar ul {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: white;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 10px;
+        display: none;
+      }
+    
+    .navbar ul li ul {
+        position: static;
+        box-shadow: none;
+        background-color: #f1f1f1;
+        width: 100%;
+      }
+
+     .menu-icono { 
+      display: initial;
+    } 
+ 
+      .navbar ul.active {
+        display: flex;
+      }
+      
+      .navbar ul li {
+        width: 100%;
+      }
+      .navbar ul li {
+        margin: 10px 0;
+      }
+      
+      .search-bar {
+        margin: 15px 0;
+      }
+      
+
+     .logo {
+      display: none;
+     }
+    }
+    
+    /* Estilos para pantallas muy pequeñas */
+    @media (max-width: 480px) {
+      .oferts {
+        flex-direction: column;
+      }
+      
+      .ofert-1 {
+        width: 100%;
+      }
+      
+      .testimonial-content {
+        flex-direction: column;
+      }
+      
+      .testimonial-1 {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+     <header class="header">
+           <div class="menu container">
+               
+                <div class="logo">
+                    <img src="Logo.png" alt="">
+               </div>    
+                <input type="checkbox" id="menu"> 
+                <label for="menu">
+                  <img src="menu-icono.png" class="menu-icono" alt="menu">
+                </label>
+                <nav class="navbar">
+                     <ul>
+                          <li><a href="http://127.0.0.1:5501/img/Inicio%20actualizado.html#">Inicio</a></li>
+                          <li><a href="">Productos</a>
+                              <ul>
+                                   <li><a href="http://127.0.0.1:5501/img/Utiles%20del%20Hogar%20actualizado.html">Utiles del Hogar</a></li>
+                                   <li><a href="http://127.0.0.1:5501/img/Piezas%20Rojas.html">Piezas Rojas</a></li>
+                                   <li><a href="http://127.0.0.1:5501/img/Termo%20Fusion.html">Termo Fusión</a></li>
+                                   <li><a href="http://127.0.0.1:5501/img/Tornilleria.html">Tornilleria</a></li>
+                                   <li><a href="http://127.0.0.1:5501/img/Plastiqueria.html">Plastiqueria</a></li>
+                              </ul>  
+                          </li>    
+                          <li><a href="#">Venta Mayorista</a></li>
+                          <li><a href="#">Encargos</a></li>
+                     </ul>
+                </nav>
+               <div class="search-bar">
+               <input type="text" id="search-input" placeholder="Buscar productos...">
+              <button onclick="searchProducts()">Buscar</button>
+              </div>
+        
+                
+    
+     </header>
+    
+     <div class="container-cover">
+          <div class="container-info-cover">
+               <h1>Bienvenidos a la mejor opción</h1>
+               <p>Ferreteria Starthree: Somos una tienda online y fisica que nuestro proposito es que usted resuelva su problema en el menor tiempo posible, estaremos disponibles las 24 horas en esta pagina y en el grupo de whatsapp para cualquier duda e informacion. No dude en contactarnos siempre tenemos sorpresas para nuestros clientes, somos Starthree donde el cliente siempre tiene la razón.</p>
+          </div>
+     </div>
+
+     <section class="oferts container">
+          <div class="ofert-1 b1">
+               <div class="ofert-txt">
+                   <h3>Formas de Pago:</h3>
+                   <h4>Aceptamos Moneda Nacional, Transferencia, Dolares y Euros a como este en el toque -10cup</h4>
+              </div>
+          </div>    
+          <div class="ofert-1 b2">
+               <div class="ofert-txt">
+                   <h3>Devolución:</h3>  
+                   <h4>Usted como cliente tiene el derecho a devolver el producto si esta dañado o en mal estado, se lo cambiaremos por otro o le devolvemos su dinero, lo importante es que pueda resolver su problema</h4>
+              </div>
+          </div>   
+          <div class="ofert-1 b3">
+               <div class="ofert-txt">
+                   <h3>Registro</h3>
+                   <h4>Se puede registrar a nuestra página para que pueda participar de nuestros eventos tales como la semana de rebajas de cierto productos, los sorteos y otras cosas que iremos publicando</h4>
+               </div>
+               
+     </section>
+    
+     
+     <section class="testimonial container">
+           <h2>Productos Nuevos</h2>
+           <div class="testimonial-content">
+                <div class="testimonial-1">
+                    <img src="Cemento.jpg" alt="Producto Nuevo">
+                    <p>Producto estrella de nuestra nueva colección, diseñado para ofrecer la máxima calidad y durabilidad.</p>
+                    <h4>Cemento</h4>
+               </div>
+                <div class="testimonial-1">
+                    <img src="Protector de voltage.jpg" alt="Producto Nuevo">
+                    <p>La mejor opción para proteger a tus equipos electrodomesticos.</p>
+                    <h4>Protector de Voltage</h4>
+               </div>
+           </div>
+     </section>    
+     <section class="horario">
+          <div class="horario-info container">
+               
+                    
+                    <div class="horario-txt">
+  <div class="txt">
+    <h4>Dirección</h4>
+    <p>Calle 42 #  % Avenida 39 y Avenida 41</p>
+    <p> Reparto Kholy</p>
+  </div>
+  <div class="txt">
+    <h4>Horario</h4>
+    <p>Lunes a Sabado : 7:30 am - 5:30 pm</p>
+    <p>Domingo : 7:30 am - 2:30 pm</p>
+  </div>
+  <div class="txt">
+    <h4>Telefono</h4>
+    <p>+53 5 6578961</p>
+    <p>+53 5 8266442</p>
+  </div>
+  <div class="txt">
+    <h4>Redes Sociales</h4>
+    <a href="https://facebook.com" target="_blank" class="social-icon facebook">
+      <img src="Redes sociales/Facebook_f_logo_(2019).svg" alt="" class="facebook">
+    </a>
+    <a href="https://t.me" target="_blank" class="social-icon telegram">
+      <img src="Redes sociales/WhatsApp.svg" alt="" class="whatsapp">
+    </a>
+    <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+      <img src="Redes sociales/Instagram_icon.png" alt="" class="instagram">
+    </a>
+  </div>
+</div>
+     </section>    
+      
+     <section>
+         <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d2181.986588791497!2d-82.41429922839261!3d23.109937863897574!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sus!4v1725322484452!5m2!1ses-419!2sus" width="2000" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" frameborder="0"></iframe>"
+     </section>
+  
+     <script>
+    // Función para buscar productos
+    function searchProducts() {
+        const searchTerm = document.getElementById('search-input').value;
+        if (searchTerm.trim() !== '') {
+            // Aquí iría la lógica para buscar productos
+            alert(`Buscando: ${searchTerm}`);
+        }
+    }
+    
+    // Toggle para el menú móvil
+    document.getElementById('menu').addEventListener('change', function() {
+        const navbar = document.querySelector('.navbar ul');
+        if (this.checked) {
+            navbar.classList.add('active');
+        } else {
+            navbar.classList.remove('active');
+        }
+    });
+    
+    // Toggle para el carrito
+    document.getElementById('img-carrito').addEventListener('click', function() {
+        const carrito = document.getElementById('carrito');
+        carrito.classList.toggle('active');
+    });
+    
+    // Vaciar carrito
+    document.getElementById('vaciar-carrito').addEventListener('click', function(e) {
+        e.preventDefault();
+        const tbody = document.querySelector('#lista-carrito tbody');
+        tbody.innerHTML = '';
+    });
+     </script>
+</body>
+</html>
