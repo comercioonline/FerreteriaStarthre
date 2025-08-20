@@ -50,9 +50,14 @@
     @media (max-width: 640px) {
       .menu.container {
         padding: 0 0.5rem;
+        flex-wrap: wrap;
       }
       .logo img {
         height: 40px;
+      }
+      .search-bar {
+        width: 100%;
+        margin-top: 10px;
       }
     }
     
@@ -139,6 +144,7 @@
       .search-bar {
         padding: 0.5rem;
         max-width: 100%;
+        margin-top: 10px;
       }
       .search-bar input {
         flex-grow: 1;
@@ -414,10 +420,14 @@
         background: var(--dark);
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
         transition: clip-path 0.4s;
+        max-height: 0;
+        overflow: hidden;
       }
       
       #menu:checked ~ .navbar {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        max-height: 300px;
+        overflow-y: auto;
       }
       
       .navbar ul {
@@ -435,13 +445,198 @@
       }
       
       .search-bar {
-       padding: 5%;
-       margin-top: 0.3rem;
-       width: 100%;
+        padding: 0.5rem;
+        margin-top: 10px;
+        width: 100%;
+      }
+      
+      .cart-icon {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+      
+      .cart-dropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        color: #333;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 0;
+        padding: 1rem;
+        display: none;
+        z-index: 1001;
+        overflow-y: auto;
+      }
+      
+      .cart-dropdown h3 {
+        margin-bottom: 1rem;
+        color: var(--dark);
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+        text-align: center;
+      }
+      
+      .cart-items-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        max-height: 60vh;
+        overflow-y: auto;
+      }
+      
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.3s;
+      }
+      
+      .cart-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      
+      .cart-item-info {
+        flex-grow: 1;
+        margin-left: 1rem;
+      }
+      
+      .cart-item-name {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
+      
+      .cart-item-price {
+        color: var(--primary);
+        font-weight: bold;
+      }
+      
+      .cart-item-quantity {
+        display: flex;
+        align-items: center;
+      }
+      
+      .cart-item-quantity button {
+        background-color: var(--secondary);
+        color: white;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+      
+      .cart-item-quantity button:hover {
+        background-color: var(--dark);
+        transform: scale(1.1);
+      }
+      
+      .cart-item-quantity span {
+        min-width: 24px;
+        text-align: center;
+        font-weight: 500;
+      }
+      
+      .cart-total {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 2px solid var(--primary);
+      }
+      
+      .cart-total h4 {
+        font-size: 1.2rem;
+        color: var(--dark);
+      }
+      
+      .cart-total .total-price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: var(--primary);
+      }
+      
+      .cart-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .cart-actions button {
+        flex: 1;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+      }
+      
+      .checkout-btn {
+        background-color: var(--primary);
+        color: white;
+      }
+      
+      .checkout-btn:hover {
+        background-color: #c1121f;
+        transform: translateY(-2px);
+      }
+      
+      .clear-cart-btn {
+        background-color: #6c757d;
+        color: white;
+      }
+      
+      .clear-cart-btn:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px);
+      }
+      
+      .empty-cart {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+      }
+      
+      .empty-cart i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #ccc;
+      }
+      
+      .close-cart {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark);
+        background-color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
-
-    /* Carrito styles */
+    
+    /* Carrito styles for desktop */
     .cart-icon {
       position: relative;
       cursor: pointer;
@@ -449,7 +644,7 @@
       font-size: 1.5rem;
       margin-left: 1rem;
     }
-
+    
     .cart-count {
       position: absolute;
       top: -8px;
@@ -464,7 +659,7 @@
       justify-content: center;
       font-size: 0.8rem;
     }
-
+    
     .cart-dropdown {
       position: absolute;
       top: 100%;
@@ -481,7 +676,7 @@
       max-height: 70vh;
       overflow-y: auto;
     }
-
+    
     .cart-dropdown h3 {
       margin-bottom: 1.5rem;
       color: var(--dark);
@@ -489,7 +684,12 @@
       border-bottom: 1px solid #eee;
       padding-bottom: 0.5rem;
     }
-
+    
+    .cart-items-container {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -498,34 +698,34 @@
       border-bottom: 1px solid #eee;
       transition: background-color 0.3s;
     }
-
+    
     .cart-item img {
       width: 60px;
       height: 60px;
       object-fit: cover;
       border-radius: 4px;
     }
-
+    
     .cart-item-info {
       flex-grow: 1;
       margin-left: 1rem;
     }
-
+    
     .cart-item-name {
       font-weight: 500;
       margin-bottom: 0.25rem;
     }
-
+    
     .cart-item-price {
       color: var(--primary);
       font-weight: bold;
     }
-
+    
     .cart-item-quantity {
       display: flex;
       align-items: center;
     }
-
+    
     .cart-item-quantity button {
       background-color: var(--secondary);
       color: white;
@@ -540,18 +740,18 @@
       justify-content: center;
       transition: all 0.3s;
     }
-
+    
     .cart-item-quantity button:hover {
       background-color: var(--dark);
       transform: scale(1.1);
     }
-
+    
     .cart-item-quantity span {
       min-width: 24px;
       text-align: center;
       font-weight: 500;
     }
-
+    
     .cart-total {
       margin-top: 1.5rem;
       display: flex;
@@ -560,24 +760,24 @@
       padding-top: 1rem;
       border-top: 2px solid var(--primary);
     }
-
+    
     .cart-total h4 {
       font-size: 1.2rem;
       color: var(--dark);
     }
-
+    
     .cart-total .total-price {
       font-size: 1.3rem;
       font-weight: bold;
       color: var(--primary);
     }
-
+    
     .cart-actions {
       display: flex;
       gap: 0.5rem;
       margin-top: 1rem;
     }
-
+    
     .cart-actions button {
       flex: 1;
       padding: 0.75rem;
@@ -587,39 +787,39 @@
       transition: all 0.3s;
       font-weight: 500;
     }
-
+    
     .checkout-btn {
       background-color: var(--primary);
       color: white;
     }
-
+    
     .checkout-btn:hover {
       background-color: #c1121f;
       transform: translateY(-2px);
     }
-
+    
     .clear-cart-btn {
       background-color: #6c757d;
       color: white;
     }
-
+    
     .clear-cart-btn:hover {
       background-color: #5a6268;
       transform: translateY(-2px);
     }
-
+    
     .empty-cart {
       text-align: center;
       padding: 2rem;
       color: #666;
     }
-
+    
     .empty-cart i {
       font-size: 3rem;
       margin-bottom: 1rem;
       color: #ccc;
     }
-
+    
     .notification {
       position: fixed;
       bottom: 20px;
@@ -634,7 +834,7 @@
       z-index: 2000;
       animation: slideIn 0.3s ease-out;
     }
-
+    
     @keyframes slideIn {
       from {
         transform: translateX(100%);
@@ -645,7 +845,7 @@
         opacity: 1;
       }
     }
-
+    
     /* Modal de confirmación */
     .confirm-modal {
       display: none;
@@ -659,7 +859,7 @@
       justify-content: center;
       align-items: center;
     }
-
+    
     .confirm-modal-content {
       background-color: white;
       padding: 2rem;
@@ -669,23 +869,23 @@
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-
+    
     .confirm-modal-content h3 {
       color: var(--dark);
       margin-bottom: 1rem;
     }
-
+    
     .confirm-modal-content p {
       margin-bottom: 1.5rem;
       color: #666;
     }
-
+    
     .confirm-modal-actions {
       display: flex;
       gap: 1rem;
       justify-content: center;
     }
-
+    
     .confirm-modal-actions button {
       padding: 0.75rem 1.5rem;
       border: none;
@@ -694,21 +894,21 @@
       transition: all 0.3s;
       font-weight: 500;
     }
-
+    
     .confirm-cancel-btn {
       background-color: #6c757d;
       color: white;
     }
-
+    
     .confirm-cancel-btn:hover {
       background-color: #5a6268;
     }
-
+    
     .confirm-accept-btn {
       background-color: var(--primary);
       color: white;
     }
-
+    
     .confirm-accept-btn:hover {
       background-color: #c1121f;
     }
@@ -777,8 +977,9 @@
       
       <!-- Carrito desplegable -->
       <div class="cart-dropdown" id="cart-dropdown">
+        <span class="close-cart" onclick="toggleCart()">&times;</span>
         <h3>Carrito de Compras</h3>
-        <div id="cart-items"></div>
+        <div class="cart-items-container" id="cart-items"></div>
         <div class="cart-total">
           <h4>Total:</h4>
           <div class="total-price" id="cart-total">$0.00</div>
@@ -896,11 +1097,10 @@
             <p class="precio">$250.00</p>
             <div class="product-actions">
               <button class="details-btn" onclick="showDetails('Entre Do Rojo de 3/4','Imagenes de Piezas de color/niple o entre duo 3-4 otro.webp')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 3/4', 16, 'Imagenes de Piezas de color/niple o entre duo 3-4 otro.webp')">Añadir</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 3/4', 16, 'Imagenes de Piezas de color/nipple o entre duo 3-4 otro.webp')">Añadir</button>
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/niple o entre duo  pulgada.webp" alt="">
           <div class="product-txt">
@@ -1056,7 +1256,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/tapa roja de Pulgada.jpg" alt="">
           <div class="product-txt">
@@ -1069,7 +1268,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/tapon de 1-2.jpg" alt="">
           <div class="product-txt">
@@ -1082,7 +1280,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/tapon 3-4.jpeg" alt="">
           <div class="product-txt">
@@ -1095,7 +1292,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/tapon de pulgada.jpg" alt="">
           <div class="product-txt">
@@ -1108,7 +1304,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/Te de media.jpg" alt="">
           <div class="product-txt">
@@ -1121,7 +1316,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/te de 3-4.jpg" alt="">
           <div class="product-txt">
@@ -1134,7 +1328,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/Te de pulgada.jpg" alt="">
           <div class="product-txt">
@@ -1147,7 +1340,6 @@
             </div>
           </div> 
         </div>
-
         <div class="box">
           <img src="Imagenes de Piezas de color/universal de 1-2.webp" alt="">
           <div class="product-txt">
@@ -1226,7 +1418,6 @@
         </div>
       </div>
     </footer>
-
     <script>
       // Variables del carrito
       let cart = [];
@@ -1548,5 +1739,4 @@
       });
     </script>
 </body>
-
 </html>
