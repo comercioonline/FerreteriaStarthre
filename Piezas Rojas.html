@@ -50,14 +50,9 @@
     @media (max-width: 640px) {
       .menu.container {
         padding: 0 0.5rem;
-        flex-wrap: wrap;
       }
       .logo img {
         height: 40px;
-      }
-      .search-bar {
-        width: 100%;
-        margin-top: 10px;
       }
     }
     
@@ -144,7 +139,6 @@
       .search-bar {
         padding: 0.5rem;
         max-width: 100%;
-        margin-top: 10px;
       }
       .search-bar input {
         flex-grow: 1;
@@ -420,14 +414,10 @@
         background: var(--dark);
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
         transition: clip-path 0.4s;
-        max-height: 0;
-        overflow: hidden;
       }
       
       #menu:checked ~ .navbar {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        max-height: 300px;
-        overflow-y: auto;
       }
       
       .navbar ul {
@@ -445,198 +435,13 @@
       }
       
       .search-bar {
-        padding: 0.5rem;
-        margin-top: 10px;
-        width: 100%;
-      }
-      
-      .cart-icon {
-        margin-left: 0;
-        margin-top: 10px;
-      }
-      
-      .cart-dropdown {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.7);
-        color: #333;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border-radius: 0;
-        padding: 1rem;
-        display: none;
-        z-index: 1001;
-        overflow-y: auto;
-      }
-      
-      .cart-dropdown h3 {
-        margin-bottom: 1rem;
-        color: var(--dark);
-        font-size: 1.2rem;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 0.5rem;
-        text-align: center;
-      }
-      
-      .cart-items-container {
-        background-color: white;
-        border-radius: 8px;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        max-height: 60vh;
-        overflow-y: auto;
-      }
-      
-      .cart-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-        border-bottom: 1px solid #eee;
-        transition: background-color 0.3s;
-      }
-      
-      .cart-item img {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-        border-radius: 4px;
-      }
-      
-      .cart-item-info {
-        flex-grow: 1;
-        margin-left: 1rem;
-      }
-      
-      .cart-item-name {
-        font-weight: 500;
-        margin-bottom: 0.25rem;
-      }
-      
-      .cart-item-price {
-        color: var(--primary);
-        font-weight: bold;
-      }
-      
-      .cart-item-quantity {
-        display: flex;
-        align-items: center;
-      }
-      
-      .cart-item-quantity button {
-        background-color: var(--secondary);
-        color: white;
-        border: none;
-        width: 24px;
-        height: 24px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 0 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s;
-      }
-      
-      .cart-item-quantity button:hover {
-        background-color: var(--dark);
-        transform: scale(1.1);
-      }
-      
-      .cart-item-quantity span {
-        min-width: 24px;
-        text-align: center;
-        font-weight: 500;
-      }
-      
-      .cart-total {
-        margin-top: 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1rem;
-        border-top: 2px solid var(--primary);
-      }
-      
-      .cart-total h4 {
-        font-size: 1.2rem;
-        color: var(--dark);
-      }
-      
-      .cart-total .total-price {
-        font-size: 1.3rem;
-        font-weight: bold;
-        color: var(--primary);
-      }
-      
-      .cart-actions {
-        display: flex;
-        gap: 0.5rem;
-        margin-top: 1rem;
-      }
-      
-      .cart-actions button {
-        flex: 1;
-        padding: 0.75rem;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-weight: 500;
-      }
-      
-      .checkout-btn {
-        background-color: var(--primary);
-        color: white;
-      }
-      
-      .checkout-btn:hover {
-        background-color: #c1121f;
-        transform: translateY(-2px);
-      }
-      
-      .clear-cart-btn {
-        background-color: #6c757d;
-        color: white;
-      }
-      
-      .clear-cart-btn:hover {
-        background-color: #5a6268;
-        transform: translateY(-2px);
-      }
-      
-      .empty-cart {
-        text-align: center;
-        padding: 2rem;
-        color: #666;
-      }
-      
-      .empty-cart i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        color: #ccc;
-      }
-      
-      .close-cart {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--dark);
-        background-color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+       padding: 5%;
+       margin-top: 0.3rem;
+       width: 100%;
       }
     }
-    
-    /* Carrito styles for desktop */
+
+    /* Carrito styles */
     .cart-icon {
       position: relative;
       cursor: pointer;
@@ -644,7 +449,7 @@
       font-size: 1.5rem;
       margin-left: 1rem;
     }
-    
+
     .cart-count {
       position: absolute;
       top: -8px;
@@ -659,7 +464,7 @@
       justify-content: center;
       font-size: 0.8rem;
     }
-    
+
     .cart-dropdown {
       position: absolute;
       top: 100%;
@@ -676,7 +481,7 @@
       max-height: 70vh;
       overflow-y: auto;
     }
-    
+
     .cart-dropdown h3 {
       margin-bottom: 1.5rem;
       color: var(--dark);
@@ -684,12 +489,7 @@
       border-bottom: 1px solid #eee;
       padding-bottom: 0.5rem;
     }
-    
-    .cart-items-container {
-      max-height: 300px;
-      overflow-y: auto;
-    }
-    
+
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -698,34 +498,34 @@
       border-bottom: 1px solid #eee;
       transition: background-color 0.3s;
     }
-    
+
     .cart-item img {
       width: 60px;
       height: 60px;
       object-fit: cover;
       border-radius: 4px;
     }
-    
+
     .cart-item-info {
       flex-grow: 1;
       margin-left: 1rem;
     }
-    
+
     .cart-item-name {
       font-weight: 500;
       margin-bottom: 0.25rem;
     }
-    
+
     .cart-item-price {
       color: var(--primary);
       font-weight: bold;
     }
-    
+
     .cart-item-quantity {
       display: flex;
       align-items: center;
     }
-    
+
     .cart-item-quantity button {
       background-color: var(--secondary);
       color: white;
@@ -740,18 +540,18 @@
       justify-content: center;
       transition: all 0.3s;
     }
-    
+
     .cart-item-quantity button:hover {
       background-color: var(--dark);
       transform: scale(1.1);
     }
-    
+
     .cart-item-quantity span {
       min-width: 24px;
       text-align: center;
       font-weight: 500;
     }
-    
+
     .cart-total {
       margin-top: 1.5rem;
       display: flex;
@@ -760,24 +560,24 @@
       padding-top: 1rem;
       border-top: 2px solid var(--primary);
     }
-    
+
     .cart-total h4 {
       font-size: 1.2rem;
       color: var(--dark);
     }
-    
+
     .cart-total .total-price {
       font-size: 1.3rem;
       font-weight: bold;
       color: var(--primary);
     }
-    
+
     .cart-actions {
       display: flex;
       gap: 0.5rem;
       margin-top: 1rem;
     }
-    
+
     .cart-actions button {
       flex: 1;
       padding: 0.75rem;
@@ -787,39 +587,39 @@
       transition: all 0.3s;
       font-weight: 500;
     }
-    
+
     .checkout-btn {
       background-color: var(--primary);
       color: white;
     }
-    
+
     .checkout-btn:hover {
       background-color: #c1121f;
       transform: translateY(-2px);
     }
-    
+
     .clear-cart-btn {
       background-color: #6c757d;
       color: white;
     }
-    
+
     .clear-cart-btn:hover {
       background-color: #5a6268;
       transform: translateY(-2px);
     }
-    
+
     .empty-cart {
       text-align: center;
       padding: 2rem;
       color: #666;
     }
-    
+
     .empty-cart i {
       font-size: 3rem;
       margin-bottom: 1rem;
       color: #ccc;
     }
-    
+
     .notification {
       position: fixed;
       bottom: 20px;
@@ -834,7 +634,7 @@
       z-index: 2000;
       animation: slideIn 0.3s ease-out;
     }
-    
+
     @keyframes slideIn {
       from {
         transform: translateX(100%);
@@ -845,7 +645,7 @@
         opacity: 1;
       }
     }
-    
+
     /* Modal de confirmación */
     .confirm-modal {
       display: none;
@@ -859,7 +659,7 @@
       justify-content: center;
       align-items: center;
     }
-    
+
     .confirm-modal-content {
       background-color: white;
       padding: 2rem;
@@ -869,23 +669,23 @@
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    
+
     .confirm-modal-content h3 {
       color: var(--dark);
       margin-bottom: 1rem;
     }
-    
+
     .confirm-modal-content p {
       margin-bottom: 1.5rem;
       color: #666;
     }
-    
+
     .confirm-modal-actions {
       display: flex;
       gap: 1rem;
       justify-content: center;
     }
-    
+
     .confirm-modal-actions button {
       padding: 0.75rem 1.5rem;
       border: none;
@@ -894,21 +694,21 @@
       transition: all 0.3s;
       font-weight: 500;
     }
-    
+
     .confirm-cancel-btn {
       background-color: #6c757d;
       color: white;
     }
-    
+
     .confirm-cancel-btn:hover {
       background-color: #5a6268;
     }
-    
+
     .confirm-accept-btn {
       background-color: var(--primary);
       color: white;
     }
-    
+
     .confirm-accept-btn:hover {
       background-color: #c1121f;
     }
@@ -916,13 +716,13 @@
 </head>
 <body>
     <!-- Modal de detalles del producto -->
-    <div class="modal" id="productModal">
+     <div class="modal" id="productModal">
       <div class="modal-content">
         <span class="close-modal" onclick="closeModal()">&times;</span>
         <img id="modalImage" src="" alt="" style="width:100%; max-height:300px; object-fit:contain;">
         <h3 id="modalTitle"></h3>
-        <p>Información detallada del producto...</p>
-        <p class="precio">(-)</p>
+        <p id="modalDescription"></p>
+        <p class="precio" id="modalPrice"></p>
         <a href="#" class="whatsapp-btn" id="whatsappBtn" onclick="contactWhatsApp(document.getElementById('modalTitle').textContent)">  
           <img src="https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/WhatsApp.svg" alt="WhatsApp">
           Contactar por WhatsApp
@@ -953,16 +753,16 @@
         </label>
         <nav class="navbar">
           <ul>
-            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Inicio">Inicio</a></li>
+            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/inicio%20actualizado">Inicio</a></li>
             <li><a href="">Productos</a>
               <ul>
-                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Utiles%20del%20Hogar">Utiles del Hogar</a></li>
-                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Piezas%20Rojas">Piezas Rojas</a></li>
-                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Termo%20Fusion">Termo Fusión</a></li>
-                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Tornilleria">Tornilleria</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Utiles%20del%20Hogar%20actualizado">Utiles del Hogar</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/piezas%20rojas%20actualizado">Piezas Rojas</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Termofusion%20actualizado">Termo Fusión</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Tornilleria%20actualizado">Tornilleria</a></li>
               </ul>  
             </li> 
-            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Venta%20Mayorista">Venta Mayorista</a></li>  
+            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/informacion">Venta Mayorista</a></li>  
             <li><a href="https://comercioonline.github.io/FerreteriaStarthre/informacion">Informacion</a></li>
           </ul>
         </nav>
@@ -977,9 +777,8 @@
       
       <!-- Carrito desplegable -->
       <div class="cart-dropdown" id="cart-dropdown">
-        <span class="close-cart" onclick="toggleCart()">&times;</span>
         <h3>Carrito de Compras</h3>
-        <div class="cart-items-container" id="cart-items"></div>
+        <div id="cart-items"></div>
         <div class="cart-total">
           <h4>Total:</h4>
           <div class="total-price" id="cart-total">$0.00</div>
@@ -995,17 +794,17 @@
       </div>
     </header>
     
-    <main class="products container">
+     <main class="products container">
       <h2>Piezas Rojas</h2>
       <div class="box-container" id="lista-1"> 
         <div class="box">
           <img src="Imagenes de Piezas de color/Bushing.webp" alt="">
           <div class="product-txt">
-            <h3>Bushing 3/4 x 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Bushing 3/4 x 1/2</h3>
+            <p class="product-description">Conector rojo para transiciones de tubería 3/4 a 1/2 pulgada</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Bushing 3/4 x 1/2','Imagenes de Piezas de color/Bushing.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Bushing 3/4 x 1/2','Imagenes de Piezas de color/Bushing.webp', 'Conector rojo para transiciones de tubería 3/4 a 1/2 pulgada', '$250.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Bushing 3/4 x 1/2', 250, 'Imagenes de Piezas de color/Bushing.webp')">Añadir</button>
             </div>
           </div> 
@@ -1014,11 +813,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/busing 1-2 x pulgada.jpg" alt="">
           <div class="product-txt">
-            <h3>Bushing Pulgada x 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Bushing Pulgada x 1/2</h3>
+            <p class="product-description">Transición de pulgada a 1/2 pulgada en sistemas de tubería</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 1/2','Imagenes de Piezas de color/busing 1-2 x pulgada.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 1/2','Imagenes de Piezas de color/busing 1-2 x pulgada.jpg', 'Transición de pulgada a 1/2 pulgada en sistemas de tubería', '$250.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Bushing Pulgada x 1/2', 250, 'Imagenes de Piezas de color/busing 1-2 x pulgada.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1027,11 +826,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/busing 3-4 x pulgada.jpg">
           <div class="product-txt">
-            <h3>Bushing Pulgada x 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Bushing Pulgada x 3/4</h3>
+            <p class="product-description">Conector de pulgada a 3/4 pulgada para tuberías</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 3/4','Imagenes de Piezas de color/busing 3-4 x pulgada.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 3/4','Imagenes de Piezas de color/busing 3-4 x pulgada.jpg', 'Conector de pulgada a 3/4 pulgada para tuberías', '$250.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Bushing Pulgada x 3/4', 250, 'Imagenes de Piezas de color/busing 3-4 x pulgada.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1040,11 +839,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/codo de media.webp" alt="">
           <div class="product-txt">
-            <h3>Codos Rojo de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Codos Rojo de 1/2</h3>
+            <p class="product-description">Codo de 90° rojo de 1/2 pulgada para cambios de dirección</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Codos Rojo de 1/2s','Imagenes de Piezas de color/codo de media.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Codos Rojo de 1/2','Imagenes de Piezas de color/codo de media.webp', 'Codo de 90° rojo de 1/2 pulgada para cambios de dirección', '$350.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de 1/2', 350, 'Imagenes de Piezas de color/codo de media.webp')">Añadir</button>
             </div>
           </div> 
@@ -1053,12 +852,12 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/codo de 3-4.jpg">
           <div class="product-txt">
-            <h3>Codos Rojo de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Codos Rojo de 3/4</h3>
+            <p class="product-description">Codo de 90° rojo de 3/4 pulgada para tuberías</p>
             <p class="precio">$400.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Codos Rojo de 3/4','Imagenes de Piezas de color/codo de 3-4.jpg')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de 3/4', 14, 'Imagenes de Piezas de color/codo de 3-4.jpg')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Codos Rojo de 3/4','Imagenes de Piezas de color/codo de 3-4.jpg', 'Codo de 90° rojo de 3/4 pulgada para tuberías', '$400.00')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de 3/4', 400, 'Imagenes de Piezas de color/codo de 3-4.jpg')">Añadir</button>
             </div>
           </div>                          
         </div>
@@ -1066,12 +865,12 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/codo rojo de una pulgada.webp" alt="">
           <div class="product-txt">
-            <h3>Codos Rojo de un Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Codos Rojo de un Pulgada</h3>
+            <p class="product-description">Codo de 90° rojo de una pulgada para tuberías grandes</p>
             <p class="precio">$500.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Codos Rojo de un Pulgada','Imagenes de Piezas de color/codo rojo de una pulgada.webp')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de un Pulgada', 20, 'Imagenes de Piezas de color/codo rojo de una pulgada.webp')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Codos Rojo de un Pulgada','Imagenes de Piezas de color/codo rojo de una pulgada.webp', 'Codo de 90° rojo de una pulgada para tuberías grandes', '$500.00')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de un Pulgada', 500, 'Imagenes de Piezas de color/codo rojo de una pulgada.webp')">Añadir</button>
             </div>
           </div> 
         </div>     
@@ -1079,12 +878,12 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/niple o entre duo 1-2.webp" alt="">
           <div class="product-txt">
-            <h3>Entre Do Rojo de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Entre Do Rojo de 1/2</h3>
+            <p class="product-description">Conector recto rojo de 1/2 pulgada para extensiones</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 1/2','Imagenes de Piezas de color/niple o entre duo 1-2.webp')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 1/2', 8, 'Imagenes de Piezas de color/niple o entre duo 1-2.webp')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 1/2','Imagenes de Piezas de color/niple o entre duo 1-2.webp', 'Conector recto rojo de 1/2 pulgada para extensiones', '$150.00')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 1/2', 150, 'Imagenes de Piezas de color/niple o entre duo 1-2.webp')">Añadir</button>
             </div>
           </div> 
         </div> 
@@ -1092,24 +891,25 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/niple o entre duo 3-4 otro.webp" alt="">
           <div class="product-txt">
-            <h3>Entre Do Rojo de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Entre Do Rojo de 3/4</h3>
+            <p class="product-description">Conector recto rojo de 3/4 pulgada para tuberías</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 3/4','Imagenes de Piezas de color/niple o entre duo 3-4 otro.webp')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 3/4', 16, 'Imagenes de Piezas de color/nipple o entre duo 3-4 otro.webp')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 3/4','Imagenes de Piezas de color/nipple o entre duo 3-4 otro.webp', 'Conector recto rojo de 3/4 pulgada para tuberías', '$250.00')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 3/4', 250, 'Imagenes de Piezas de color/nipple o entre duo 3-4 otro.webp')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/niple o entre duo  pulgada.webp" alt="">
           <div class="product-txt">
-            <h3>Entre Do Rojo de Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Entre Do Rojo de Pulgada</h3>
+            <p class="product-description">Conector recto rojo de una pulgada para conexiones</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Entre Do Rojo de Pulgada','Imagenes de Piezas de color/niple o entre duo  pulgada.webp')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de Pulgada', 350, 'Imagenes de Piezas de color/niple o entre duo  pulgada.webp')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Entre Do Rojo de Pulgada','Imagenes de Piezas de color/niple o entre duo  pulgada.webp', 'Conector recto rojo de una pulgada para conexiones', '$350.00')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de Pulgada', 350, 'Imagenes de Piezas de color/nipple o entre duo  pulgada.webp')">Añadir</button>
             </div>
           </div> 
         </div>
@@ -1117,11 +917,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/nudo rojo de media.jpg" alt="">
           <div class="product-txt">
-            <h3>Nudo Rojo de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Nudo Rojo de 1/2</h3>
+            <p class="product-description">Nudo rojo de 1/2 pulgada con rosca exterior</p>
             <p class="precio">$200.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Nudo Rojo de 1/2','Imagenes de Piezas de color/nudo rojo de media.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Nudo Rojo de 1/2','Imagenes de Piezas de color/nudo rojo de media.jpg', 'Nudo rojo de 1/2 pulgada con rosca exterior', '$200.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de 1/2', 200, 'Imagenes de Piezas de color/nudo rojo de media.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1130,11 +930,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/nudo de 3-4.webp" alt="">
           <div class="product-txt">
-            <h3>Nudo Rojo de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Nudo Rojo de 3/4</h3>
+            <p class="product-description">Nudo rojo de 3/4 pulgada con rosca exterior</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Nudo Rojo de 3/4','Imagenes de Piezas de color/nudo de 3-4.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Nudo Rojo de 3/4','Imagenes de Piezas de color/nudo de 3-4.webp', 'Nudo rojo de 3/4 pulgada con rosca exterior', '$250.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de 3/4', 250, 'Imagenes de Piezas de color/nudo de 3-4.webp')">Añadir</button>
             </div>
           </div> 
@@ -1143,11 +943,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/nudo rojo de pulgada.jpeg" alt="">
           <div class="product-txt">
-            <h3>Nudo Rojo de Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Nudo Rojo de Pulgada</h3>
+            <p class="product-description">Nudo rojo de una pulgada con rosca exterior</p>
             <p class="precio">$300.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Nudo Rojo de Pulgada','Imagenes de Piezas de color/nudo rojo de pulgada.jpeg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Nudo Rojo de Pulgada','Imagenes de Piezas de color/nudo rojo de pulgada.jpeg', 'Nudo rojo de una pulgada con rosca exterior', '$300.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de Pulgada', 300, 'Imagenes de Piezas de color/nudo rojo de pulgada.jpeg')">Añadir</button>
             </div>
           </div> 
@@ -1156,11 +956,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp" alt="">
           <div class="product-txt">
-            <h3>Reducido Rojo de 1/2 x 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Reducido Rojo de 1/2 x 3/4</h3>
+            <p class="product-description">Reducido rojo de 3/4 a 1/2 pulgada para transiciones</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Reducido Rojo de 1/2 x 3/4','Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Reducido Rojo de 1/2 x 3/4','Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp', 'Reducido rojo de 3/4 a 1/2 pulgada para transiciones', '$250.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de 1/2 x 3/4', 250, 'Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp')">Añadir</button>
             </div>
           </div> 
@@ -1169,11 +969,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp" alt="">
           <div class="product-txt">
-            <h3>Reducido Rojo de Pulgada x 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Reducido Rojo de Pulgada x 1/2</h3>
+            <p class="product-description">Reducido rojo de pulgada a 1/2 pulgada</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 1/2','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 1/2','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp', 'Reducido rojo de pulgada a 1/2 pulgada', '$250.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de Pulgada x 1/2', 250, 'Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp')">Añadir</button>
             </div>
           </div> 
@@ -1182,11 +982,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp" alt="">
           <div class="product-txt">
-            <h3>Reducido Rojo de Pulgada x 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Reducido Rojo de Pulgada x 3/4</h3>
+            <p class="product-description">Reducido rojo de pulgada a 3/4 pulgada</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 3/4','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 3/4','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp', 'Reducido rojo de pulgada a 3/4 pulgada', '$350.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de Pulgada x 3/4', 350, 'Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp')">Añadir</button>
             </div>
           </div> 
@@ -1195,11 +995,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/salida  tanque de 1-2.jpg" alt="">
           <div class="product-txt">
-            <h3>Salida de Tanque Roja de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Salida de Tanque Roja de 1/2</h3>
+            <p class="product-description">Salida de tanque roja de 1/2 pulgada</p>
             <p class="precio">$1000.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 1/2', 'Imagenes de Piezas de color/salida  tanque de 1-2.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 1/2', 'Imagenes de Piezas de color/salida  tanque de 1-2.jpg', 'Salida de tanque roja de 1/2 pulgada', '$1000.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de 1/2', 1000, 'Imagenes de Piezas de color/salida  tanque de 1-2.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1208,11 +1008,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/salida de tanque de 3-4.jpg" alt="">
           <div class="product-txt">
-            <h3>Salida de Tanque Roja de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Salida de Tanque Roja de 3/4</h3>
+            <p class="product-description">Salida de tanque roja de 3/4 pulgada</p>
             <p class="precio">$1000.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 3/4','Imagenes de Piezas de color/salida de tanque de 3-4.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 3/4','Imagenes de Piezas de color/salida de tanque de 3-4.jpg', 'Salida de tanque roja de 3/4 pulgada', '$1000.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de 3/4', 1000, 'Imagenes de Piezas de color/salida de tanque de 3-4.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1221,11 +1021,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/salida de tanque de pulgada.jpg" alt="">
           <div class="product-txt">
-            <h3>Salida de Tanque Roja de Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Salida de Tanque Roja de Pulgada</h3>
+            <p class="product-description">Salida de tanque roja de una pulgada</p>
             <p class="precio">$1200.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de Pulgada','Imagenes de Piezas de color/salida de tanque de pulgada.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de Pulgada','Imagenes de Piezas de color/salida de tanque de pulgada.jpg', 'Salida de tanque roja de una pulgada', '$1200.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de Pulgada', 1200, 'Imagenes de Piezas de color/salida de tanque de pulgada.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1234,11 +1034,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/tapa roja de 1-2.jpg" alt="">
           <div class="product-txt">
-            <h3>Tapa Roja de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Tapa Roja de 1/2</h3>
+            <p class="product-description">Tapa roja de 1/2 pulgada para cerrar extremos de tubería</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapa Roja de 1/2','Imagenes de Piezas de color/tapa roja de 1-2.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tapa Roja de 1/2','Imagenes de Piezas de color/tapa roja de 1-2.jpg', 'Tapa roja de 1/2 pulgada para cerrar extremos de tubería', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de 1/2', 150, 'Imagenes de Piezas de color/tapa roja de 1-2.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1247,107 +1047,115 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/tapa roja de 3-4.jpg" alt="">
           <div class="product-txt">
-            <h3>Tapa Roja de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Tapa Roja de 3/4</h3>
+            <p class="product-description">Tapa roja de 3/4 pulgada para cerrar extremos de tubería</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapa Roja de 3/4' ,'Imagenes de Piezas de color/tapa roja de 3-4.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tapa Roja de 3/4' ,'Imagenes de Piezas de color/tapa roja de 3-4.jpg', 'Tapa roja de 3/4 pulgada para cerrar extremos de tubería', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de 3/4', 150, 'Imagenes de Piezas de color/tapa roja de 3-4.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/tapa roja de Pulgada.jpg" alt="">
           <div class="product-txt">
-            <h3>Tapa Roja de Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Tapa Roja de Pulgada</h3>
+            <p class="product-description">Tapa roja de una pulgada para cerrar extremos de tubería</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapa Roja de Pulgada' ,'Imagenes de Piezas de color/tapa roja de Pulgada.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tapa Roja de Pulgada' ,'Imagenes de Piezas de color/tapa roja de Pulgada.jpg', 'Tapa roja de una pulgada para cerrar extremos de tubería', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de Pulgada', 150, 'Imagenes de Piezas de color/tapa roja de Pulgada.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/tapon de 1-2.jpg" alt="">
           <div class="product-txt">
-            <h3>Tapon Rojo de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Tapon Rojo de 1/2</h3>
+            <p class="product-description">Tapon rojo de 1/2 pulgada para sellar tuberías</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapon Rojo de 1/2' ,'Imagenes de Piezas de color/tapon de 1-2.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tapon Rojo de 1/2' ,'Imagenes de Piezas de color/tapon de 1-2.jpg', 'Tapon rojo de 1/2 pulgada para sellar tuberías', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de 1/2', 150, 'Imagenes de Piezas de color/tapon de 1-2.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/tapon 3-4.jpeg" alt="">
           <div class="product-txt">
-            <h3>Tapon Rojo de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Tapon Rojo de 3/4</h3>
+            <p class="product-description">Tapon rojo de 3/4 pulgada para sellar tuberías</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapon Rojo de 3/4' ,'Imagenes de Piezas de color/tapon 3-4.jpeg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tapon Rojo de 3/4' ,'Imagenes de Piezas de color/tapon 3-4.jpeg', 'Tapon rojo de 3/4 pulgada para sellar tuberías', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de 3/4', 150, 'Imagenes de Piezas de color/tapon 3-4.jpeg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/tapon de pulgada.jpg" alt="">
           <div class="product-txt">
-            <h3>Tapon Rojo de Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Tapon Rojo de Pulgada</h3>
+            <p class="product-description">Tapon rojo de una pulgada para sellar tuberías</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapon Rojo de Pulgada' ,'Imagenes de Piezas de color/tapon de pulgada.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tapon Rojo de Pulgada' ,'Imagenes de Piezas de color/tapon de pulgada.jpg', 'Tapon rojo de una pulgada para sellar tuberías', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de Pulgada', 150, 'Imagenes de Piezas de color/tapon de pulgada.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/Te de media.jpg" alt="">
           <div class="product-txt">
-            <h3>Te Roja de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Te Roja de 1/2</h3>
+            <p class="product-description">Te roja de 1/2 pulgada para conexiones T en tuberías</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Te Roja de 1/2' ,'Imagenes de Piezas de color/Te de media.jpg')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Te Roja de 1/2', 150, 'Imagenes de Piezas de color/Te de media.jpg')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Te Roja de 1/2' ,'Imagenes de Piezas de color/Te de media.jpg', 'Te roja de 1/2 pulgada para conexiones T en tuberías', '$350.00')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Te Roja de 1/2', 350, 'Imagenes de Piezas de color/Te de media.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/te de 3-4.jpg" alt="">
           <div class="product-txt">
-            <h3>Te Roja de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Te Roja de 3/4</h3>
+            <p class="product-description">Te roja de 3/4 pulgada para conexiones T en tuberías</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Te Roja de 3/4' ,'Imagenes de Piezas de color/te de 3-4.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Te Roja de 3/4' ,'Imagenes de Piezas de color/te de 3-4.jpg', 'Te roja de 3/4 pulgada para conexiones T en tuberías', '$350.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Te Roja de 3/4', 350, 'Imagenes de Piezas de color/te de 3-4.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/Te de pulgada.jpg" alt="">
           <div class="product-txt">
-            <h3>Te Roja de Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Te Roja de Pulgada</h3>
+            <p class="product-description">Te roja de una pulgada para conexiones complejas en tuberías</p>
             <p class="precio">$500.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Te Roja de Pulgada' ,'Imagenes de Piezas de color/Te de pulgada.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Te Roja de Pulgada' ,'Imagenes de Piezas de color/Te de pulgada.jpg', 'Te roja de una pulgada para conexiones complejas en tuberías', '$500.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Te Roja de Pulgada', 500, 'Imagenes de Piezas de color/Te de pulgada.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
+
         <div class="box">
           <img src="Imagenes de Piezas de color/universal de 1-2.webp" alt="">
           <div class="product-txt">
-            <h3>Universal Roja de 1/2</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Universal Roja de 1/2</h3>
+            <p class="product-description">Universal roja de 1/2 pulgada para conexiones versátiles</p>
             <p class="precio">$400.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Universal Roja de 1/2' ,'Imagenes de Piezas de color/universal de 1-2.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Universal Roja de 1/2' ,'Imagenes de Piezas de color/universal de 1-2.webp', 'Universal roja de 1/2 pulgada para conexiones versátiles', '$400.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Universal Roja de 1/2', 400, 'Imagenes de Piezas de color/universal de 1-2.webp')">Añadir</button>
             </div>
           </div> 
@@ -1355,11 +1163,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/universal de 3-4.webp" alt="">
           <div class="product-txt">
-            <h3>Universal Roja de 3/4</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Universal Roja de 3/4</h3>
+            <p class="product-description">Universal roja de 3/4 pulgada para conexiones versátiles</p>
             <p class="precio">$600.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Universal Roja de 3/4' ,'Imagenes de Piezas de color/universal de 3-4.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Universal Roja de 3/4' ,'Imagenes de Piezas de color/universal de 3-4.webp', 'Universal roja de 3/4 pulgada para conexiones versátiles', '$600.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Universal Roja de 3/4', 600, 'Imagenes de Piezas de color/universal de 3-4.webp')">Añadir</button>
             </div>
           </div> 
@@ -1367,11 +1175,11 @@
         <div class="box">
           <img src="Imagenes de Piezas de color/universal de pulgada.webp" alt="">
           <div class="product-txt">
-            <h3>Universal Roja de Pulgada</h3>
-            <p>Disponible</p>
+            <h3 class="product-name">Universal Roja de Pulgada</h3>
+            <p class="product-description">Universal roja de una pulgada para conexiones versátiles</p>
             <p class="precio">$800.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Universal Roja de Pulgada' ,'Imagenes de Piezas de color/universal de pulgada.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Universal Roja de Pulgada' ,'Imagenes de Piezas de color/universal de pulgada.webp', 'Universal roja de una pulgada para conexiones versátiles', '$800.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Universal Roja de Pulgada', 800, 'Imagenes de Piezas de color/universal de pulgada.webp')">Añadir</button>
             </div>
           </div> 
@@ -1418,6 +1226,7 @@
         </div>
       </div>
     </footer>
+
     <script>
       // Variables del carrito
       let cart = [];
@@ -1682,14 +1491,18 @@
       }
       
       // Función para mostrar detalles del producto
-      function showDetails(productName, productImage) {
+      function showDetails(productName, productImage, productDescription, productPrice) {
         const modal = document.getElementById('productModal');
         const modalImg = document.getElementById('modalImage');
         const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
         
         modalImg.src = productImage;
         modalImg.alt = productName;
         modalTitle.textContent = productName;
+        modalDescription.textContent = productDescription;
+        modalPrice.textContent = productPrice;
         
         modal.style.display = 'flex';
       }
@@ -1715,7 +1528,7 @@
         
         // Filtrar productos
         productBoxes.forEach(box => {
-          const productName = box.querySelector('h3').textContent.toLowerCase();
+          const productName = box.querySelector('.product-name').textContent.toLowerCase();
           if (productName.includes(searchTerm)) {
             box.style.display = 'block';
           } else {
@@ -1738,5 +1551,6 @@
         }
       });
     </script>
+</body>
 </body>
 </html>
