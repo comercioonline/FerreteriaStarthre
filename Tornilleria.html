@@ -244,9 +244,11 @@
       font-size: 1.1rem;
     }
     
-    .product-txt p {
+    .product-description {
       color: #666;
+      font-size: 0.9rem;
       margin-bottom: 0.5rem;
+      line-height: 1.4;
     }
     
     .precio {
@@ -921,8 +923,8 @@
         <span class="close-modal" onclick="closeModal()">&times;</span>
         <img id="modalImage" src="" alt="" style="width:100%; max-height:300px; object-fit:contain;">
         <h3 id="modalTitle"></h3>
-        <p>Información detallada del producto...</p>
-        <p class="precio">(-)</p>
+        <p id="modalDescription"></p>
+        <p class="precio" id="modalPrice"></p>
         <a href="#" class="whatsapp-btn" id="whatsappBtn" onclick="contactWhatsApp(document.getElementById('modalTitle').textContent)">  
           <img src="https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/WhatsApp.svg" alt="WhatsApp">
           Contactar por WhatsApp
@@ -1001,10 +1003,10 @@
           <img src="Imagenes de Tornilleria/arandelas2.png" alt="">
           <div class="product-txt">
             <h3>Arandelas M8</h3>
-            <p>Disponible</p>
+            <p class="product-description">Arandelas de acero galvanizado M8, diámetro exterior de 16mm y grosor de 1.6mm. Ideales para distribuir la carga y evitar daños en superficies. Incluye 100 unidades por paquete.</p>
             <p class="precio">$12.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Arandelas M8','Imagenes de Tornilleria/arandelas2.png')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Arandelas M8','Imagenes de Tornilleria/arandelas2.png', 'Arandelas de acero galvanizado M8, diámetro exterior de 16mm y grosor de 1.6mm. Ideales para distribuir la carga y evitar daños en superficies. Incluye 100 unidades por paquete.', '$12.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Arandelas M8', 12, 'Imagenes de Tornilleria/arandelas2.png')">Añadir</button>
             </div>
           </div> 
@@ -1014,10 +1016,10 @@
           <img src="Imagenes de Tornilleria/chirris1.jpg" alt="">
           <div class="product-txt">
             <h3>Chirris</h3>
-            <p>Disponible</p>
+            <p class="product-description">Chirris de acero de alta resistencia, ideales para uniones estructurales. Medidas estándar de 50mm x 50mm x 2mm. Incluyen tornillo de fijación. Paquete de 10 unidades.</p>
             <p class="precio">$15.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Chirris','Imagenes de Tornilleria/chirris1.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Chirris','Imagenes de Tornilleria/chirris1.jpg', 'Chirris de acero de alta resistencia, ideales para uniones estructurales. Medidas estándar de 50mm x 50mm x 2mm. Incluyen tornillo de fijación. Paquete de 10 unidades.', '$15.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Chirris', 15, 'Imagenes de Tornilleria/chirris1.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1027,10 +1029,10 @@
           <img src="Imagenes de Tornilleria/clavos Reforzados.webp" alt="">
           <div class="product-txt">
             <h3>Clavos Reforzados</h3>
-            <p>Disponible</p>
+            <p class="product-description">Clavos de construcción reforzados de 75mm de largo, fabricados en acero de alta resistencia con punta afilada para facilitar la penetración. Recubrimiento anticorrosivo. Caja con 200 unidades.</p>
             <p class="precio">$15.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Clavos Reforzados','Imagenes de Tornilleria/clavos Reforzados.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Clavos Reforzados','Imagenes de Tornilleria/clavos Reforzados.webp', 'Clavos de construcción reforzados de 75mm de largo, fabricados en acero de alta resistencia con punta afilada para facilitar la penetración. Recubrimiento anticorrosivo. Caja con 200 unidades.', '$15.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Clavos Reforzados', 15, 'Imagenes de Tornilleria/clavos Reforzados.webp')">Añadir</button>
             </div>
           </div> 
@@ -1040,10 +1042,10 @@
           <img src="Imagenes de Tornilleria/Expanciones Mecanicas.webp" alt="">
           <div class="product-txt">
             <h3>Expanciones Mecanicas M8</h3>
-            <p>Disponible</p>
+            <p class="product-description">Expansiones mecánicas M8 de zinc, diseñadas para fijaciones en hormigón y materiales porosos. Capacidad de carga de 800kg. Inclueve tornillo M8 de 100mm. Paquete de 50 unidades.</p>
             <p class="precio">$300.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Expanciones Mecanicas M8','Imagenes de Tornilleria/Expanciones Mecanicas.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Expanciones Mecanicas M8','Imagenes de Tornilleria/Expanciones Mecanicas.webp', 'Expansiones mecánicas M8 de zinc, diseñadas para fijaciones en hormigón y materiales porosos. Capacidad de carga de 800kg. Inclueve tornillo M8 de 100mm. Paquete de 50 unidades.', '$300.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Expanciones Mecanicas M8', 300, 'Imagenes de Tornilleria/Expanciones Mecanicas.webp')">Añadir</button>
             </div>
           </div> 
@@ -1053,10 +1055,10 @@
           <img src="Imagenes de Tornilleria/expancion mecanica  cancamo.jpg">
           <div class="product-txt">
             <h3>Expanciones Mecanicas Cancamo</h3>
-            <p>Disponible</p>
+            <p class="product-description">Expansiones mecánicas tipo cancamo M8, ideales para fijaciones en hormigón y bloques. Capacidad de carga de 1000kg. Incluye tornillo M8 de 120mm. Paquete de 30 unidades.</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Expanciones Mecanicas Cancamo','Imagenes de Tornilleria/expancion mecanica  cancamo.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Expanciones Mecanicas Cancamo','Imagenes de Tornilleria/expancion mecanica  cancamo.jpg', 'Expansiones mecánicas tipo cancamo M8, ideales para fijaciones en hormigón y bloques. Capacidad de carga de 1000kg. Incluye tornillo M8 de 120mm. Paquete de 30 unidades.', '$350.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Expanciones Mecanicas Cancamo', 350, 'Imagenes de Tornilleria/expancion mecanica  cancamo.jpg')">Añadir</button>
             </div>
           </div>                          
@@ -1066,10 +1068,10 @@
           <img src="Imagenes de Tornilleria/Expancion  Plasticas.jpg" alt="">
           <div class="product-txt">
             <h3>Expanciones PLasticas o Rápita</h3>
-            <p>Disponible</p>
+            <p class="product-description">Expansiones plásticas tipo rápida, fabricadas en poliamida de alta resistencia. Diámetro interior de 8mm. Ideales para fijaciones en materiales delgados. Paquete de 100 unidades.</p>
             <p class="precio">$60.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Expanciones PLasticas o Rápita','Imagenes de Tornilleria/Expancion  Plasticas.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Expanciones PLasticas o Rápita','Imagenes de Tornilleria/Expancion  Plasticas.jpg', 'Expansiones plásticas tipo rápida, fabricadas en poliamida de alta resistencia. Diámetro interior de 8mm. Ideales para fijaciones en materiales delgados. Paquete de 100 unidades.', '$60.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Expanciones PLasticas o Rápita', 60, 'Imagenes de Tornilleria/Expancion  Plasticas.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1079,10 +1081,10 @@
           <img src="Imagenes de Tornilleria/ganchos de teja.jpg" alt="">
           <div class="product-txt">
             <h3>Gancho de Tejas</h3>
-            <p>Disponible</p>
+            <p class="product-description">Ganchos para tejas curvas, fabricados en acero galvanizado. Medidas de 80mm x 30mm. Incluyen tornillo de fijación. Paquete de 50 unidades. Resistente a la corrosión.</p>
             <p class="precio">$35.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Gancho de Tejas','Imagenes de Tornilleria/ganchos de teja.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Gancho de Tejas','Imagenes de Tornilleria/ganchos de teja.jpg', 'Ganchos para tejas curvas, fabricados en acero galvanizado. Medidas de 80mm x 30mm. Incluyen tornillo de fijación. Paquete de 50 unidades. Resistente a la corrosión.', '$35.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Gancho de Tejas', 35, 'Imagenes de Tornilleria/ganchos de teja.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1092,10 +1094,10 @@
           <img src="Imagenes de Tornilleria/grapas1.jpg" alt="">
           <div class="product-txt">
             <h3>Grapas para Cable</h3>
-            <p>Disponible</p>
+            <p class="product-description">Grapas de plástico para cables, diámetro de 8mm. Fabricadas en polietileno de alta resistencia. Incluyen tornillo de fijación. Paquete de 100 unidades. Ideales para organización eléctrica.</p>
             <p class="precio">$35.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Grapas para Cable','Imagenes de Tornilleria/grapa para cable.png')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Grapas para Cable','Imagenes de Tornilleria/grapa para cable.png', 'Grapas de plástico para cables, diámetro de 8mm. Fabricadas en polietileno de alta resistencia. Incluyen tornillo de fijación. Paquete de 100 unidades. Ideales para organización eléctrica.', '$35.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Grapas para Cable', 35, 'Imagenes de Tornilleria/grapa para cable.png')">Añadir</button>
             </div>
           </div> 
@@ -1105,10 +1107,10 @@
           <img src="Imagenes de Tornilleria/Presilla de Gas.jpeg" alt="">
           <div class="product-txt">
             <h3>Presillas de Gas 1/2</h3>
-            <p>Disponible</p>
+            <p class="product-description">Presillas para tuberías de gas de 1/2 pulgada, fabricadas en latón de alta resistencia. Incluyen tornillo de fijación. Paquete de 20 unidades. Cumple con normativas de seguridad.</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Presillas de Gas 1/2','Imagenes de Tornilleria/Presilla de Gas.jpeg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Presillas de Gas 1/2','Imagenes de Tornilleria/Presilla de Gas.jpeg', 'Presillas para tuberías de gas de 1/2 pulgada, fabricadas en latón de alta resistencia. Incluyen tornillo de fijación. Paquete de 20 unidades. Cumple con normativas de seguridad.', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Presillas de Gas 1/2', 150, 'Imagenes de Tornilleria/Presilla de Gas.jpeg')">Añadir</button>
             </div>
           </div> 
@@ -1118,10 +1120,10 @@
           <img src="Imagenes de Tornilleria/Puntillas.jpg" alt="">
           <div class="product-txt">
             <h3>Puntillas</h3>
-            <p>Disponible</p>
+            <p class="product-description">Puntillas de acero galvanizado de 25mm de largo, con cabeza plana. Ideales para trabajos finos y decorativos. Paquete de 500 unidades. Recubrimiento anticorrosivo.</p>
             <p class="precio">$3.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Puntillas','Imagenes de Tornilleria/Puntillas.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Puntillas','Imagenes de Tornilleria/Puntillas.jpg', 'Puntillas de acero galvanizado de 25mm de largo, con cabeza plana. Ideales para trabajos finos y decorativos. Paquete de 500 unidades. Recubrimiento anticorrosivo.', '$3.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Puntillas', 3, 'Imagenes de Tornilleria/Puntillas.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1131,10 +1133,10 @@
           <img src="Imagenes de Tornilleria/Rosca Chapa.jpg" alt="">
           <div class="product-txt">
             <h3>Rosca Chapa</h3>
-            <p>Disponible</p>
+            <p class="product-description">Tornillos de rosca para chapas M6, longitud de 20mm. Fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 100 unidades. Incluye arandela.</p>
             <p class="precio">$45.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Rosca Chapa','Imagenes de Tornilleria/Rosca Chapa.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Rosca Chapa','Imagenes de Tornilleria/Rosca Chapa.jpg', 'Tornillos de rosca para chapas M6, longitud de 20mm. Fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 100 unidades. Incluye arandela.', '$45.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Rosca Chapa', 45, 'Imagenes de Tornilleria/Rosca Chapa.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1144,10 +1146,10 @@
           <img src="Imagenes de Tornilleria/Sujetadores1.webp" alt="">
           <div class="product-txt">
             <h3>Sujetadores 1/2</h3>
-            <p>Disponible</p>
+            <p class="product-description">Sujetadores tipo U para tubos de 1/2 pulgada, fabricados en acero galvanizado. Incluyen tornillo de fijación. Paquete de 30 unidades. Resistentes a la corrosión.</p>
             <p class="precio">$50.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Sujetadores 1/2','Imagenes de Tornilleria/Sujetadores1.webp')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Sujetadores 1/2','Imagenes de Tornilleria/Sujetadores1.webp', 'Sujetadores tipo U para tubos de 1/2 pulgada, fabricados en acero galvanizado. Incluyen tornillo de fijación. Paquete de 30 unidades. Resistentes a la corrosión.', '$50.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Sujetadores 1/2', 10, 'Imagenes de Tornilleria/Sujetadores1.webp')">Añadir</button>
             </div>
           </div> 
@@ -1157,10 +1159,10 @@
           <img src="Imagenes de Tornilleria/Tirafondo Plateado.jpg" alt="">
           <div class="product-txt">
             <h3>Tirafondo Plateados</h3>
-            <p>Disponible</p>
+            <p class="product-description">Tirafondos de acero inoxidable plateado, diámetro de 6mm y longitud de 80mm. Ideales para trabajos de carpintería y muebles. Paquete de 50 unidades. Materiales de alta calidad.</p>
             <p class="precio">$25.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tirafondo Plateados','Imagenes de Tornilleria/Tirafondo Plateado.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tirafondo Plateados','Imagenes de Tornilleria/Tirafondo Plateado.jpg', 'Tirafondos de acero inoxidable plateado, diámetro de 6mm y longitud de 80mm. Ideales para trabajos de carpintería y muebles. Paquete de 50 unidades. Materiales de alta calidad.', '$25.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tirafondo Plateados', 25, 'Imagenes de Tornilleria/Tirafondo Plateado.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1170,10 +1172,10 @@
           <img src="Imagenes de Tornilleria/tornillo2 M6.jpg" alt="">
           <div class="product-txt">
             <h3>Tornillo M6</h3>
-            <p>Disponible</p>
+            <p class="product-description">Tornillos de cabeza hexagonal M6x50mm, fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 100 unidades. Incluye arandela y tuerca.</p>
             <p class="precio">$17.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tornillo M6', 'Imagenes de Tornilleria/tornillo2 M6.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tornillo M6', 'Imagenes de Tornilleria/tornillo2 M6.jpg', 'Tornillos de cabeza hexagonal M6x50mm, fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 100 unidades. Incluye arandela y tuerca.', '$17.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tornillo M6', 17, 'Imagenes de Tornilleria/tornillo2 M6.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1183,10 +1185,10 @@
           <img src="Imagenes de Tornilleria/tornillo1 m8.jpg" alt="">
           <div class="product-txt">
             <h3>Tornillo M8</h3>
-            <p>Disponible</p>
+            <p class="product-description">Tornillos de cabeza hexagonal M8x100mm, fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 50 unidades. Incluye arandela y tuerca.</p>
             <p class="precio">$130.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tornillo M8','Imagenes de Tornilleria/tornillo1 m8.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tornillo M8','Imagenes de Tornilleria/tornillo1 m8.jpg', 'Tornillos de cabeza hexagonal M8x100mm, fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 50 unidades. Incluye arandela y tuerca.', '$130.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tornillo M8', 130, 'Imagenes de Tornilleria/tornillo1 m8.jpg')">Añadir</button>
             </div>
           </div> 
@@ -1196,10 +1198,10 @@
           <img src="Imagenes de Tornilleria/Tornillo1 M10.jpeg" alt="">
           <div class="product-txt">
             <h3>Tornillo M12</h3>
-            <p>Disponible</p>
+            <p class="product-description">Tornillos de cabeza hexagonal M12x120mm, fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 30 unidades. Incluye arandela y tuerca.</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tornillo M12','Imagenes de Tornilleria/Tornillo1 M10.jpeg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tornillo M12','Imagenes de Tornilleria/Tornillo1 M10.jpeg', 'Tornillos de cabeza hexagonal M12x120mm, fabricados en acero de alta resistencia con recubrimiento anticorrosivo. Paquete de 30 unidades. Incluye arandela y tuerca.', '$150.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tornillo M12', 150, 'Imagenes de Tornilleria/Tornillo1 M10.jpeg')">Añadir</button>
             </div>
           </div> 
@@ -1209,26 +1211,24 @@
           <img src="Imagenes de Tornilleria/tornillo pladur.jpg" alt="">
           <div class="product-txt">
             <h3>Tornillo de Pladur de 25</h3>
-            <p>Disponible</p>
+            <p class="product-description">Tornillos especiales para placas de yeso (Pladur) de 25mm de longitud, cabeza plana. Fabricados en acero con recubrimiento anticorrosivo. Paquete de 200 unidades. Fácil instalación.</p>
             <p class="precio">$10.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tornillo de Pladur de 25','Imagenes de Tornilleria/tornillo pladur.jpg')">Detalles</button>
+              <button class="details-btn" onclick="showDetails('Tornillo de Pladur de 25','Imagenes de Tornilleria/tornillo pladur.jpg', 'Tornillos especiales para placas de yeso (Pladur) de 25mm de longitud, cabeza plana. Fabricados en acero con recubrimiento anticorrosivo. Paquete de 200 unidades. Fácil instalación.', '$10.00')">Detalles</button>
               <button class="add-to-cart-btn" onclick="addToCart('Tornillo de Pladur de 25', 10, 'Imagenes de Tornilleria/tornillo pladur.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
-      </div>
-    </main>
-
-   <div class="box">
-          <img src="Imagenes de Tornilleria/tornillo de pladur 45" alt="">
+        
+        <div class="box">
+          <img src="Imagenes de Tornilleria/tornillo pladur 45" alt="">
           <div class="product-txt">
             <h3>Tornillo de Pladur de 45</h3>
-            <p>Disponible</p>
+            <p class="product-description">Tornillos especiales para placas de yeso (Pladur) de 45mm de longitud, cabeza plana. Fabricados en acero con recubrimiento anticorrosivo. Paquete de 150 unidades. Para trabajos de construcción.</p>
             <p class="precio">$20.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tornillo de Pladur de 45','Imagenes de Tornilleria/tornillo pladur.jpg')">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Tornillo de Pladur de 45', 20, 'Imagenes de Tornilleria/tornillo pladur.jpg')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Tornillo de Pladur de 45','Imagenes de Tornilleria/tornillo pladur 45', 'Tornillos especiales para placas de yeso (Pladur) de 45mm de longitud, cabeza plana. Fabricados en acero con recubrimiento anticorrosivo. Paquete de 150 unidades. Para trabajos de construcción.', '$20.00')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tornillo de Pladur de 45', 20, 'Imagenes de Tornilleria/tornillo pladur 45')">Añadir</button>
             </div>
           </div> 
         </div>
@@ -1539,14 +1539,18 @@
       }
       
       // Función para mostrar detalles del producto
-      function showDetails(productName, productImage) {
+      function showDetails(productName, productImage, productDescription, productPrice) {
         const modal = document.getElementById('productModal');
         const modalImg = document.getElementById('modalImage');
         const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
         
         modalImg.src = productImage;
         modalImg.alt = productName;
         modalTitle.textContent = productName;
+        modalDescription.textContent = productDescription;
+        modalPrice.textContent = productPrice;
         
         modal.style.display = 'flex';
       }
@@ -1598,6 +1602,3 @@
 </body>
 
 </html>
-
-
-
