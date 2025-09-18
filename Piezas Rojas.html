@@ -199,8 +199,14 @@
     
     .box-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .box-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+      }
     }
     
     .box {
@@ -209,9 +215,6 @@
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
     }
     
     .box:hover {
@@ -219,66 +222,43 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
     
-    .box-image-container {
-      position: relative;
-      padding-top: 75%; /* 4:3 aspect ratio */
-      overflow: hidden;
-    }
-    
     .box img {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
+      height: 180px;
       object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+    @media (min-width: 640px) {
+      .box img {
+        height: 330px;
+      }
     }
     
     .product-txt {
       padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
     }
     
     .product-txt h3 {
       color: var(--dark);
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
-      font-weight: 600;
-      line-height: 1.3;
-      min-height: 2.5rem; /* Asegurar altura mínima para el título */
     }
     
     .product-txt p {
       color: #666;
       margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    .description {
-      color: #666;
-      font-size: 0.85rem;
-      margin-bottom: 0.75rem;
-      flex-grow: 1;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      line-height: 1.4;
     }
     
     .precio {
       font-weight: bold;
       color: var(--primary) !important;
       font-size: 1.2rem;
-      margin-bottom: 1rem;
     }
     
     .product-actions {
       display: flex;
       gap: 0.5rem;
-      margin-top: auto;
+      margin-top: 1rem;
     }
     
     .product-actions button {
@@ -289,7 +269,6 @@
       cursor: pointer;
       transition: all 0.3s;
       font-size: 0.9rem;
-      font-weight: 500;
     }
     
     .details-btn {
@@ -942,8 +921,8 @@
         <span class="close-modal" onclick="closeModal()">&times;</span>
         <img id="modalImage" src="" alt="" style="width:100%; max-height:300px; object-fit:contain;">
         <h3 id="modalTitle"></h3>
-        <p id="modalDescription"></p>
-        <p class="precio" id="modalPrice"></p>
+        <p>Información detallada del producto...</p>
+        <p class="precio">(-)</p>
         <a href="#" class="whatsapp-btn" id="whatsappBtn" onclick="contactWhatsApp(document.getElementById('modalTitle').textContent)">  
           <img src="https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/WhatsApp.svg" alt="WhatsApp">
           Contactar por WhatsApp
@@ -1020,339 +999,744 @@
       <h2>Piezas Rojas</h2>
       <div class="box-container" id="lista-1"> 
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/Bushing.webp" alt="Bushing 3/4 x 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/Bushing.webp" alt="">
           <div class="product-txt">
             <h3>Bushing 3/4 x 1/2</h3>
-            <p class="description">Bushing rojo de alta calidad para conexiones de tuberías. Diseño resistente a la corrosión y fácil instalación. Ideal para sistemas de plomería residencial y comercial.</p>
+            <p>Disponible</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Bushing 3/4 x 1/2','Imagenes de Piezas de color/Bushing.webp', 'Bushing rojo de alta calidad para conexiones de tuberías. Diseño resistente a la corrosión y fácil instalación. Ideal para sistemas de plomería residencial y comercial.', 250)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Bushing 3/4 x 1/2', 250, 'Imagenes de Piezas de color/Bushing.webp', 'Bushing rojo de alta calidad para conexiones de tuberías. Diseño resistente a la corrosión y fácil instalación. Ideal para sistemas de plomería residencial y comercial.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Bushing 3/4 x 1/2','Imagenes de Piezas de color/Bushing.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Bushing 3/4 x 1/2', 250, 'Imagenes de Piezas de color/Bushing.webp')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/busing 1-2 x pulgada.jpg" alt="Bushing Pulgada x 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/busing 1-2 x pulgada.jpg" alt="">
           <div class="product-txt">
             <h3>Bushing Pulgada x 1/2</h3>
-            <p class="description">Bushing rojo de pulgada a 1/2 para adaptaciones de tuberías. Material resistente y duradero. Fácil instalación y garantía de conexión hermética.</p>
+            <p>Disponible</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 1/2','Imagenes de Piezas de color/busing 1-2 x pulgada.jpg', 'Bushing rojo de pulgada a 1/2 para adaptaciones de tuberías. Material resistente y duradero. Fácil instalación y garantía de conexión hermética.', 250)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Bushing Pulgada x 1/2', 250, 'Imagenes de Piezas de color/busing 1-2 x pulgada.jpg', 'Bushing rojo de pulgada a 1/2 para adaptaciones de tuberías. Material resistente y duradero. Fácil instalación y garantía de conexión hermética.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 1/2','Imagenes de Piezas de color/busing 1-2 x pulgada.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Bushing Pulgada x 1/2', 250, 'Imagenes de Piezas de color/busing 1-2 x pulgada.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/busing 3-4 x pulgada.jpg" alt="Bushing Pulgada x 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/busing 3-4 x pulgada.jpg">
           <div class="product-txt">
             <h3>Bushing Pulgada x 3/4</h3>
-            <p class="description">Bushing rojo de pulgada a 3/4 para adaptaciones de tuberías. Material resistente y duradero. Fácil instalación y garantía de conexión hermética.</p>
+            <p>Disponible</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 3/4','Imagenes de Piezas de color/busing 3-4 x pulgada.jpg', 'Bushing rojo de pulgada a 3/4 para adaptaciones de tuberías. Material resistente y duradero. Fácil instalación y garantía de conexión hermética.', 250)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Bushing Pulgada x 3/4', 250, 'Imagenes de Piezas de color/busing 3-4 x pulgada.jpg', 'Bushing rojo de pulgada a 3/4 para adaptaciones de tuberías. Material resistente y duradero. Fácil instalación y garantía de conexión hermética.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Bushing Pulgada x 3/4','Imagenes de Piezas de color/busing 3-4 x pulgada.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Bushing Pulgada x 3/4', 250, 'Imagenes de Piezas de color/busing 3-4 x pulgada.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/codo de media.webp" alt="Codos Rojo de 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/codo de media.webp" alt="">
           <div class="product-txt">
             <h3>Codos Rojo de 1/2</h3>
-            <p class="description">Codo rojo de 1/2 pulgada para cambios de dirección en tuberías. Material resistente a la presión y corrosión. Fácil instalación y garantía de conexión hermética.</p>
+            <p>Disponible</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Codos Rojo de 1/2','Imagenes de Piezas de color/codo de media.webp', 'Codo rojo de 1/2 pulgada para cambios de dirección en tuberías. Material resistente a la presión y corrosión. Fácil instalación y garantía de conexión hermética.', 350)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de 1/2', 350, 'Imagenes de Piezas de color/codo de media.webp', 'Codo rojo de 1/2 pulgada para cambios de dirección en tuberías. Material resistente a la presión y corrosión. Fácil instalación y garantía de conexión hermética.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Codos Rojo de 1/2s','Imagenes de Piezas de color/codo de media.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de 1/2', 350, 'Imagenes de Piezas de color/codo de media.webp')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/codo de 3-4.jpg" alt="Codos Rojo de 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/codo de 3-4.jpg">
           <div class="product-txt">
             <h3>Codos Rojo de 3/4</h3>
-            <p class="description">Codo rojo de 3/4 pulgada para cambios de dirección en tuberías. Material resistente a la presión y corrosión. Diseño ergonómico para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$400.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Codos Rojo de 3/4','Imagenes de Piezas de color/codo de 3-4.jpg', 'Codo rojo de 3/4 pulgada para cambios de dirección en tuberías. Material resistente a la presión y corrosión. Diseño ergonómico para fácil instalación.', 14)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de 3/4', 14, 'Imagenes de Piezas de color/codo de 3-4.jpg', 'Codo rojo de 3/4 pulgada para cambios de dirección en tuberías. Material resistente a la presión y corrosión. Diseño ergonómico para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Codos Rojo de 3/4','Imagenes de Piezas de color/codo de 3-4.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de 3/4', 14, 'Imagenes de Piezas de color/codo de 3-4.jpg')">Añadir</button>
             </div>
           </div>                          
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/codo rojo de una pulgada.webp" alt="Codos Rojo de un Pulgada">
-          </div>
+          <img src="Imagenes de Piezas de color/codo rojo de una pulgada.webp" alt="">
           <div class="product-txt">
             <h3>Codos Rojo de un Pulgada</h3>
-            <p class="description">Codo rojo de una pulgada para cambios de dirección en tuberías de mayor diámetro. Material resistente y duradero. Ideal para sistemas de plomería industrial.</p>
+            <p>Disponible</p>
             <p class="precio">$500.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Codos Rojo de un Pulgada','Imagenes de Piezas de color/codo rojo de una pulgada.webp', 'Codo rojo de una pulgada para cambios de dirección en tuberías de mayor diámetro. Material resistente y duradero. Ideal para sistemas de plomería industrial.', 20)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de un Pulgada', 20, 'Imagenes de Piezas de color/codo rojo de una pulgada.webp', 'Codo rojo de una pulgada para cambios de dirección en tuberías de mayor diámetro. Material resistente y duradero. Ideal para sistemas de plomería industrial.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Codos Rojo de un Pulgada','Imagenes de Piezas de color/codo rojo de una pulgada.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Codos Rojo de un Pulgada', 20, 'Imagenes de Piezas de color/codo rojo de una pulgada.webp')">Añadir</button>
             </div>
           </div> 
         </div>     
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/niple o entre duo 1-2.webp" alt="Entre Do Rojo de 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/niple o entre duo 1-2.webp" alt="">
           <div class="product-txt">
             <h3>Entre Do Rojo de 1/2</h3>
-            <p class="description">Entre do rojo de 1/2 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 1/2','Imagenes de Piezas de color/niple o entre duo 1-2.webp', 'Entre do rojo de 1/2 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 8)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 1/2', 8, 'Imagenes de Piezas de color/niple o entre duo 1-2.webp', 'Entre do rojo de 1/2 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 1/2','Imagenes de Piezas de color/niple o entre duo 1-2.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 1/2', 8, 'Imagenes de Piezas de color/niple o entre duo 1-2.webp')">Añadir</button>
             </div>
           </div> 
         </div> 
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/niple o entre duo 3-4 otro.webp" alt="Entre Do Rojo de 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/niple o entre duo 3-4 otro.webp" alt="">
           <div class="product-txt">
             <h3>Entre Do Rojo de 3/4</h3>
-            <p class="description">Entre do rojo de 3/4 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 3/4','Imagenes de Piezas de color/nipple o entre duo 3-4 otro.webp', 'Entre do rojo de 3/4 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 16)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 3/4', 16, 'Imagenes de Piezas de color/nipple o entre duo 3-4 otro.webp', 'Entre do rojo de 3/4 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Entre Do Rojo de 3/4','Imagenes de Piezas de color/niple o entre duo 3-4 otro.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de 3/4', 16, 'Imagenes de Piezas de color/nipple o entre duo 3-4 otro.webp')">Añadir</button>
             </div>
           </div> 
         </div>
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/niple o entre duo  pulgada.webp" alt="Entre Do Rojo de Pulgada">
-          </div>
+          <img src="Imagenes de Piezas de color/niple o entre duo  pulgada.webp" alt="">
           <div class="product-txt">
             <h3>Entre Do Rojo de Pulgada</h3>
-            <p class="description">Entre do rojo de pulgada para conexiones de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Entre Do Rojo de Pulgada','Imagenes de Piezas de color/niple o entre duo  pulgada.webp', 'Entre do rojo de pulgada para conexiones de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 350)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de Pulgada', 350, 'Imagenes de Piezas de color/niple o entre duo  pulgada.webp', 'Entre do rojo de pulgada para conexiones de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Entre Do Rojo de Pulgada','Imagenes de Piezas de color/niple o entre duo  pulgada.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Entre Do Rojo de Pulgada', 350, 'Imagenes de Piezas de color/niple o entre duo  pulgada.webp')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/nudo rojo de media.jpg" alt="Nudo Rojo de 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/nudo rojo de media.jpg" alt="">
           <div class="product-txt">
             <h3>Nudo Rojo de 1/2</h3>
-            <p class="description">Nudo rojo de 1/2 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$200.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Nudo Rojo de 1/2','Imagenes de Piezas de color/nudo rojo de media.jpg', 'Nudo rojo de 1/2 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 200)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de 1/2', 200, 'Imagenes de Piezas de color/nudo rojo de media.jpg', 'Nudo rojo de 1/2 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Nudo Rojo de 1/2','Imagenes de Piezas de color/nudo rojo de media.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de 1/2', 200, 'Imagenes de Piezas de color/nudo rojo de media.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/nudo de 3-4.webp" alt="Nudo Rojo de 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/nudo de 3-4.webp" alt="">
           <div class="product-txt">
             <h3>Nudo Rojo de 3/4</h3>
-            <p class="description">Nudo rojo de 3/4 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Nudo Rojo de 3/4','Imagenes de Piezas de color/nudo de 3-4.webp', 'Nudo rojo de 3/4 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 250)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de 3/4', 250, 'Imagenes de Piezas de color/nudo de 3-4.webp', 'Nudo rojo de 3/4 pulgada para conexiones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Nudo Rojo de 3/4','Imagenes de Piezas de color/nudo de 3-4.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de 3/4', 250, 'Imagenes de Piezas de color/nudo de 3-4.webp')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/nudo rojo de pulgada.jpeg" alt="Nudo Rojo de Pulgada">
-          </div>
+          <img src="Imagenes de Piezas de color/nudo rojo de pulgada.jpeg" alt="">
           <div class="product-txt">
             <h3>Nudo Rojo de Pulgada</h3>
-            <p class="description">Nudo rojo de pulgada para conexiones de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$300.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Nudo Rojo de Pulgada','Imagenes de Piezas de color/nudo rojo de pulgada.jpeg', 'Nudo rojo de pulgada para conexiones de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 300)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de Pulgada', 300, 'Imagenes de Piezas de color/nudo rojo de pulgada.jpeg', 'Nudo rojo de pulgada para conexiones de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Nudo Rojo de Pulgada','Imagenes de Piezas de color/nudo rojo de pulgada.jpeg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Nudo Rojo de Pulgada', 300, 'Imagenes de Piezas de color/nudo rojo de pulgada.jpeg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp" alt="Reducido Rojo de 1/2 x 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp" alt="">
           <div class="product-txt">
             <h3>Reducido Rojo de 1/2 x 3/4</h3>
-            <p class="description">Reducido rojo de 1/2 x 3/4 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Reducido Rojo de 1/2 x 3/4','Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp', 'Reducido rojo de 1/2 x 3/4 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 250)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de 1/2 x 3/4', 250, 'Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp', 'Reducido rojo de 1/2 x 3/4 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Reducido Rojo de 1/2 x 3/4','Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de 1/2 x 3/4', 250, 'Imagenes de Piezas de color/Reducido rojo 3-4 a 1-2.webp')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp" alt="Reducido Rojo de Pulgada x 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp" alt="">
           <div class="product-txt">
             <h3>Reducido Rojo de Pulgada x 1/2</h3>
-            <p class="description">Reducido rojo de pulgada x 1/2 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$250.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 1/2','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp', 'Reducido rojo de pulgada x 1/2 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 250)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de Pulgada x 1/2', 250, 'Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp', 'Reducido rojo de pulgada x 1/2 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 1/2','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de Pulgada x 1/2', 250, 'Imagenes de Piezas de color/Reducido rojo pulgada a 3-4 (2).webp')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp" alt="Reducido Rojo de Pulgada x 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp" alt="">
           <div class="product-txt">
             <h3>Reducido Rojo de Pulgada x 3/4</h3>
-            <p class="description">Reducido rojo de pulgada x 3/4 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$350.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 3/4','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp', 'Reducido rojo de pulgada x 3/4 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 350)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de Pulgada x 3/4', 350, 'Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp', 'Reducido rojo de pulgada x 3/4 para adaptaciones de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Reducido Rojo de Pulgada x 3/4','Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Reducido Rojo de Pulgada x 3/4', 350, 'Imagenes de Piezas de color/Reducido rojo pulgada a 3-4.webp')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/salida  tanque de 1-2.jpg" alt="Salida de Tanque Roja de 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/salida  tanque de 1-2.jpg" alt="">
           <div class="product-txt">
             <h3>Salida de Tanque Roja de 1/2</h3>
-            <p class="description">Salida de tanque roja de 1/2 pulgada para sistemas de almacenamiento de agua. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.</p>
+            <p>Disponible</p>
             <p class="precio">$1000.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 1/2', 'Imagenes de Piezas de color/salida  tanque de 1-2.jpg', 'Salida de tanque roja de 1/2 pulgada para sistemas de almacenamiento de agua. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.', 1000)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de 1/2', 1000, 'Imagenes de Piezas de color/salida  tanque de 1-2.jpg', 'Salida de tanque roja de 1/2 pulgada para sistemas de almacenamiento de agua. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 1/2', 'Imagenes de Piezas de color/salida  tanque de 1-2.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de 1/2', 1000, 'Imagenes de Piezas de color/salida  tanque de 1-2.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/salida de tanque de 3-4.jpg" alt="Salida de Tanque Roja de 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/salida de tanque de 3-4.jpg" alt="">
           <div class="product-txt">
             <h3>Salida de Tanque Roja de 3/4</h3>
-            <p class="description">Salida de tanque roja de 3/4 pulgada para sistemas de almacenamiento de agua. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.</p>
+            <p>Disponible</p>
             <p class="precio">$1000.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 3/4','Imagenes de Piezas de color/salida de tanque de 3-4.jpg', 'Salida de tanque roja de 3/4 pulgada para sistemas de almacenamiento de agua. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.', 1000)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de 3/4', 1000, 'Imagenes de Piezas de color/salida de tanque de 3-4.jpg', 'Salida de tanque roja de 3/4 pulgada para sistemas de almacenamiento de agua. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de 3/4','Imagenes de Piezas de color/salida de tanque de 3-4.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de 3/4', 1000, 'Imagenes de Piezas de color/salida de tanque de 3-4.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/salida de tanque de pulgada.jpg" alt="Salida de Tanque Roja de Pulgada">
-          </div>
+          <img src="Imagenes de Piezas de color/salida de tanque de pulgada.jpg" alt="">
           <div class="product-txt">
             <h3>Salida de Tanque Roja de Pulgada</h3>
-            <p class="description">Salida de tanque roja de pulgada para sistemas de almacenamiento de agua de mayor capacidad. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.</p>
+            <p>Disponible</p>
             <p class="precio">$1200.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de Pulgada','Imagenes de Piezas de color/salida de tanque de pulgada.jpg', 'Salida de tanque roja de pulgada para sistemas de almacenamiento de agua de mayor capacidad. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.', 1200)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de Pulgada', 1200, 'Imagenes de Piezas de color/salida de tanque de pulgada.jpg', 'Salida de tanque roja de pulgada para sistemas de almacenamiento de agua de mayor capacidad. Material resistente a la corrosión y presión. Diseño especial para una instalación segura.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Salida de Tanque Roja de Pulgada','Imagenes de Piezas de color/salida de tanque de pulgada.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Salida de Tanque Roja de Pulgada', 1200, 'Imagenes de Piezas de color/salida de tanque de pulgada.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/tapa roja de 1-2.jpg" alt="Tapa Roja de 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/tapa roja de 1-2.jpg" alt="">
           <div class="product-txt">
             <h3>Tapa Roja de 1/2</h3>
-            <p class="description">Tapa roja de 1/2 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapa Roja de 1/2','Imagenes de Piezas de color/tapa roja de 1-2.jpg', 'Tapa roja de 1/2 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 150)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de 1/2', 150, 'Imagenes de Piezas de color/tapa roja de 1-2.jpg', 'Tapa roja de 1/2 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Tapa Roja de 1/2','Imagenes de Piezas de color/tapa roja de 1-2.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de 1/2', 150, 'Imagenes de Piezas de color/tapa roja de 1-2.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/tapa roja de 3-4.jpg" alt="Tapa Roja de 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/tapa roja de 3-4.jpg" alt="">
           <div class="product-txt">
             <h3>Tapa Roja de 3/4</h3>
-            <p class="description">Tapa roja de 3/4 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapa Roja de 3/4' ,'Imagenes de Piezas de color/tapa roja de 3-4.jpg', 'Tapa roja de 3/4 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 150)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de 3/4', 150, 'Imagenes de Piezas de color/tapa roja de 3-4.jpg', 'Tapa roja de 3/4 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Tapa Roja de 3/4' ,'Imagenes de Piezas de color/tapa roja de 3-4.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de 3/4', 150, 'Imagenes de Piezas de color/tapa roja de 3-4.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/tapa roja de Pulgada.jpg" alt="Tapa Roja de Pulgada">
-          </div>
+          <img src="Imagenes de Piezas de color/tapa roja de Pulgada.jpg" alt="">
           <div class="product-txt">
             <h3>Tapa Roja de Pulgada</h3>
-            <p class="description">Tapa roja de pulgada para sellar extremos de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapa Roja de Pulgada' ,'Imagenes de Piezas de color/tapa roja de Pulgada.jpg', 'Tapa roja de pulgada para sellar extremos de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 150)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de Pulgada', 150, 'Imagenes de Piezas de color/tapa roja de Pulgada.jpg', 'Tapa roja de pulgada para sellar extremos de tuberías de mayor diámetro. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Tapa Roja de Pulgada' ,'Imagenes de Piezas de color/tapa roja de Pulgada.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tapa Roja de Pulgada', 150, 'Imagenes de Piezas de color/tapa roja de Pulgada.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/tapon de 1-2.jpg" alt="Tapon Rojo de 1/2">
-          </div>
+          <img src="Imagenes de Piezas de color/tapon de 1-2.jpg" alt="">
           <div class="product-txt">
             <h3>Tapon Rojo de 1/2</h3>
-            <p class="description">Tapon rojo de 1/2 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapon Rojo de 1/2' ,'Imagenes de Piezas de color/tapon de 1-2.jpg', 'Tapon rojo de 1/2 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 150)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de 1/2', 150, 'Imagenes de Piezas de color/tapon de 1-2.jpg', 'Tapon rojo de 1/2 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.')">Añadir</button>
+              <button class="details-btn" onclick="showDetails('Tapon Rojo de 1/2' ,'Imagenes de Piezas de color/tapon de 1-2.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de 1/2', 150, 'Imagenes de Piezas de color/tapon de 1-2.jpg')">Añadir</button>
             </div>
           </div> 
         </div>
         <div class="box">
-          <div class="box-image-container">
-            <img src="Imagenes de Piezas de color/tapon 3-4.jpeg" alt="Tapon Rojo de 3/4">
-          </div>
+          <img src="Imagenes de Piezas de color/tapon 3-4.jpeg" alt="">
           <div class="product-txt">
             <h3>Tapon Rojo de 3/4</h3>
-            <p class="description">Tapon rojo de 3/4 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.</p>
+            <p>Disponible</p>
             <p class="precio">$150.00</p>
             <div class="product-actions">
-              <button class="details-btn" onclick="showDetails('Tapon Rojo de 3/4' ,'Imagenes de Piezas de color/tapon 3-4.jpeg', 'Tapon rojo de 3/4 pulgada para sellar extremos de tuberías. Material resistente a la corrosión y presión. Diseño estándar para fácil instalación.', 150)">Detalles</button>
-              <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de 3/4
+              <button class="details-btn" onclick="showDetails('Tapon Rojo de 3/4' ,'Imagenes de Piezas de color/tapon 3-4.jpeg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de 3/4', 150, 'Imagenes de Piezas de color/tapon 3-4.jpeg')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <img src="Imagenes de Piezas de color/tapon de pulgada.jpg" alt="">
+          <div class="product-txt">
+            <h3>Tapon Rojo de Pulgada</h3>
+            <p>Disponible</p>
+            <p class="precio">$150.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Tapon Rojo de Pulgada' ,'Imagenes de Piezas de color/tapon de pulgada.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tapon Rojo de Pulgada', 150, 'Imagenes de Piezas de color/tapon de pulgada.jpg')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <img src="Imagenes de Piezas de color/Te de media.jpg" alt="">
+          <div class="product-txt">
+            <h3>Te Roja de 1/2</h3>
+            <p>Disponible</p>
+            <p class="precio">$350.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Te Roja de 1/2' ,'Imagenes de Piezas de color/Te de media.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Te Roja de 1/2', 150, 'Imagenes de Piezas de color/Te de media.jpg')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <img src="Imagenes de Piezas de color/te de 3-4.jpg" alt="">
+          <div class="product-txt">
+            <h3>Te Roja de 3/4</h3>
+            <p>Disponible</p>
+            <p class="precio">$350.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Te Roja de 3/4' ,'Imagenes de Piezas de color/te de 3-4.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Te Roja de 3/4', 350, 'Imagenes de Piezas de color/te de 3-4.jpg')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <img src="Imagenes de Piezas de color/Te de pulgada.jpg" alt="">
+          <div class="product-txt">
+            <h3>Te Roja de Pulgada</h3>
+            <p>Disponible</p>
+            <p class="precio">$500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Te Roja de Pulgada' ,'Imagenes de Piezas de color/Te de pulgada.jpg')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Te Roja de Pulgada', 500, 'Imagenes de Piezas de color/Te de pulgada.jpg')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <img src="Imagenes de Piezas de color/universal de 1-2.webp" alt="">
+          <div class="product-txt">
+            <h3>Universal Roja de 1/2</h3>
+            <p>Disponible</p>
+            <p class="precio">$400.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Universal Roja de 1/2' ,'Imagenes de Piezas de color/universal de 1-2.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Universal Roja de 1/2', 400, 'Imagenes de Piezas de color/universal de 1-2.webp')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <img src="Imagenes de Piezas de color/universal de 3-4.webp" alt="">
+          <div class="product-txt">
+            <h3>Universal Roja de 3/4</h3>
+            <p>Disponible</p>
+            <p class="precio">$600.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Universal Roja de 3/4' ,'Imagenes de Piezas de color/universal de 3-4.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Universal Roja de 3/4', 600, 'Imagenes de Piezas de color/universal de 3-4.webp')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <img src="Imagenes de Piezas de color/universal de pulgada.webp" alt="">
+          <div class="product-txt">
+            <h3>Universal Roja de Pulgada</h3>
+            <p>Disponible</p>
+            <p class="precio">$800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Universal Roja de Pulgada' ,'Imagenes de Piezas de color/universal de pulgada.webp')">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Universal Roja de Pulgada', 800, 'Imagenes de Piezas de color/universal de pulgada.webp')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div>
+            <h3 class="text-xl font-bold mb-4 flex items-center">
+              <i class="fas fa-tools text-red-500 mr-2"></i> Ferretería<span class="text-red-500">Starthre</span>
+            </h3>
+            <p class="text-gray-400">Todo lo que necesitas para construcción, plomería y más. Calidad y servicio desde 2020.</p>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-bold mb-4">Contacto</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>Calle 42 #  % Avenida 39 y Avenida 41</li>
+              <li class="flex items-center"><i class="fas fa-phone mr-2 text-red-500"></i>+53 56578961</li>
+              <li class="flex items-center"><i class="fas fa-envelope mr-2 text-red-500"></i>EmprendimientoDigital930518@gmail.com</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-bold mb-4">Horario</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex justify-between"><span>Lunes - Sábado:</span> <span>7:30am - 5:30pm</span></li>
+              <li class="flex justify-between"><span>Domingo:</span> <span>7:30am - 2:30pm</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 mb-4 md:mb-0">© Imperum. Todos los derechos reservados.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="https://api.whatsapp.com/send/?phone=56578961&text=Hola%2C+&type=phone_number&app_absent=0" class="text-gray-400 hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Variables del carrito
+      let cart = [];
+      
+      // Función para alternar la visibilidad del carrito
+      function toggleCart() {
+        const cartDropdown = document.getElementById('cart-dropdown');
+        if (cartDropdown.style.display === 'block') {
+          cartDropdown.style.display = 'none';
+        } else {
+          cartDropdown.style.display = 'block';
+        }
+      }
+      
+      // Función para añadir un producto al carrito
+      function addToCart(productName, productPrice, productImage) {
+        // Verificar si el producto ya está en el carrito
+        const existingProduct = cart.find(item => item.name === productName);
+        
+        if (existingProduct) {
+          // Si ya existe, incrementar la cantidad
+          existingProduct.quantity += 1;
+        } else {
+          // Si no existe, agregarlo al carrito
+          cart.push({
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
+          });
+        }
+        
+        // Actualizar el carrito en localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Actualizar la interfaz del carrito
+        updateCartUI();
+        
+        // Mostrar notificación
+        showNotification(`¡${productName} añadido al carrito!`);
+      }
+      
+      // Función para mostrar notificación
+      function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+          <i class="fas fa-check-circle"></i>
+          <span>${message}</span>
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.style.animation = 'slideIn 0.3s ease-out reverse';
+          setTimeout(() => {
+            notification.remove();
+          }, 300);
+        }, 2000);
+      }
+      
+      // Función para actualizar la interfaz del carrito
+      function updateCartUI() {
+        const cartItems = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+        
+        // Limpiar el contenedor de items del carrito
+        cartItems.innerHTML = '';
+        
+        // Inicializar el total y el contador
+        let total = 0;
+        let count = 0;
+        
+        // Recorrer cada item del carrito
+        cart.forEach(item => {
+          // Calcular el subtotal del item
+          const subtotal = item.price * item.quantity;
+          total += subtotal;
+          count += item.quantity;
+          
+          // Crear un elemento para el item del carrito
+          const cartItem = document.createElement('div');
+          cartItem.className = 'cart-item';
+          cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+              <div class="cart-item-subtotal">Subtotal: $${subtotal.toFixed(2)}</div>
+            </div>
+            <div class="cart-item-quantity">
+              <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">
+                <i class="fas fa-minus"></i>
+              </button>
+              <span>${item.quantity}</span>
+              <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          `;
+          
+          // Agregar el item al contenedor
+          cartItems.appendChild(cartItem);
+        });
+        
+        // Actualizar el contador y el total
+        cartCount.textContent = count;
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+        
+        // Si el carrito está vacío, mostrar mensaje
+        if (cart.length === 0) {
+          cartItems.innerHTML = `
+            <div class="empty-cart">
+              <i class="fas fa-shopping-cart"></i>
+              <p>Tu carrito está vacío</p>
+            </div>
+          `;
+        }
+      }
+      
+      // Función para actualizar la cantidad de un producto en el carrito
+      function updateQuantity(productName, change) {
+        const product = cart.find(item => item.name === productName);
+        
+        if (product) {
+          product.quantity += change;
+          
+          // Si la cantidad es 0 o menos, eliminar el producto del carrito
+          if (product.quantity <= 0) {
+            cart = cart.filter(item => item.name !== productName);
+          }
+          
+          // Actualizar el carrito en localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Actualizar la interfaz del carrito
+          updateCartUI();
+        }
+      }
+      
+      // Función para mostrar el modal de confirmación
+      function showConfirmModal() {
+        if (cart.length === 0) {
+          showNotification('Tu carrito ya está vacío');
+          return;
+        }
+        
+        document.getElementById('confirmModal').style.display = 'flex';
+      }
+      
+      // Función para cerrar el modal de confirmación
+      function closeConfirmModal() {
+        document.getElementById('confirmModal').style.display = 'none';
+      }
+      
+      // Función para confirmar y vaciar el carrito
+      function confirmClearCart() {
+        // Vaciar el carrito
+        cart = [];
+        localStorage.removeItem('cart');
+        updateCartUI();
+        
+        // Cerrar el modal de confirmación
+        closeConfirmModal();
+        
+        // Mostrar notificación de éxito
+        showNotification('Carrito vaciado exitosamente');
+        
+        // Actualizar el carrito en la interfaz
+        updateCartUI();
+      }
+      
+      // Función para vaciar el carrito (sin confirmación)
+      function clearCart() {
+        if (cart.length === 0) {
+          showNotification('Tu carrito ya está vacío');
+          return;
+        }
+        
+        if (confirm('¿Estás seguro de que deseas vaciar tu carrito?')) {
+          cart = [];
+          localStorage.removeItem('cart');
+          updateCartUI();
+          showNotification('Carrito vaciado exitosamente');
+        }
+      }
+      
+      // Función para procesar la compra
+      function checkout() {
+        if (cart.length === 0) {
+          showNotification('Tu carrito está vacío');
+          return;
+        }
+        
+        // Calcular el total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        // Crear mensaje para WhatsApp
+        let message = 'Hola, me gustaría realizar un pedido:\n\n';
+        cart.forEach(item => {
+          message += `${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
+        });
+        message += `\nTotal: $${total.toFixed(2)}\n\n`;
+        message += 'Por favor, confirmen disponibilidad y envíen los detalles de pago.';
+        
+        // Abrir WhatsApp
+        const phoneNumber = '5356578961';
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+        
+        // Vaciar el carrito después de la compra
+        cart = [];
+        localStorage.removeItem('cart');
+        updateCartUI();
+        
+        // Ocultar el carrito
+        document.getElementById('cart-dropdown').style.display = 'none';
+        
+        showNotification('¡Gracias por tu compra! Te contactaremos por WhatsApp');
+      }
+      
+      // Función para inicializar el carrito al cargar la página
+      function initCart() {
+        // Obtener el carrito de localStorage
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+          cart = JSON.parse(savedCart);
+          updateCartUI();
+        } else {
+          // Si no hay carrito guardado, mostrar mensaje vacío
+          updateCartUI();
+        }
+      }
+      
+      // Función para cerrar modales al hacer clic fuera
+      window.onclick = function(event) {
+        // Cerrar modal de producto
+        const modal = document.getElementById('productModal');
+        if (event.target == modal) {
+          closeModal();
+        }
+        
+        // Cerrar modal de confirmación
+        const confirmModal = document.getElementById('confirmModal');
+        if (event.target == confirmModal) {
+          closeConfirmModal();
+        }
+        
+        // Cerrar carrito si se hace clic fuera
+        const cartDropdown = document.getElementById('cart-dropdown');
+        const cartIcon = document.querySelector('.cart-icon');
+        
+        // Si el clic no fue en el carrito ni en su icono, cerrar el carrito
+        if (!cartDropdown.contains(event.target) && !cartIcon.contains(event.target)) {
+          cartDropdown.style.display = 'none';
+        }
+      }
+      
+      // Función para cerrar el modal de detalles
+      function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+      }
+      
+      // Función para mostrar detalles del producto
+      function showDetails(productName, productImage) {
+        const modal = document.getElementById('productModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        
+        modalImg.src = productImage;
+        modalImg.alt = productName;
+        modalTitle.textContent = productName;
+        
+        modal.style.display = 'flex';
+      }
+      
+      // Función para contactar por WhatsApp desde el modal
+      function contactWhatsApp(productName) {
+        const phoneNumber = '5356578961';
+        const message = `Hola, estoy interesado en el producto: ${productName}. ¿Podrían darme más información?`;
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+      }
+      
+      // Función para buscar productos
+      function searchProducts() {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        const productBoxes = document.querySelectorAll('.box');
+        
+        // Si el campo de búsqueda está vacío, restaurar todos los productos
+        if (searchTerm === '') {
+          document.getElementById('lista-1').innerHTML = allProducts;
+          return;
+        }
+        
+        // Filtrar productos
+        productBoxes.forEach(box => {
+          const productName = box.querySelector('h3').textContent.toLowerCase();
+          if (productName.includes(searchTerm)) {
+            box.style.display = 'block';
+          } else {
+            box.style.display = 'none';
+          }
+        });
+      }
+      
+      // Guardar todos los productos inicialmente
+      const allProducts = document.getElementById('lista-1').innerHTML;
+      
+      // Llamar a initCart cuando la página se carga
+      window.onload = initCart;
+      
+      // Event delegation para botones de cantidad
+      document.getElementById('cart-items').addEventListener('click', function(e) {
+        // Si el clic fue en un botón de cantidad, detener la propagación
+        if (e.target.closest('.quantity-btn')) {
+          e.stopPropagation();
+        }
+      });
+    </script>
+</body>
+</html>
