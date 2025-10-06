@@ -1,0 +1,2704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta http-equiv="Cache-Control" content="max-age=31536000, public">
+  <title>Utiles del Hogar</title>
+   <style>
+    :root {
+      --primary: #e63946;
+      --secondary: #457b9d;
+      --light: #f1faee;
+      --dark: #1d3557;
+      --accent: #a8dadc;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, var(--dark), var(--secondary));
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .menu.container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    @media (max-width: 640px) {
+      .menu.container {
+        padding: 0 0.5rem;
+        flex-wrap: wrap;
+      }
+      .logo img {
+        height: 40px;
+      }
+      .search-bar {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+    
+    .logo img {
+      height: 60px;
+      transition: transform 0.3s;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+    
+    #menu {
+      display: none;
+    }
+    
+    .menu-icono {
+      height: 30px;
+      cursor: pointer;
+      display: none;
+    }
+    
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .navbar a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    .navbar li {
+      position: relative;
+    }
+    
+    .navbar li ul {
+      position: absolute;
+      background-color: white;
+      width: 200px;
+      flex-direction: column;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1rem 0;
+      top: 100%;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .navbar li:hover ul {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .navbar li ul a {
+      color: var(--dark);
+      display: block;
+      padding: 0.5rem 1rem;
+    }
+    
+    .navbar li ul a:hover {
+      background-color: var(--accent);
+    }
+    
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      color: #333;
+      width: 100%;
+      max-width: 300px;
+    }
+    @media (max-width: 640px) {
+      .search-bar {
+        padding: 0.5rem;
+        max-width: 100%;
+        margin-top: 10px;
+      }
+      .search-bar input {
+        flex-grow: 1;
+      }
+    }
+    
+    .search-bar input {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+    }
+    
+    .search-bar button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .search-bar button:hover {
+      background-color: #c1121f;
+    }
+    
+    .products.container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    .products h2 {
+      color: var(--dark);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .products h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .box {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    .box-image-container {
+      position: relative;
+      padding-top: 75%; /* 4:3 aspect ratio */
+      overflow: hidden;
+    }
+    
+    .box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .product-txt {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .product-txt h3 {
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.3;
+      min-height: 2.5rem; /* Asegurar altura mínima para el título */
+    }
+    
+    .product-txt p {
+      color: #666;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .description {
+      color: #666;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      flex-grow: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      line-height: 1.4;
+    }
+    
+    .precio {
+      font-weight: bold;
+      color: var(--primary) !important;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+    
+    .product-actions button {
+      flex: 1;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .details-btn {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    .details-btn:hover {
+      background-color: var(--dark);
+    }
+    
+    .add-to-cart-btn {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .add-to-cart-btn:hover {
+      background-color: #c1121f;
+    }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      position: relative;
+      margin: 1rem;
+    }
+    @media (min-width: 640px) {
+      .modal-content {
+        padding: 2rem;
+        width: 90%;
+      }
+    }
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--dark);
+    }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      background-color: #25D366;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    .whatsapp-btn:hover {
+      background-color: #128C7E;
+      transform: translateY(-2px);
+    }
+    .whatsapp-btn img {
+      width: 20px;
+      margin-right: 8px;
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--dark), var(--secondary));
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+    
+    .footer .txt {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .footer h4::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer p {
+      margin-bottom: 0.5rem;
+    }
+    
+    .social-icon {
+      display: inline-block;
+      margin-right: 1rem;
+      transition: transform 0.3s;
+    }
+    
+    .social-icon img {
+      height: 30px;
+      filter: brightness(0) invert(1);
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .menu-icono {
+        display: block;
+      }
+      
+      .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--dark);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.4s;
+        max-height: 0;
+        overflow: hidden;
+      }
+      
+      #menu:checked ~ .navbar {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      
+      .navbar ul {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .navbar li ul {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 0.5rem;
+      }
+      
+      .search-bar {
+        padding: 0.5rem;
+        margin-top: 10px;
+        width: 100%;
+      }
+      
+      .cart-icon {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+      
+      .cart-dropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        color: #333;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 0;
+        padding: 1rem;
+        display: none;
+        z-index: 1001;
+        overflow-y: auto;
+      }
+      
+      .cart-dropdown h3 {
+        margin-bottom: 1rem;
+        color: var(--dark);
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+        text-align: center;
+      }
+      
+      .cart-items-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        max-height: 60vh;
+        overflow-y: auto;
+      }
+      
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.3s;
+      }
+      
+      .cart-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      
+      .cart-item-info {
+        flex-grow: 1;
+        margin-left: 1rem;
+      }
+      
+      .cart-item-name {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
+      
+      .cart-item-price {
+        color: var(--primary);
+        font-weight: bold;
+      }
+      
+      .cart-item-quantity {
+        display: flex;
+        align-items: center;
+      }
+      
+      .cart-item-quantity button {
+        background-color: var(--secondary);
+        color: white;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+      
+      .cart-item-quantity button:hover {
+        background-color: var(--dark);
+        transform: scale(1.1);
+      }
+      
+      .cart-item-quantity span {
+        min-width: 24px;
+        text-align: center;
+        font-weight: 500;
+      }
+      
+      .cart-total {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 2px solid var(--primary);
+      }
+      
+      .cart-total h4 {
+        font-size: 1.2rem;
+        color: var(--dark);
+      }
+      
+      .cart-total .total-price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: var(--primary);
+      }
+      
+      .cart-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .cart-actions button {
+        flex: 1;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+      }
+      
+      .checkout-btn {
+        background-color: var(--primary);
+        color: white;
+      }
+      
+      .checkout-btn:hover {
+        background-color: #c1121f;
+        transform: translateY(-2px);
+      }
+      
+      .clear-cart-btn {
+        background-color: #6c757d;
+        color: white;
+      }
+      
+      .clear-cart-btn:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px);
+      }
+      
+      .empty-cart {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+      }
+      
+      .empty-cart i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #ccc;
+      }
+      
+      .close-cart {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark);
+        background-color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    
+    /* Carrito styles for desktop */
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      color: white;
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+    
+    .cart-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: white;
+      color: #333;
+      width: 350px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: none;
+      z-index: 1000;
+      margin-top: 10px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    
+    .cart-dropdown h3 {
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      font-size: 1.2rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+    
+    .cart-items-container {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.3s;
+    }
+    
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+    .cart-item-info {
+      flex-grow: 1;
+      margin-left: 1rem;
+    }
+    
+    .cart-item-name {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+    }
+    
+    .cart-item-quantity button {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .cart-item-quantity button:hover {
+      background-color: var(--dark);
+      transform: scale(1.1);
+    }
+    
+    .cart-item-quantity span {
+      min-width: 24px;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .cart-total {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 2px solid var(--primary);
+    }
+    
+    .cart-total h4 {
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+    
+    .cart-total .total-price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    
+    .cart-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .cart-actions button {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    .checkout-btn {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .checkout-btn:hover {
+      background-color: #c1121f;
+      transform: translateY(-2px);
+    }
+    
+    .clear-cart-btn {
+      background-color: #6c757d;
+      color: white;
+    }
+    
+    .clear-cart-btn:hover {
+      background-color: #5a6268;
+      transform: translateY(-2px);
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+    
+    .empty-cart i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+    
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      z-index: 2000;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    /* Modal de confirmación */
+    .confirm-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 2001;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .confirm-modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    
+    .confirm-modal-content h3 {
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    
+    .confirm-modal-content p {
+      margin-bottom: 1.5rem;
+      color: #666;
+    }
+    
+    .confirm-modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    
+    .confirm-modal-actions button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    .confirm-cancel-btn {
+      background-color: #6c757d;
+      color: white;
+    }
+    
+    .confirm-cancel-btn:hover {
+      background-color: #5a6268;
+    }
+    
+    .confirm-accept-btn {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .confirm-accept-btn:hover {
+      background-color: #c1121f;
+    }
+  </style>
+</head>
+<body>
+    <!-- Modal de detalles del producto -->
+    <div class="modal" id="productModal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="" style="width:100%; max-height:300px; object-fit:contain;">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <p class="precio" id="modalPrice"></p>
+        <a href="#" class="whatsapp-btn" id="whatsappBtn" onclick="contactWhatsApp(document.getElementById('modalTitle').textContent)">  
+          <img src="https://raw.githubusercontent.com/comercioonline/FerreteriaStarthre/refs/heads/main/WhatsApp.svg" alt="WhatsApp">
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+    
+    <!-- Modal de confirmación para vaciar carrito -->
+    <div class="confirm-modal" id="confirmModal">
+      <div class="confirm-modal-content">
+        <h3>¿Vaciar carrito?</h3>
+        <p>¿Estás seguro de que deseas eliminar todos los productos de tu carrito?</p>
+        <div class="confirm-modal-actions">
+          <button class="confirm-cancel-btn" onclick="closeConfirmModal()">Cancelar</button>
+          <button class="confirm-accept-btn" onclick="confirmClearCart()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+    
+    <header class="header">
+      <div class="menu container">
+        <div class="logo">
+          <i class="fas fa-tools text-red-500 text-3xl mr-2"></i>
+        </div>    
+        <input type="checkbox" id="menu"> 
+        <label for="menu">
+          <img src="menu-icono.png" class="menu-icono" alt="menu">
+        </label>
+        <nav class="navbar">
+          <ul>
+            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Inicio">Inicio</a></li>
+            <li><a href="">Productos</a>
+              <ul>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Utiles%20del%20Hogar">Utiles del Hogar</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Piezas%20Rojas">Piezas Rojas</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Termo%20Fusion">Termo Fusión</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Tornilleria">Tornilleria</a></li>
+              </ul>  
+            </li> 
+            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Venta%20Mayorista">Venta Mayorista</a></li>  
+            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/informacion">Informacion</a></li>
+          </ul>
+        </nav>
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Buscar productos..." oninput="searchProducts()">
+        </div>
+        <div class="cart-icon" onclick="toggleCart()">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </div>
+      </div>
+      
+      <!-- Carrito desplegable -->
+      <div class="cart-dropdown" id="cart-dropdown">
+        <h3>Carrito de Compras</h3>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+          <h4>Total:</h4>
+          <div class="total-price" id="cart-total">$0.00</div>
+        </div>
+        <div class="cart-actions">
+          <button class="clear-cart-btn" onclick="showConfirmModal()">
+            <i class="fas fa-trash-alt mr-2"></i>Vaciar
+          </button>
+          <button class="checkout-btn" onclick="checkout()">
+            <i class="fas fa-shopping-bag mr-2"></i>Comprar
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <main class="products container">
+      <h2>Utiles del Hogar</h2>
+      <div class="box-container" id="lista-1"> 
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Adaptador.jpg" alt="Adaptador Negro Universal">
+          </div>
+          <div class="product-txt">
+            <h3>Adaptador Negro Universal</h3>
+            <p class="description">Adaptador universal de color negro, compatible con múltiples dispositivos y conexiones. Fabricado con materiales duraderos para garantizar una conexión segura y estable.</p>
+            <p class="precio">$500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Adaptador Negro Universal','Imagenes de Productos Utiles del Hogar/Adaptador.jpg', 'Adaptador universal de color negro, compatible con múltiples dispositivos y conexiones. Fabricado con materiales duraderos para garantizar una conexión segura y estable.', 500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Adaptador Negro Universal', 500, 'Imagenes de Productos Utiles del Hogar/Adaptador.jpg', 'Adaptador universal de color negro, compatible con múltiples dispositivos y conexiones. Fabricado con materiales duraderos para garantizar una conexión segura y estable.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Automatico de Tanque.jpg" alt="Automatico de Tanque">
+          </div>
+          <div class="product-txt">
+            <h3>Automatico de Tanque</h3>
+            <p class="description">Automático para control de nivel de agua en tanques. Diseñado para una instalación fácil y operación confiable. Ideal para sistemas de almacenamiento de agua residencial y comercial.</p>
+            <p class="precio">$3800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Automatico de Tanque','Imagenes de Productos Utiles del Hogar/Automatico de Tanque.jpg', 'Automático para control de nivel de agua en tanques. Diseñado para una instalación fácil y operación confiable. Ideal para sistemas de almacenamiento de agua residencial y comercial.', 3800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Automatico de Tanque', 3800, 'Imagenes de Productos Utiles del Hogar/Automatico de Tanque.jpg', 'Automático para control de nivel de agua en tanques. Diseñado para una instalación fácil y operación confiable. Ideal para sistemas de almacenamiento de agua residencial y comercial.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Bombillos1.jpg" alt="Bombillos">
+          </div>
+          <div class="product-txt">
+            <h3>Bombillos</h3>
+            <p class="description">Bombillos LED de alta eficiencia energética. Durabilidad extendida y luz brillante. Ideales para iluminación residencial y comercial con bajo consumo de energía.</p>
+            <p class="precio">$550.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Bombillos','Imagenes de Productos Utiles del Hogar/Bombillos1.jpg', 'Bombillos LED de alta eficiencia energética. Durabilidad extendida y luz brillante. Ideales para iluminación residencial y comercial con bajo consumo de energía.', 550)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Bombillos', 550, 'Imagenes de Productos Utiles del Hogar/Bombillos1.jpg', 'Bombillos LED de alta eficiencia energética. Durabilidad extendida y luz brillante. Ideales para iluminación residencial y comercial con bajo consumo de energía.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Breaker.jpg" alt="Breaker Doble">
+          </div>
+          <div class="product-txt">
+            <h3>Breaker Doble</h3>
+            <p class="description">Protector de circuito doble para máxima seguridad eléctrica. Diseñado para instalaciones residenciales y comerciales. Certificado por normas de seguridad eléctrica.</p>
+            <p class="precio">$2000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Breaker Doble','Imagenes de Productos Utiles del Hogar/Breaker.jpg', 'Protector de circuito doble para máxima seguridad eléctrica. Diseñado para instalaciones residenciales y comerciales. Certificado por normas de seguridad eléctrica.', 2000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Breaker Doble', 2000, 'Imagenes de Productos Utiles del Hogar/Breaker.jpg', 'Protector de circuito doble para máxima seguridad eléctrica. Diseñado para instalaciones residenciales y comerciales. Certificado por normas de seguridad eléctrica.')">Añadir</button>
+            </div>
+          </div>                          
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/breker sencillo.webp" alt="Breaker Sencillo">
+          </div>
+          <div class="product-txt">
+            <h3>Breaker Sencillo</h3>
+            <p class="description">Protector de circuito sencillo para aplicaciones residenciales. Diseño compacto y fácil instalación. Protección contra sobrecargas y cortocircuitos.</p>
+            <p class="precio">$1200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Breaker Sencillo','Imagenes de Productos Utiles del Hogar/breker sencillo.webp', 'Protector de circuito sencillo para aplicaciones residenciales. Diseño compacto y fácil instalación. Protección contra sobrecargas y cortocircuitos.', 1200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Breaker Sencillo', 1200, 'Imagenes de Productos Utiles del Hogar/breker sencillo.webp', 'Protector de circuito sencillo para aplicaciones residenciales. Diseño compacto y fácil instalación. Protección contra sobrecargas y cortocircuitos.')">Añadir</button>
+            </div>
+          </div> 
+        </div>     
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/breker trifasico1.jpg" alt="Breaker Trifásico">
+          </div>
+          <div class="product-txt">
+            <h3>Breaker Trifásico</h3>
+            <p class="description">Protector de circuito trifásico para sistemas industriales y comerciales. Alta capacidad de carga y protección contra sobrecorrientes. Cumple con normas de seguridad eléctrica.</p>
+            <p class="precio">$3500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Breaker Trifásico','Imagenes de Productos Utiles del Hogar/breker trifasico1.jpg', 'Protector de circuito trifásico para sistemas industriales y comerciales. Alta capacidad de carga y protección contra sobrecorrientes. Cumple con normas de seguridad eléctrica.', 3500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Breaker Trifásico', 3500, 'Imagenes de Productos Utiles del Hogar/breker trifasico1.jpg', 'Protector de circuito trifásico para sistemas industriales y comerciales. Alta capacidad de carga y protección contra sobrecorrientes. Cumple con normas de seguridad eléctrica.')">Añadir</button>
+            </div>
+          </div> 
+        </div> 
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Bridas.webp" alt="Bridas">
+          </div>
+          <div class="product-txt">
+            <h3>Bridas</h3>
+            <p class="description">Bridas de acero inoxidable de alta resistencia. Ideales para fijaciones en tuberías y estructuras. Facilidad de instalación y durabilidad garantizada.</p>
+            <p class="precio">$35.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Bridas','Imagenes de Productos Utiles del Hogar/Bridas.webp', 'Bridas de acero inoxidable de alta resistencia. Ideales para fijaciones en tuberías y estructuras. Facilidad de instalación y durabilidad garantizada.', 35)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Bridas', 35, 'Imagenes de Productos Utiles del Hogar/Bridas.webp', 'Bridas de acero inoxidable de alta resistencia. Ideales para fijaciones en tuberías y estructuras. Facilidad de instalación y durabilidad garantizada.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Brocha1pulgada.webp" alt="Brocha">
+          </div>
+          <div class="product-txt">
+            <h3>Brocha 1 Pulgada</h3>
+            <p class="description">Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.</p>
+            <p class="precio">$350.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Brocha 1 Pulgada','Imagenes de Productos Utiles del Hogar/Brocha1pulgada.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.', 350)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Brocha 1 Pulgada', 350, 'Imagenes de Productos Utiles del Hogar/Brocha1pulgada.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Brocha 2pulgada.webp" alt="Brocha">
+          </div>
+          <div class="product-txt">
+            <h3>Brocha 2 Pulgada</h3>
+            <p class="description">Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.</p>
+            <p class="precio">$850.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Brocha 2 Pulgada','Imagenes de Productos Utiles del Hogar/Brocha 2pulgada.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.', 850)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Brocha 2 Pulgada', 850, 'Imagenes de Productos Utiles del Hogar/Brocha 2pulgada.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Brocha 4.webp" alt="Brocha">
+          </div>
+          <div class="product-txt">
+            <h3>Brocha 4 Pulgada</h3>
+            <p class="description">Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.</p>
+            <p class="precio">$1350.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Brocha 4 Pulgada','Imagenes de Productos Utiles del Hogar/Brocha 4 pulgada.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.', 9)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Brocha 4 Pulgada', 1350, 'Imagenes de Productos Utiles del Hogar/Brocha 4 pulgada.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Brocha 5.webp" alt="Brocha">
+          </div>
+          <div class="product-txt">
+            <h3>Brocha 5 Pulgada</h3>
+            <p class="description">Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.</p>
+            <p class="precio">$1500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Brocha 5 Pulgada','Imagenes de Productos Utiles del Hogar/Brocha 5.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.', 1500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Brocha 5 Pulgada', 1500, 'Imagenes de Productos Utiles del Hogar/Brocha 5.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Brocha 6.webp" alt="Brocha">
+          </div>
+          <div class="product-txt">
+            <h3>Brocha 6 Pulgada</h3>
+            <p class="description">Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.</p>
+            <p class="precio">$1600.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Brocha 6 Pulgada','Imagenes de Productos Utiles del Hogar/Brocha 6.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.', 1600)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Brocha 6 Pulgada', 1600, 'Imagenes de Productos Utiles del Hogar/Brocha 6.webp', 'Brochas de cerdas naturales para acabados de pintura de alta calidad. Disponibles en múltiples tamaños para diferentes aplicaciones. Excelente capacidad de retención de pintura.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/caja1 4x2.jpg" alt="Caja Electrica 4x2">
+          </div>
+          <div class="product-txt">
+            <h3>Caja Electrica 4x2</h3>
+            <p class="description">Caja eléctica de plástico de 4x2 pulgadas para instalaciones eléctricas. Resistente a la humedad y fácil de instalar. Cumple con normas de seguridad eléctrica.</p>
+            <p class="precio">$150.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Caja Electrica 4x2','Imagenes de Productos Utiles del Hogar/caja1 4x2.jpg', 'Caja eléctrica de plástico de 4x2 pulgadas para instalaciones eléctricas. Resistente a la humedad y fácil de instalar. Cumple con normas de seguridad eléctrica.', 150)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Caja Electrica 4x2', 150, 'Imagenes de Productos Utiles del Hogar/caja1 4x2.jpg', 'Caja eléctrica de plástico de 4x2 pulgadas para instalaciones eléctricas. Resistente a la humedad y fácil de instalar. Cumple con normas de seguridad eléctrica.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/CAJA-DE-EMPALME-PLÁSTICA-2X4....jpg" alt="Caja Electrica 4x4">
+          </div>
+          <div class="product-txt">
+            <h3>Caja Electrica 4x4</h3>
+            <p class="description">Caja eléctrica de plástico de 4x4 pulgadas para instalaciones eléctricas de mayor capacidad. Resistente a la humedad y diseñada para facilitar el cableado.</p>
+            <p class="precio">$300.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Caja Electrica 6x4','Imagenes de Productos Utiles del Hogar/CAJA-DE-EMPALME-PLÁSTICA-2X4....jpg', 'Caja eléctrica de plástico de 4x4 pulgadas para instalaciones eléctricas de mayor capacidad. Resistente a la humedad y diseñada para facilitar el cableado.', 300)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Caja Electrica 6x4', 300, 'Imagenes de Productos Utiles del Hogar/CAJA-DE-EMPALME-PLÁSTICA-2X4....jpg', 'Caja eléctrica de plástico de 4x4 pulgadas para instalaciones eléctricas de mayor capacidad. Resistente a la humedad y diseñada para facilitar el cableado.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Candado Anticizalla1.jpg" alt="Candado Anticizalla">
+          </div>
+          <div class="product-txt">
+            <h3>Candado Anticizalla</h3>
+            <p class="description">Candado de alta seguridad con mecanismo anticizalla. Fabricado con acero endurecido para máxima protección. Ideal para puertas, puertas de garaje y contenedores.</p>
+            <p class="precio">$3000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Candado Anticizalla','Imagenes de Productos Utiles del Hogar/Candado Anticizalla1.jpg', 'Candado de alta seguridad con mecanismo anticizalla. Fabricado con acero endurecido para máxima protección. Ideal para puertas, puertas de garaje y contenedores.', 3000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Candado Anticizalla', 3000, 'Imagenes de Productos Utiles del Hogar/Candado Anticizalla1.jpg', 'Candado de alta seguridad con mecanismo anticizalla. Fabricado con acero endurecido para máxima protección. Ideal para puertas, puertas de garaje y contenedores.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cautin1.jpg" alt="Cautín">
+          </div>
+          <div class="product-txt">
+            <h3>Cautín</h3>
+            <p class="description">Cautín eléctrico de 60W para trabajos de electrónica y soldadura. Punta intercambiable y temperatura regulable. Diseñado para precisión y durabilidad.</p>
+            <p class="precio">$2500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cautín','Imagenes de Productos Utiles del Hogar/Cautin1.jpg', 'Cautín eléctrico de 60W para trabajos de electrónica y soldadura. Punta intercambiable y temperatura regulable. Diseñado para precisión y durabilidad.', 2500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cautín', 2500, 'Imagenes de Productos Utiles del Hogar/Cautin1.jpg', 'Cautín eléctrico de 60W para trabajos de electrónica y soldadura. Punta intercambiable y temperatura regulable. Diseñado para precisión y durabilidad.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/cemento cop.webp" alt="Cemento Blanco Importado 1KG">
+          </div>
+          <div class="product-txt">
+            <h3>Cemento Blanco Importado 1KG</h3>
+            <p class="description">Cemento blanco de alta calidad para acabados finos y decorativos. Presentación de 1kg. Ideal para trabajos de albañilería y decoración interiores.</p>
+            <p class="precio">$1500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cemento Blanco Importado 1KG','Imagenes de Productos Utiles del Hogar/cemento cop.webp', 'Cemento blanco de alta calidad para acabados finos y decorativos. Presentación de 1kg. Ideal para trabajos de albañilería y decoración interiores.', 12)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cemento Blanco Importado 1KG', 12, 'Imagenes de Productos Utiles del Hogar/cemento cop.webp', 'Cemento blanco de alta calidad para acabados finos y decorativos. Presentación de 1kg. Ideal para trabajos de albañilería y decoración interiores.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cemento blanco de un 5kg1.jpeg" alt="Cemento Blanco Importado 5KG">
+          </div>
+          <div class="product-txt">
+            <h3>Cemento Blanco Importado 5KG</h3>
+            <p class="description">Cemento blanco de alta calidad en presentación de 5kg. Perfecto para acabados finos y trabajos decorativos. Resistencia y durabilidad garantizadas.</p>
+            <p class="precio">$6500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cemento Blanco Importado 5KG', 'Imagenes de Productos Utiles del Hogar/Cemento blanco de un 5kg1.jpeg', 'Cemento blanco de alta calidad en presentación de 5kg. Perfecto para acabados finos y trabajos decorativos. Resistencia y durabilidad garantizadas.', 6500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cemento Blanco Importado 5KG', 6500, 'Imagenes de Productos Utiles del Hogar/Cemento blanco de un 5kg1.jpeg', 'Cemento blanco de alta calidad en presentación de 5kg. Perfecto para acabados finos y trabajos decorativos. Resistencia y durabilidad garantizadas.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cemento gris  - Oferta.jpg" alt="Cemento Gris Importado">
+          </div>
+          <div class="product-txt">
+            <h3>Cemento Gris Importado</h3>
+            <p class="description">Cemento gris de alta resistencia para construcción. Presentación en sacos de 50kg. Ideal para estructuras, cimentaciones y trabajos de albañilería pesada.</p>
+            <p class="precio">$8500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cemento Gris Importado','Imagenes de Productos Utiles del Hogar/Cemento gris  - Oferta.jpg', 'Cemento gris de alta resistencia para construcción. Presentación en sacos de 50kg. Ideal para estructuras, cimentaciones y trabajos de albañilería pesada.', 8500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cemento Gris Importado', 8500, 'Imagenes de Productos Utiles del Hogar/Cemento gris  - Oferta.jpg', 'Cemento gris de alta resistencia para construcción. Presentación en sacos de 50kg. Ideal para estructuras, cimentaciones y trabajos de albañilería pesada.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/cepillo negro.jpg" alt="Cepillo de Alambre Negro">
+          </div>
+          <div class="product-txt">
+            <h3>Cepillo de Alambre Negro</h3>
+            <p class="description">Cepillo de alambre con mango de madera para trabajos de limpieza y preparación de superficies. Ideal para eliminar óxido, pintura y residuos en metales y madera.</p>
+            <p class="precio">$1800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cepillo de Alambre Negro','Imagenes de Productos Utiles del Hogar/cepillo negro.jpg', 'Cepillo de alambre con mango de madera para trabajos de limpieza y preparación de superficies. Ideal para eliminar óxido, pintura y residuos en metales y madera.', 1800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cepillo de Alambre Negro', 1800, 'Imagenes de Productos Utiles del Hogar/cepillo negro.jpg', 'Cepillo de alambre con mango de madera para trabajos de limpieza y preparación de superficies. Ideal para eliminar óxido, pintura y residuos en metales y madera.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+      
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cheque de cisterna2.jpg" alt="Cheque de Cisterna Pulgada">
+          </div>
+          <div class="product-txt">
+            <h3>Cheque de Cisterna Pulgada</h3>
+            <p class="description">Válvula de flotante para cisternas de 1 pulgada. Mecanismo de cierre automático para evitar desbordamientos. Fabricada con materiales resistentes a la corrosión.</p>
+            <p class="precio">$3000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cheque de Cisterna Pulgada','Imagenes de Productos Utiles del Hogar/Cheque de cisterna2.jpg', 'Válvula de flotante para cisternas de 1 pulgada. Mecanismo de cierre automático para evitar desbordamientos. Fabricada con materiales resistentes a la corrosión.', 3000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cheque de Cisterna Pulgada', 3000, 'Imagenes de Productos Utiles del Hogar/Cheque de cisterna2.jpg', 'Válvula de flotante para cisternas de 1 pulgada. Mecanismo de cierre automático para evitar desbordamientos. Fabricada con materiales resistentes a la corrosión.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg" alt="Cheque de Linea 1/2">
+          </div>
+          <div class="product-txt">
+            <h3>Cheque de Linea 1/2</h3>
+            <p class="description">Válvula de retención para línea de agua de 1/2 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.</p>
+            <p class="precio">$3500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cheque de Linea 1/2' ,'Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg', 'Válvula de retención para línea de agua de 1/2 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.', 3500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cheque de Linea 1/2 ', 3500, 'Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg', 'Válvula de retención para línea de agua de 1/2 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg" alt="Cheque de Linea 3/4">
+          </div>
+          <div class="product-txt">
+            <h3>Cheque de Linea 3/4</h3>
+            <p class="description">Válvula de retención para línea de agua de 3/4 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.</p>
+            <p class="precio">$3800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cheque de Linea 3/4' ,'Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg', 'Válvula de retención para línea de agua de 3/4 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.', 3800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cheque de Linea 3/4 ', 3800, 'Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg', 'Válvula de retención para línea de agua de 3/4 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg" alt="Cheque de Linea Pulgada">
+          </div>
+          <div class="product-txt">
+            <h3>Cheque de Linea Pulgada</h3>
+            <p class="description">Válvula de retención para línea de agua de 1 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.</p>
+            <p class="precio">$3700.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cheque de Linea Pulgada)' ,'Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg', 'Válvula de retención para línea de agua de 1 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.', 3700)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cheque de Linea Pulgada)', 3700, 'Imagenes de Productos Utiles del Hogar/Cheque de linea1.jpg', 'Válvula de retención para línea de agua de 1 pulgada. Diseñada para evitar el retroceso del agua en sistemas de tuberías. Instalación fácil y operación confiable.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cinta metrica1.jpg" alt="Cinta Metrica">
+          </div>
+          <div class="product-txt">
+            <h3>Cinta Metrica (Lienso de Medir)</h3>
+            <p class="description">Cinta métrica de 5 metros con sistema de retracción automático. Precisión en mediciones para construcción y carpintería. Diseño resistente y duradero.</p>
+            <p class="precio">$850.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cinta Metrica (Lienso de Medir)' ,'Imagenes de Productos Utiles del Hogar/Cinta metrica1.jpg', 'Cinta métrica de 5 metros con sistema de retracción automático. Precisión en mediciones para construcción y carpintería. Diseño resistente y duradero.', 850)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cinta Metrica (Lienso de Medir)', 850, 'Imagenes de Productos Utiles del Hogar/Cinta metrica1.jpg', 'Cinta métrica de 5 metros con sistema de retracción automático. Precisión en mediciones para construcción y carpintería. Diseño resistente y duradero.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cuello Ganso de Fregadero.jpg" alt="Cuello Ganso de Fregadero">
+          </div>
+          <div class="product-txt">
+            <h3>Cuello Ganso de Fregadero</h3>
+            <p class="description">Cuello de ganso para fregadero de acero inoxidable. Diseño elegante y funcional. Fácil instalación y conexión a sistema de desagüe.</p>
+            <p class="precio">$3200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cuello Ganso de Fregadero' ,'Imagenes de Productos Utiles del Hogar/Cuello Ganso de Fregadero.jpg', 'Cuello de ganso para fregadero de acero inoxidable. Diseño elegante y funcional. Fácil instalación y conexión a sistema de desagüe.', 3200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cuello Ganso de Fregadero', 3200, 'Imagenes de Productos Utiles del Hogar/Cuello Ganso de Fregadero.jpg', 'Cuello de ganso para fregadero de acero inoxidable. Diseño elegante y funcional. Fácil instalación y conexión a sistema de desagüe.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Cuello Ganso de Pared1.jpg" alt="Cuello Ganso de Pared">
+          </div>
+          <div class="product-txt">
+            <h3>Cuello Ganso de Pared</h3>
+            <p class="description">Cuello de ganso para instalación en pared. Material resistente a la corrosión y fácil instalación. Ideal para duchas y sistemas de agua.</p>
+            <p class="precio">$3500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Cuello Ganso de Pared' ,'Imagenes de Productos Utiles del Hogar/Cuello Ganso de Pared1.jpg', 'Cuello de ganso para instalación en pared. Material resistente a la corrosión y fácil instalación. Ideal para duchas y sistemas de agua.', 3500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Cuello Ganso de Pared', 3500, 'Imagenes de Productos Utiles del Hogar/Cuello Ganso de Pared1.jpg', 'Cuello de ganso para instalación en pared. Material resistente a la corrosión y fácil instalación. Ideal para duchas y sistemas de agua.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/disco de corte.jpg" alt="Disco de Corte Chiquito">
+          </div>
+          <div class="product-txt">
+            <h3>Disco de Corte Chiquito</h3>
+            <p class="description">Disco de corte pequeño para trabajos precisos. Fabricado con material de alta resistencia para cortes limpios en metales y otros materiales.</p>
+            <p class="precio">$250.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Disco de Corte Chiquito' ,'Imagenes de Productos Utiles del Hogar/Disco de Corte Chiquito o Grande.jpg', 'Disco de corte pequeño para trabajos precisos. Fabricado con material de alta resistencia para cortes limpios en metales y otros materiales.', 250)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Disco de Corte Chiquito', 250, 'Imagenes de Productos Utiles del Hogar/Disco de Corte Chiquito o Grande.jpg', 'Disco de corte pequeño para trabajos precisos. Fabricado con material de alta resistencia para cortes limpios en metales y otros materiales.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/disco de corte 180.jpg" alt="Disco de Corte Grande 180mm">
+          </div>
+          <div class="product-txt">
+            <h3>Disco de Corte Grande 180mm</h3>
+            <p class="description">Disco de corte de 180mm para trabajos de construcción. Alta resistencia y durabilidad. Ideal para cortes en concreto, ladrillo y materiales similares.</p>
+            <p class="precio">$1200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Disco de Corte Grande 180mm' ,'Imagenes de Productos Utiles del Hogar/Disco de Corte Chiquito o Grande.jpg', 'Disco de corte de 180mm para trabajos de construcción. Alta resistencia y durabilidad. Ideal para cortes en concreto, ladrillo y materiales similares.', 1200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Disco de Corte Grande 180mm', 1200, 'Imagenes de Productos Utiles del Hogar/Disco de Corte Chiquito o Grande.jpg', 'Disco de corte de 180mm para trabajos de construcción. Alta resistencia y durabilidad. Ideal para cortes en concreto, ladrillo y materiales similares.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/disco de corte 230.jpg" alt="Disco de Corte Grande 230mm">
+          </div>
+          <div class="product-txt">
+            <h3>Disco de Corte Grande 230mm</h3>
+            <p class="description">Disco de corte de 230mm para trabajos de construcción pesada. Alta resistencia y durabilidad. Ideal para cortes profundos en concreto y materiales duros.</p>
+            <p class="precio">$1600.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Disco de Corte 230mm' ,'Imagenes de Productos Utiles del Hogar/Disco de Corte Chiquito o Grande.jpg', 'Disco de corte de 230mm para trabajos de construcción pesada. Alta resistencia y durabilidad. Ideal para cortes profundos en concreto y materiales duros.', 1600)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Disco de Corte 230mm', 1600, 'Imagenes de Productos Utiles del Hogar/Disco de Corte Chiquito o Grande.jpg', 'Disco de corte de 230mm para trabajos de construcción pesada. Alta resistencia y durabilidad. Ideal para cortes profundos en concreto y materiales duros.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/disco de Debaste.jpg" alt="Disco de Corte de Desbaste">
+          </div>
+          <div class="product-txt">
+            <h3>Disco de Corte de Desbaste</h3>
+            <p class="description">Disco de desbaste para preparación de superficies. Ideal para eliminar pintura, óxido y residuos en metales. Alta resistencia y durabilidad.</p>
+            <p class="precio">$800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Disco de Corte de Desbaste' ,'Imagenes de Productos Utiles del Hogar/disco de Debaste.jpg', 'Disco de desbaste para preparación de superficies. Ideal para eliminar pintura, óxido y residuos en metales. Alta resistencia y durabilidad.', 800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Disco de Corte de Desbaste', 800, 'Imagenes de Productos Utiles del Hogar/disco de Debaste.jpg', 'Disco de desbaste para preparación de superficies. Ideal para eliminar pintura, óxido y residuos en metales. Alta resistencia y durabilidad.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/disco de Debaste grande.jpg" alt="Disco de Corte de Desbaste 180mm">
+          </div>
+          <div class="product-txt">
+            <h3>Disco de Corte de Desbaste 180mm</h3>
+            <p class="description">Disco de desbaste de 180mm para trabajos de preparación de superficies. Ideal para eliminar pintura, óxido y residuos en grandes superficies.</p>
+            <p class="precio">$1400.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Disco de Corte de Desbaste Grande' ,'Imagenes de Productos Utiles del Hogar/disco de Debaste.jpg', 'Disco de desbaste de 180mm para trabajos de preparación de superficies. Ideal para eliminar pintura, óxido y residuos en grandes superficies.', 1400)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Disco de Corte de Desbaste Grande', 1400, 'Imagenes de Productos Utiles del Hogar/disco de Debaste.jpg', 'Disco de desbaste de 180mm para trabajos de preparación de superficies. Ideal para eliminar pintura, óxido y residuos en grandes superficies.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/ducha de aseo2.jpg" alt="Ducha de Aseo">
+          </div>
+          <div class="product-txt">
+            <h3>Ducha de Aseo</h3>
+            <p class="description">Ducha de aseo para áreas de trabajo o exteriores. Diseño resistente a la intemperie y fácil instalación. Ideal para talleres, garajes y zonas exteriores.</p>
+            <p class="precio">$1000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Ducha de Aseo' ,'Imagenes de Productos Utiles del Hogar/ducha de aseo2.jpg', 'Ducha de aseo para áreas de trabajo o exteriores. Diseño resistente a la intemperie y fácil instalación. Ideal para talleres, garajes y zonas exteriores.', 19)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Ducha de Aseo', 19, 'Imagenes de Productos Utiles del Hogar/ducha de aseo2.jpg', 'Ducha de aseo para áreas de trabajo o exteriores. Diseño resistente a la intemperie y fácil instalación. Ideal para talleres, garajes y zonas exteriores.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/ducha de telefon.jpg" alt="Ducha de Telefono">
+          </div>
+          <div class="product-txt">
+            <h3>Ducha de Telefono</h3>
+            <p class="description">Ducha telefónica para comunicación en exteriores. Diseño resistente al agua y a la intemperie. Ideal para áreas de trabajo y comunicación remota.</p>
+            <p class="precio">$3000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Ducha de Telefono' ,'Imagenes de Productos Utiles del Hogar/ducha de telefon.jpg', 'Ducha telefónica para comunicación en exteriores. Diseño resistente al agua y a la intemperie. Ideal para áreas de trabajo y comunicación remota.', 3000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Ducha de Telefono', 3000, 'Imagenes de Productos Utiles del Hogar/ducha de telefon.jpg', 'Ducha telefónica para comunicación en exteriores. Diseño resistente al agua y a la intemperie. Ideal para áreas de trabajo y comunicación remota.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/espigas1.jpg" alt="Espigas">
+          </div>
+          <div class="product-txt">
+            <h3>Espigas</h3>
+            <p class="description">Espigas de conexión para tuberías PVC. Diseño estándar y fácil instalación. Garantiza conexiones seguras y herméticas en sistemas de tuberías.</p>
+            <p class="precio">$700.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Espigas' ,'Imagenes de Productos Utiles del Hogar/espigas1.jpg', 'Espigas de conexión para tuberías PVC. Diseño estándar y fácil instalación. Garantiza conexiones seguras y herméticas en sistemas de tuberías.', 700)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Espigas', 700, 'Imagenes de Productos Utiles del Hogar/espigas1.jpg', 'Espigas de conexión para tuberías PVC. Diseño estándar y fácil instalación. Garantiza conexiones seguras y herméticas en sistemas de tuberías.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/extension de 5M.webp" alt="Extencion de 5M">
+          </div>
+          <div class="product-txt">
+            <h3>Extencion de 5M</h3>
+            <p class="description">Extensión eléctrica de 5 metros con múltiples tomas. Diseño resistente y seguro. Ideal para trabajos en exteriores o donde se necesita mayor alcance.</p>
+            <p class="precio">$4600.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Extencion de 5M' ,'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Extensión eléctrica de 5 metros con múltiples tomas. Diseño resistente y seguro. Ideal para trabajos en exteriores o donde se necesita mayor alcance.', 4600)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Extencion de 5M', 4600, 'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Extensión eléctrica de 5 metros con múltiples tomas. Diseño resistente y seguro. Ideal para trabajos en exteriores o donde se necesita mayor alcance.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/extension 15m.jpg" alt="Extencion de 15M">
+          </div>
+          <div class="product-txt">
+            <h3>Extencion de 15M</h3>
+            <p class="description">Extensión eléctrica de 15 metros con múltiples tomas. Diseño resistente y seguro. Ideal para grandes espacios o trabajos en exteriores.</p>
+            <p class="precio">$7000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Extencion de 15M' ,'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Extensión eléctrica de 15 metros con múltiples tomas. Diseño resistente y seguro. Ideal para grandes espacios o trabajos en exteriores.', 7000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Extencion de 15M', 7000, 'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Extensión eléctrica de 15 metros con múltiples tomas. Diseño resistente y seguro. Ideal para grandes espacios o trabajos en exteriores.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/extension 30m.gif" alt="Extencion de 30M">
+          </div>
+          <div class="product-txt">
+            <h3>Extencion de 30M</h3>
+            <p class="description">Extensión eléctrica de 30 metros con múltiples tomas. Diseño resistente y seguro. Ideal para grandes espacios de trabajo o eventos al aire libre.</p>
+            <p class="precio">$10500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Extencion de 30M' ,'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Extensión eléctrica de 30 metros con múltiples tomas. Diseño resistente y seguro. Ideal para grandes espacios de trabajo o eventos al aire libre.', 10500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Extencion de 30M', 10500, 'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Extensión eléctrica de 30 metros con múltiples tomas. Diseño resistente y seguro. Ideal para grandes espacios de trabajo o eventos al aire libre.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/extension regleta de 1m.webp" alt="Extension de Regleta de 0.50 cm">
+          </div>
+          <div class="product-txt">
+            <h3>Extension de Regleta de 0.50 cm</h3>
+            <p class="description">Regleta eléctrica de extensión con protección contra sobrecargas. Diseño compacto y fácil instalación. Ideal para espacios reducidos con necesidad de múltiples tomas.</p>
+            <p class="precio">$3000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Extension de Regleta de 0.50 cm' ,'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Regleta eléctrica de extensión con protección contra sobrecargas. Diseño compacto y fácil instalación. Ideal para espacios reducidos con necesidad de múltiples tomas.', 3000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Extension de Regleta de 0.50 cm', 3000, 'Imagenes de Productos Utiles del Hogar/Extenciones.jpg', 'Regleta eléctrica de extensión con protección contra sobrecargas. Diseño compacto y fácil instalación. Ideal para espacios reducidos con necesidad de múltiples tomas.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/flexo de ducha1.jpg" alt="Flexo de Ducha">
+          </div>
+          <div class="product-txt">
+            <h3>Flexo de Ducha</h3>
+            <p class="description">Manguera flexible para ducha con alta presión. Material resistente al agua y al moho. Diseño ergonómico y fácil instalación.</p>
+            <p class="precio">$1800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Flexo de Ducha' ,'Imagenes de Productos Utiles del Hogar/flexo de ducha1.jpg', 'Manguera flexible para ducha con alta presión. Material resistente al agua y al moho. Diseño ergonómico y fácil instalación.', 1800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Flexo de Ducha', 1800, 'Imagenes de Productos Utiles del Hogar/flexo de ducha1.jpg', 'Manguera flexible para ducha con alta presión. Material resistente al agua y al moho. Diseño ergonómico y fácil instalación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/flotante.jpg" alt="Flotante de Tanque">
+          </div>
+          <div class="product-txt">
+            <h3>Flotante de Tanque 1/2 </h3>
+            <p class="description">Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.</p>
+            <p class="precio">$3200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Flotante de Tanque 1/2 ' ,'Imagenes de Productos Utiles del Hogar/flotante.jpg', 'Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.', 3200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Flotante de Tanque 1/2 ', 3200, 'Imagenes de Productos Utiles del Hogar/flotante.jpg', 'Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/flotante.jpg" alt="Flotante de Tanque">
+          </div>
+          <div class="product-txt">
+            <h3>Flotante de Tanque 3/4 </h3>
+            <p class="description">Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.</p>
+            <p class="precio">$3500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Flotante de Tanque 3/4 ' ,'Imagenes de Productos Utiles del Hogar/flotante.jpg', 'Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.', 3500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Flotante de Tanque 3/4 ', 3500, 'Imagenes de Productos Utiles del Hogar/flotante.jpg', 'Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/flotante.jpg" alt="Flotante de Tanque">
+          </div>
+          <div class="product-txt">
+            <h3>Flotante de Tanque Pulgada</h3>
+            <p class="description">Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.</p>
+            <p class="precio">$3500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Flotante de Tanque Pulgada ' ,'Imagenes de Productos Utiles del Hogar/flotante.jpg', 'Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.', 3500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Flotante de Tanque 3/4', 3500, 'Imagenes de Productos Utiles del Hogar/flotante.jpg', 'Flotante para tanques de agua en presentaciones de 1/2 y 3/4 pulgada. Mecanismo de flotación confiable para control de nivel de agua.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Herraje de boton.jpg" alt="Herraje de Boton Mono">
+          </div>
+          <div class="product-txt">
+            <h3>Herraje de Boton Mono</h3>
+            <p class="description">Herraje de botón para puertas de alta seguridad. Mecanismo resistente y duradero. Ideal para puertas interiores y exteriores de uso frecuente.</p>
+            <p class="precio">$5000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Herraje de Boton Mono' ,'Imagenes de Productos Utiles del Hogar/Herraje de boton.jpg', 'Herraje de botón para puertas de alta seguridad. Mecanismo resistente y duradero. Ideal para puertas interiores y exteriores de uso frecuente.', 5000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Herraje de Boton Mono', 5000, 'Imagenes de Productos Utiles del Hogar/Herraje de boton.jpg', 'Herraje de botón para puertas de alta seguridad. Mecanismo resistente y duradero. Ideal para puertas interiores y exteriores de uso frecuente.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Herraje de palanca.jpg" alt="Herraje de Palanca 5/8">
+          </div>
+          <div class="product-txt">
+            <h3>Herraje de Palanca 5/8</h3>
+            <p class="description">Herraje de palanca para puertas de 5/8 pulgada. Diseño elegante y funcional. Fabricado con materiales resistentes para larga duración.</p>
+            <p class="precio">$3200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Herraje de Palanca' ,'Imagenes de Productos Utiles del Hogar/Herraje de palanca.jpg', 'Herraje de palanca para puertas de 5/8 pulgada. Diseño elegante y funcional. Fabricado con materiales resistentes para larga duración.', 3200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Herraje de Palanca', 3200, 'Imagenes de Productos Utiles del Hogar/Herraje de palanca.jpg', 'Herraje de palanca para puertas de 5/8 pulgada. Diseño elegante y funcional. Fabricado con materiales resistentes para larga duración.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/interruptores dobles.jpg" alt="Interruptores Doble">
+          </div>
+          <div class="product-txt">
+            <h3>Interruptores Doble</h3>
+            <p class="description">Interruptor doble para control de dos circuitos independientes. Diseño moderno y fácil instalación. Ideal para iluminación y otros dispositivos eléctricos.</p>
+            <p class="precio">$1000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Interruptores Doble' ,'Imagenes de Productos Utiles del Hogar/interruptores dobles.jpg', 'Interruptor doble para control de dos circuitos independientes. Diseño moderno y fácil instalación. Ideal para iluminación y otros dispositivos eléctricos.', 1000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Interruptores Doble', 1000, 'Imagenes de Productos Utiles del Hogar/interruptores dobles.jpg', 'Interruptor doble para control de dos circuitos independientes. Diseño moderno y fácil instalación. Ideal para iluminación y otros dispositivos eléctricos.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Juego de Barrena.jpg" alt="Juego de Barrenas">
+          </div>
+          <div class="product-txt">
+            <h3>Juego de Barrenas</h3>
+            <p class="description">Juego completo de barrenas para perforación en diferentes materiales. Incluye barrenas de varios diámetros y materiales. Ideal para trabajos de construcción y reparación.</p>
+            <p class="precio">$2100.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Juego de Barrenas' ,'Imagenes de Productos Utiles del Hogar/Juego de Barrena.jpg', 'Juego completo de barrenas para perforación en diferentes materiales. Incluye barrenas de varios diámetros y materiales. Ideal para trabajos de construcción y reparación.', 2100)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Juego de Barrenas', 2100, 'Imagenes de Productos Utiles del Hogar/Juego de Barrena.jpg', 'Juego completo de barrenas para perforación en diferentes materiales. Incluye barrenas de varios diámetros y materiales. Ideal para trabajos de construcción y reparación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Junta de Cera.jpg" alt="Junta de Cera">
+          </div>
+          <div class="product-txt">
+            <h3>Junta de Cera</h3>
+            <p class="description">Junta de cera para sellado de tuberías y conexiones. Material resistente al agua y a la corrosión. Fácil aplicación y secado rápido.</p>
+            <p class="precio">$1000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Junta de Cera' ,'Imagenes de Productos Utiles del Hogar/Junta de Cera.jpg', 'Junta de cera para sellado de tuberías y conexiones. Material resistente al agua y a la corrosión. Fácil aplicación y secado rápido.', 1000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Junta de Cera', 1000, 'Imagenes de Productos Utiles del Hogar/Junta de Cera.jpg', 'Junta de cera para sellado de tuberías y conexiones. Material resistente al agua y a la corrosión. Fácil aplicación y secado rápido.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/lampara con el tubo1.jpg" alt="Lampara con tubo led">
+          </div>
+          <div class="product-txt">
+            <h3>Lampara con tubo led (20w 40w)</h3>
+            <p class="description">Lámpara LED con tubo de 20W o 40W. Alta eficiencia energética y larga vida útil. Ideal para iluminación de interiores y exteriores.</p>
+            <p class="precio">$19.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Lampara con tubo led (20w 40w)' ,'Imagenes de Productos Utiles del Hogar/lampara con el tubo1.jpg', 'Lámpara LED con tubo de 20W o 40W. Alta eficiencia energética y larga vida útil. Ideal para iluminación de interiores y exteriores.', 19)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Lampara con tubo led (20w 40w)', 19, 'Imagenes de Productos Utiles del Hogar/lampara con el tubo1.jpg', 'Lámpara LED con tubo de 20W o 40W. Alta eficiencia energética y larga vida útil. Ideal para iluminación de interiores y exteriores.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Lata de PVC.jpg" alt="Lata de PVC">
+          </div>
+          <div class="product-txt">
+            <h3>Lata de PVC</h3>
+            <p class="description">Lata de adhesivo para tuberías PVC. Fácil aplicación y secado rápido. Garantiza conexiones seguras y herméticas en sistemas de tuberías.</p>
+            <p class="precio">$1300.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Lata de PVC' ,'Imagenes de Productos Utiles del Hogar/Lata de PVC.jpg', 'Lata de adhesivo para tuberías PVC. Fácil aplicación y secado rápido. Garantiza conexiones seguras y herméticas en sistemas de tuberías.', 1300)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Lata de PVC', 1300, 'Imagenes de Productos Utiles del Hogar/Lata de PVC.jpg', 'Lata de adhesivo para tuberías PVC. Fácil aplicación y secado rápido. Garantiza conexiones seguras y herméticas en sistemas de tuberías.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Latiguillos.jpg" alt="Latiguillos">
+          </div>
+          <div class="product-txt">
+            <h3>Latiguillos</h3>
+            <p class="description">Manguelas flexibles para conexión de agua. Material resistente a la presión y al desgaste. Diseño estándar para fácil instalación.</p>
+            <p class="precio">$1000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Latiguillos' ,'Imagenes de Productos Utiles del Hogar/Latiguillos1.jpg', 'Manguelas flexibles para conexión de agua. Material resistente a la presión y al desgaste. Diseño estándar para fácil instalación.', 1000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Latiguillos', 1000, 'Imagenes de Productos Utiles del Hogar/Latiguillos1.jpg', 'Manguelas flexibles para conexión de agua. Material resistente a la presión y al desgaste. Diseño estándar para fácil instalación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Latiguillos1.jpg" alt="Latiguillo de Mezcladora">
+          </div>
+          <div class="product-txt">
+            <h3>Latiguillo de Mezcladora</h3>
+            <p class="description">Manguera flexible para mezcladora de agua caliente y fría. Material resistente al agua y al calor. Diseño ergonómico para fácil instalación.</p>
+            <p class="precio">$2200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Latiguillo de Mezcladora' ,'Imagenes de Productos Utiles del Hogar/latiguillo de mezcladora.jpg', 'Manguera flexible para mezcladora de agua caliente y fría. Material resistente al agua y al calor. Diseño ergonómico para fácil instalación.', 2200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Latiguillo de Mezcladora', 2200, 'Imagenes de Productos Utiles del Hogar/latiguillo de mezcladora.jpg', 'Manguera flexible para mezcladora de agua caliente y fría. Material resistente al agua y al calor. Diseño ergonómico para fácil instalación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Lija de agua.jpg" alt="Lija de Agua">
+          </div>
+          <div class="product-txt">
+            <h3>Lija de Agua</h3>
+            <p class="description">Lija de agua para acabados finos y lijado húmedo. Material resistente y duradero. Ideal para trabajos de pintura y acabados de madera.</p>
+            <p class="precio">$150.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Lija de Agua' ,'Imagenes de Productos Utiles del Hogar/Lija de agua.jpg', 'Lija de agua para acabados finos y lijado húmedo. Material resistente y duradero. Ideal para trabajos de pintura y acabados de madera.', 150)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Lija de Agua', 150, 'Imagenes de Productos Utiles del Hogar/Lija de agua.jpg', 'Lija de agua para acabados finos y lijado húmedo. Material resistente y duradero. Ideal para trabajos de pintura y acabados de madera.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Lijja de Madera.jpg" alt="Lija de Madera">
+          </div>
+          <div class="product-txt">
+            <h3>Lija de Madera</h3>
+            <p class="description">Lija especial para madera de diferentes granos. Material resistente y duradero. Ideal para preparación y acabado de superficies de madera.</p>
+            <p class="precio">$150.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Lija de Madera' ,'Imagenes de Productos Utiles del Hogar/Lijja de Madera.jpg', 'Lija especial para madera de diferentes granos. Material resistente y duradero. Ideal para preparación y acabado de superficies de madera.', 150)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Lija de Madera', 150, 'Imagenes de Productos Utiles del Hogar/Lijja de Madera.jpg', 'Lija especial para madera de diferentes granos. Material resistente y duradero. Ideal para preparación y acabado de superficies de madera.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/llave empotrada.jpg" alt="Llave Empotrada">
+          </div>
+          <div class="product-txt">
+            <h3>Llave Empotrada</h3>
+            <p class="description">Llave de paso empotrada para instalaciones de agua. Diseño elegante y funcional. Material resistente a la corrosión para larga duración.</p>
+            <p class="precio">$3500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Llave Empotrada' ,'Imagenes de Productos Utiles del Hogar/llave empotrada.jpg', 'Llave de paso empotrada para instalaciones de agua. Diseño elegante y funcional. Material resistente a la corrosión para larga duración.', 3500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Llave Empotrada', 3500, 'Imagenes de Productos Utiles del Hogar/llave empotrada.jpg', 'Llave de paso empotrada para instalaciones de agua. Diseño elegante y funcional. Material resistente a la corrosión para larga duración.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/llave de angulo HM.jpg" alt="Llave de Angulo HM">
+          </div>
+          <div class="product-txt">
+            <h3>Llave de Angulo HM</h3>
+            <p class="description">Llave de ángulo HM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.</p>
+            <p class="precio">$1000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Llave de Angulo HM' ,'Imagenes de Productos Utiles del Hogar/llave de angulo HM.jpg', 'Llave de ángulo HM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.', 1000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Llave de Angulo HM', 1000, 'Imagenes de Productos Utiles del Hogar/llave de angulo HM.jpg', 'Llave de ángulo HM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/llave de angulo MM.jpg" alt="Llave de Angulo MM">
+          </div>
+          <div class="product-txt">
+            <h3>Llave de Angulo MM</h3>
+            <p class="description">Llave de ángulo MM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.</p>
+            <p class="precio">$1600.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Llave de Angulo MM' ,'Imagenes de Productos Utiles del Hogar/llave de angulo MM.jpg', 'Llave de ángulo MM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.', 1600)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Llave de Angulo MM', 1600, 'Imagenes de Productos Utiles del Hogar/llave de angulo MM.jpg', 'Llave de ángulo MM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/llave de angulo doble.jpg" alt="Llave de Angulo Doble HM">
+          </div>
+          <div class="product-txt">
+            <h3>Llave de Angulo Doble HM</h3>
+            <p class="description">Llave de ángulo doble HM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.</p>
+            <p class="precio">$1600.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Llave de Angulo Doble HM' ,'Imagenes de Productos Utiles del Hogar/llave de angulo doble.jpg', 'Llave de ángulo doble HM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.', 1600)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Llave de Angulo Doble HM', 1600, 'Imagenes de Productos Utiles del Hogar/llave de angulo doble.jpg', 'Llave de ángulo doble HM para trabajos en espacios reducidos. Diseño ergonómico y fácil manejo. Ideal para tuberías y conexiones difíciles de alcanzar.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Llave de paso de PVC.jpg" alt="Llave de Paso de PVC">
+          </div>
+          <div class="product-txt">
+            <h3>Llave de Paso de PVC</h3>
+            <p class="description">Llave de paso para tuberías PVC. Diseño estándar y fácil instalación. Garantiza control del flujo en sistemas de tuberías.</p>
+            <p class="precio">$19.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Llave de Paso de PVC' ,'Imagenes de Productos Utiles del Hogar/Llave de paso de PVC.jpg', 'Llave de paso para tuberías PVC. Diseño estándar y fácil instalación. Garantiza control del flujo en sistemas de tuberías.', 19)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Llave de Paso de PVC', 19, 'Imagenes de Productos Utiles del Hogar/Llave de paso de PVC.jpg', 'Llave de paso para tuberías PVC. Diseño estándar y fácil instalación. Garantiza control del flujo en sistemas de tuberías.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Mando universal de cajita1.jpg" alt="Mando Universal de Cajita">
+          </div>
+          <div class="product-txt">
+            <h3>Mando Universal de Cajita</h3>
+            <p class="description">Control remoto universal para aire acondicionado de tipo cajita. Programable para múltiples marcas y modelos. Fácil de usar y configurar.</p>
+            <p class="precio">2500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Mando Universal de Cajita' ,'Imagenes de Productos Utiles del Hogar/Mando universal de cajita1.jpg', 'Control remoto universal para aire acondicionado de tipo cajita. Programable para múltiples marcas y modelos. Fácil de usar y configurar.', 2500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Mando Universal de Cajita', 2500, 'Imagenes de Productos Utiles del Hogar/Mando universal de cajita1.jpg', 'Control remoto universal para aire acondicionado de tipo cajita. Programable para múltiples marcas y modelos. Fácil de usar y configurar.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Mando universal de cajita1.jpg" alt="Mando Universal de Split">
+          </div>
+          <div class="product-txt">
+            <h3>Mando Universal de Split</h3>
+            <p class="description">Control remoto universal para aire acondicionado split. Programable para múltiples marcas y modelos. Fácil de usar y configurar.</p>
+            <p class="precio">$2800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Mando Universal de Split' ,'Imagenes de Productos Utiles del Hogar/Mando universal de Split1.jpg', 'Control remoto universal para aire acondicionado split. Programable para múltiples marcas y modelos. Fácil de usar y configurar.', 19)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Mando Universal de Split', 19, 'Imagenes de Productos Utiles del Hogar/Mando universal de Split1.jpg', 'Control remoto universal para aire acondicionado split. Programable para múltiples marcas y modelos. Fácil de usar y configurar.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Mando universal de TV1.jpg" alt="Mando Universal de TV">
+          </div>
+          <div class="product-txt">
+            <h3>Mando Universal de TV</h3>
+            <p class="description">Control remoto universal para televisores. Programable para múltiples marcas y modelos. Fácil de usar y configurar.</p>
+            <p class="precio">$2500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Mando Universal de TV' ,'Imagenes de Productos Utiles del Hogar/Mando universal de TV1.jpg', 'Control remoto universal para televisores. Programable para múltiples marcas y modelos. Fácil de usar y configurar.', 19)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Mando Universal de TV', 19, 'Imagenes de Productos Utiles del Hogar/Mando universal de TV1.jpg', 'Control remoto universal para televisores. Programable para múltiples marcas y modelos. Fácil de usar y configurar.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/manguera-desague-lavadora-17mts-codo-corrugada-2-500x476.png" alt="Manguera de Desagüe Lavadora">
+          </div>
+          <div class="product-txt">
+            <h3>Manguera de Desagüe Lavadora</h3>
+            <p class="description">Manguera de desagüe para lavadora de 17 metros. Material resistente a la corrosión y al desgaste. Diseño flexible para fácil instalación.</p>
+            <p class="precio">$2000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Manguera de Desagüe Lavadora' ,'Imagenes de Productos Utiles del Hogar/manguera-desague-lavadora-17mts-codo-corrugada-2-500x476.png', 'Manguera de desagüe para lavadora de 17 metros. Material resistente a la corrosión y al desgaste. Diseño flexible para fácil instalación.', 2000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Manguera de Desagüe Lavadora', 2000, 'Imagenes de Productos Utiles del Hogar/manguera-desague-lavadora-17mts-codo-corrugada-2-500x476.png', 'Manguera de desagüe para lavadora de 17 metros. Material resistente a la corrosión y al desgaste. Diseño flexible para fácil instalación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/mezcladora de ducha.png" alt="Mezcladora de Ducha">
+          </div>
+          <div class="product-txt">
+            <h3>Mezcladora de Ducha</h3>
+            <p class="description">Mezcladora de ducha de alta calidad con termostato. Diseño moderno y elegante. Material resistente al agua y al desgaste.</p>
+            <p class="precio">$14000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Mezcladora de Ducha' ,'Imagenes de Productos Utiles del Hogar/mezcladora de ducha.png', 'Mezcladora de ducha de alta calidad con termostato. Diseño moderno y elegante. Material resistente al agua y al desgaste.', 14000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Mezcladora de Ducha', 14000, 'Imagenes de Productos Utiles del Hogar/mezcladora de ducha.png', 'Mezcladora de ducha de alta calidad con termostato. Diseño moderno y elegante. Material resistente al agua y al desgaste.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/mezcladora de Fregadero.png" alt="Mezcladora de Fregadero">
+          </div>
+          <div class="product-txt">
+            <h3>Mezcladora de Fregadero</h3>
+            <p class="description">Mezcladora para fregadero de alta calidad. Diseño moderno y funcional. Material resistente al agua y al desgaste.</p>
+            <p class="precio">$12000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Mezcladora de Fregadero' ,'Imagenes de Productos Utiles del Hogar/mezcladora de Fregadero.png', 'Mezcladora para fregadero de alta calidad. Diseño moderno y funcional. Material resistente al agua y al desgaste.', 12000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Mezcladora de Fregadero', 12000, 'Imagenes de Productos Utiles del Hogar/mezcladora de Fregadero.png', 'Mezcladora para fregadero de alta calidad. Diseño moderno y funcional. Material resistente al agua y al desgaste.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/mezcladora de lavamanos.png" alt="Mezcladora de Lavamanos">
+          </div>
+          <div class="product-txt">
+            <h3>Mezcladora de Lavamanos</h3>
+            <p class="description">Mezcladora para lavamanos de alta calidad. Diseño moderno y funcional. Material resistente al agua y al desgaste.</p>
+            <p class="precio">$12000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Mezcladora de Lavamanos' ,'Imagenes de Productos Utiles del Hogar/mezcladora de lavamanos.png', 'Mezcladora para lavamanos de alta calidad. Diseño moderno y funcional. Material resistente al agua y al desgaste.', 12000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Mezcladora de Lavamanos', 12000, 'Imagenes de Productos Utiles del Hogar/mezcladora de lavamanos.png', 'Mezcladora para lavamanos de alta calidad. Diseño moderno y funcional. Material resistente al agua y al desgaste.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/bisagra.jpg" alt="Pareja de Bisagra">
+          </div>
+          <div class="product-txt">
+            <h3>Pareja de Bisagra</h3>
+            <p class="description">Par de bisagras para puertas. Material resistente y duradero. Diseño estándar para fácil instalación.</p>
+            <p class="precio">$1100.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Pareja de Bisagra' ,'Imagenes de Productos Utiles del Hogar/bisagra.jpg', 'Par de bisagras para puertas. Material resistente y duradero. Diseño estándar para fácil instalación.', 1100)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Pareja de Bisagra', 1100, 'Imagenes de Productos Utiles del Hogar/bisagra.jpg', 'Par de bisagras para puertas. Material resistente y duradero. Diseño estándar para fácil instalación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/oreja de lavamanos.jpg" alt="Pareja de Oreja de Lavamanos">
+          </div>
+          <div class="product-txt">
+            <h3>Pareja de Oreja de Lavamanos</h3>
+            <p class="description">Par de orejas para lavamanos. Material resistente y duradero. Diseño estándar para fácil instalación.</p>
+            <p class="precio">$500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Pareja de Oreja de Lavamanos' ,'Imagenes de Productos Utiles del Hogar/oreja de lavamanos.jpg', 'Par de orejas para lavamanos. Material resistente y duradero. Diseño estándar para fácil instalación.', 500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Pareja de Oreja de Lavamanos', 500, 'Imagenes de Productos Utiles del Hogar/oreja de lavamanos.jpg', 'Par de orejas para lavamanos. Material resistente y duradero. Diseño estándar para fácil instalación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/plastiloca.jpg" alt="Paquete de Plastiloca">
+          </div>
+          <div class="product-txt">
+            <h3>Paquete de Plastiloca</h3>
+            <p class="description">Pasta sellante de plástico para reparaciones y sellados. Fácil aplicación y secado rápido. Ideal para tuberías y conexiones.</p>
+            <p class="precio">$1400.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Paquete de Plastiloca' ,'Imagenes de Productos Utiles del Hogar/plastiloca.jpg', 'Pasta sellante de plástico para reparaciones y sellados. Fácil aplicación y secado rápido. Ideal para tuberías y conexiones.', 1400)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Paquete de Plastiloca', 1400, 'Imagenes de Productos Utiles del Hogar/plastiloca.jpg', 'Pasta sellante de plástico para reparaciones y sellados. Fácil aplicación y secado rápido. Ideal para tuberías y conexiones.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/picaporte.jpeg" alt="Picaporte">
+          </div>
+          <div class="product-txt">
+            <h3>Picaporte</h3>
+            <p class="description">Picaporte para puertas interiores y exteriores. Diseño elegante y funcional. Material resistente a la corrosión para larga duración.</p>
+            <p class="precio">$3000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Picaporte' ,'Imagenes de Productos Utiles del Hogar/picaporte.jpeg', 'Picaporte para puertas interiores y exteriores. Diseño elegante y funcional. Material resistente a la corrosión para larga duración.', 3000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Picaporte', 3000, 'Imagenes de Productos Utiles del Hogar/picaporte.jpeg', 'Picaporte para puertas interiores y exteriores. Diseño elegante y funcional. Material resistente a la corrosión para larga duración.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Pila de lavamanos.webp" alt="Pila de Lavamanos">
+          </div>
+          <div class="product-txt">
+            <h3>Pila de Lavamanos</h3>
+            <p class="description">Pila de lavamanos de acero inoxidable. Diseño elegante y funcional. Material resistente a la corrosión y fácil limpieza.</p>
+            <p class="precio">$3200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Pila de Lavamanos' ,'Imagenes de Productos Utiles del Hogar/Pila de lavamanos.webp', 'Pila de lavamanos de acero inoxidable. Diseño elegante y funcional. Material resistente a la corrosión y fácil limpieza.', 3200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Pila de Lavamanos', 3200, 'Imagenes de Productos Utiles del Hogar/Pila de lavamanos.webp', 'Pila de lavamanos de acero inoxidable. Diseño elegante y funcional. Material resistente a la corrosión y fácil limpieza.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Pila de Roscamanguera.webp" alt="Pila de Roscamanguera">
+          </div>
+          <div class="product-txt">
+            <h3>Pila de Roscamanguera</h3>
+            <p class="description">Pila de roscamanguera de PVC. Diseño funcional y resistente. Fácil instalación y conexión a sistemas de agua.</p>
+            <p class="precio">$1600.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Pila de Roscamanguera' ,'Imagenes de Productos Utiles del Hogar/Pila de Roscamanguera.webp', 'Pila de roscamanguera de PVC. Diseño funcional y resistente. Fácil instalación y conexión a sistemas de agua.', 1600)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Pila de Roscamanguera PVC', 1600, 'Imagenes de Productos Utiles del Hogar/Pila de Roscamanguera.webp', 'Pila de roscamanguera de PVC. Diseño funcional y resistente. Fácil instalación y conexión a sistemas de agua.')">Añadir</button>
+            </div>
+          </div> 
+          </div>
+
+          <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Presurizador.webp" alt="Presurizador">
+          </div>
+          <div class="product-txt">
+            <h3>Presurizador</h3>
+            <p class="description">Sistema presurizador para agua residencial y comercial. Automático y fácil instalación. Garantiza presión constante en el sistema.</p>
+            <p class="precio">$26000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Presurizador' ,'Imagenes de Productos Utiles del Hogar/Presurizador.webp', 'Sistema presurizador para agua residencial y comercial. Automático y fácil instalación. Garantiza presión constante en el sistema.', 26000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Presurizador', 26000, 'Imagenes de Productos Utiles del Hogar/Presurizador.webp', 'Sistema presurizador para agua residencial y comercial. Automático y fácil instalación. Garantiza presión constante en el sistema.')">Añadir</button>
+            </div>
+           </div> 
+          </div>
+
+          <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Protector de voltage1.jpg" alt="Protector de Voltage 110">
+          </div>
+          <div class="product-txt">
+            <h3>Protector de Voltage 110</h3>
+            <p class="description">Protector de voltaje para sistemas eléctricos de 110V. Diseño compacto y fácil instalación. Protege contra sobretensiones y picos de voltaje.</p>
+            <p class="precio">$3800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Protector de Voltage 110' ,'Imagenes de Productos Utiles del Hogar/Protector de voltage1.jpg', 'Protector de voltaje para sistemas eléctricos de 110V. Diseño compacto y fácil instalación. Protege contra sobretensiones y picos de voltaje.', 3800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Protector de Voltage 110', 3800, 'Imagenes de Productos Utiles del Hogar/Protector de voltage1.jpg', 'Protector de voltaje para sistemas eléctricos de 110V. Diseño compacto y fácil instalación. Protege contra sobretensiones y picos de voltaje.')">Añadir</button>
+            </div>
+           </div> 
+          </div>
+
+          <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Rodillo de pintar.jpg" alt="Rodillo de Pintar">
+          </div>
+          <div class="product-txt">
+            <h3>Rodillo de Pintar</h3>
+            <p class="description">Rodillo para pintura con mango ergonómico. Cerdas de alta calidad para aplicación uniforme. Ideal para grandes superficies.</p>
+            <p class="precio">$1500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Rodillo de Pintar' ,'Imagenes de Productos Utiles del Hogar/Rodillo de pintar.jpg', 'Rodillo para pintura con mango ergonómico. Cerdas de alta calidad para aplicación uniforme. Ideal para grandes superficies.', 1500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Rodillo de Pintar', 1500, 'Imagenes de Productos Utiles del Hogar/Rodillo de pintar.jpg', 'Rodillo para pintura con mango ergonómico. Cerdas de alta calidad para aplicación uniforme. Ideal para grandes superficies.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/sifa de fregadero.jpg" alt="Sifa de Fregadero">
+          </div>
+          <div class="product-txt">
+            <h3>Sifa de Fregadero</h3>
+            <p class="description">Sifón para fregadero de acero inoxidable. Diseño funcional y fácil instalación. Garantiza desagüe eficiente y olores controlados.</p>
+            <p class="precio">$1800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Sifa de Fregadero' ,'Imagenes de Productos Utiles del Hogar/sifa de fregadero.jpg', 'Sifón para fregadero de acero inoxidable. Diseño funcional y fácil instalación. Garantiza desagüe eficiente y olores controlados.', 1800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Sifa de Fregadero', 1800, 'Imagenes de Productos Utiles del Hogar/sifa de fregadero.jpg', 'Sifón para fregadero de acero inoxidable. Diseño funcional y fácil instalación. Garantiza desagüe eficiente y olores controlados.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Silicona de temperatura.jpg" alt="Silicona de Temperatura">
+          </div>
+          <div class="product-txt">
+            <h3>Silicona de Temperatura</h3>
+            <p class="description">Silicona resistente a altas temperaturas para sellados y reparaciones. Fácil aplicación y secado rápido. Ideal para cocinas y baños.</p>
+            <p class="precio">$1200.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Silicona de Temperatura' ,'Imagenes de Productos Utiles del Hogar/Silicona de temperatura.jpg', 'Silicona resistente a altas temperaturas para sellados y reparaciones. Fácil aplicación y secado rápido. Ideal para cocinas y baños.', 1200)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Silicona de Temperatura', 1200, 'Imagenes de Productos Utiles del Hogar/Silicona de temperatura.jpg', 'Silicona resistente a altas temperaturas para sellados y reparaciones. Fácil aplicación y secado rápido. Ideal para cocinas y baños.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Silicona de transparente.jpg" alt="Silicona de Transparente">
+          </div>
+          <div class="product-txt">
+            <h3>Silicona de Transparente</h3>
+            <p class="description">Silicona transparente para sellados y reparaciones. Fácil aplicación y secado rápido. Ideal para acabados visibles y decorativos.</p>
+            <p class="precio">$1500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Silicona de Transparente' ,'Imagenes de Productos Utiles del Hogar/Silicona de transparente.jpg', 'Silicona transparente para sellados y reparaciones. Fácil aplicación y secado rápido. Ideal para acabados visibles y decorativos.', 1500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Silicona de Transparente', 1500, 'Imagenes de Productos Utiles del Hogar/Silicona de transparente.jpg', 'Silicona transparente para sellados y reparaciones. Fácil aplicación y secado rápido. Ideal para acabados visibles y decorativos.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Socket.jpg" alt="Socket">
+          </div>
+          <div class="product-txt">
+            <h3>Socket</h3>
+            <p class="description">Socket eléctrico para toma de corriente. Diseño moderno y seguro. Fácil instalación y compatible con estándares eléctricos.</p>
+            <p class="precio">$500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Socket' ,'Imagenes de Productos Utiles del Hogar/Socket.jpg', 'Socket eléctrico para toma de corriente. Diseño moderno y seguro. Fácil instalación y compatible con estándares eléctricos.', 500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Socket', 500, 'Imagenes de Productos Utiles del Hogar/Socket.jpg', 'Socket eléctrico para toma de corriente. Diseño moderno y seguro. Fácil instalación y compatible con estándares eléctricos.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/pintura spray.webp" alt="Spray de Color">
+          </div>
+          <div class="product-txt">
+            <h3>Spray de Color</h3>
+            <p class="description">Pintura spray en múltiples colores. Fácil aplicación y secado rápido. Ideal para pequeños trabajos y acabados decorativos.</p>
+            <p class="precio">$1800.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Spray de Color' ,'Imagenes de Productos Utiles del Hogar/pintura spray.webp', 'Pintura spray en múltiples colores. Fácil aplicación y secado rápido. Ideal para pequeños trabajos y acabados decorativos.', 1800)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Spray de Color', 1800, 'Imagenes de Productos Utiles del Hogar/pintura spray.webp', 'Pintura spray en múltiples colores. Fácil aplicación y secado rápido. Ideal para pequeños trabajos y acabados decorativos.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Teipe.jpg" alt="Teipe">
+          </div>
+          <div class="product-txt">
+            <h3>Teipe</h3>
+            <p class="description">Cinta adhesiva de alta resistencia para múltiples usos. Material resistente a la humedad y al desgaste. Ideal para reparaciones temporales.</p>
+            <p class="precio">$500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Teipe' ,'Imagenes de Productos Utiles del Hogar/Teipe.jpg', 'Cinta adhesiva de alta resistencia para múltiples usos. Material resistente a la humedad y al desgaste. Ideal para reparaciones temporales.', 500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Teipe', 500, 'Imagenes de Productos Utiles del Hogar/Teipe.jpg', 'Cinta adhesiva de alta resistencia para múltiples usos. Material resistente a la humedad y al desgaste. Ideal para reparaciones temporales.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Teflon1.jpg" alt="Teflon">
+          </div>
+          <div class="product-txt">
+            <h3>Teflon</h3>
+            <p class="description">Cinta de teflon para sellado de conexiones de gas y agua. Material resistente a la presión y al desgaste. Fácil aplicación e instalación.</p>
+            <p class="precio">$500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Teflon' ,'Imagenes de Productos Utiles del Hogar/Teflon1.jpg', 'Cinta de teflon para sellado de conexiones de gas y agua. Material resistente a la presión y al desgaste. Fácil aplicación e instalación.', 500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Teflon', 500, 'Imagenes de Productos Utiles del Hogar/Teflon1.jpg', 'Cinta de teflon para sellado de conexiones de gas y agua. Material resistente a la presión y al desgaste. Fácil aplicación e instalación.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/toma corriente2.webp" alt="Toma Corriente Originales Doble">
+          </div>
+          <div class="product-txt">
+            <h3>Toma Corriente Originales Doble</h3>
+            <p class="description">Toma de corriente doble original. Diseño moderno y seguro. Fácil instalación y compatible con estándares eléctricos.</p>
+            <p class="precio">$1000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Toma Corriente Originales' ,'Imagenes de Productos Utiles del Hogar/toma corriente2.webp', 'Toma de corriente doble original. Diseño moderno y seguro. Fácil instalación y compatible con estándares eléctricos.', 1000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Toma Corriente Originales', 1000, 'Imagenes de Productos Utiles del Hogar/toma corriente2.webp', 'Toma de corriente doble original. Diseño moderno y seguro. Fácil instalación y compatible con estándares eléctricos.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Tuberia- Ofertas.jpg" alt="Tuberia 110 PVC Originales">
+          </div>
+          <div class="product-txt">
+            <h3>Tuberia 110 PVC Originales</h3>
+            <p class="description">Tubería PVC de 110mm original. Diseño estándar y fácil instalación. Ideal para sistemas de desagüe y alcantarillado.</p>
+            <p class="precio">$6000.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Tuberia 110 PVC Originales' ,'Imagenes de Productos Utiles del Hogar/Tuberia- Ofertas.jpg', 'Tubería PVC de 110mm original. Diseño estándar y fácil instalación. Ideal para sistemas de desagüe y alcantarillado.', 6000)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tuberia 110 PVC Originales', 6000, 'Imagenes de Productos Utiles del Hogar/Tuberia- Ofertas.jpg', 'Tubería PVC de 110mm original. Diseño estándar y fácil instalación. Ideal para sistemas de desagüe y alcantarillado.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+           
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Tuberia de 50.jpeg" alt="Tuberia de 50 PVC Originales">
+          </div>
+          <div class="product-txt">
+            <h3>Tuberia de 50 PVC Originales</h3>
+            <p class="description">Tubería PVC de 50mm original. Diseño estándar y fácil instalación. Ideal para sistemas de desagüe y alcantarillado.</p>
+            <p class="precio">$3500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Tuberia de 50 PVC Originales' ,'Imagenes de Productos Utiles del Hogar/Tuberia de 50.jpeg', 'Tubería PVC de 50mm original. Diseño estándar y fácil instalación. Ideal para sistemas de desagüe y alcantarillado.', 3500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Tuberia de 50 PVC Originales', 3500, 'Imagenes de Productos Utiles del Hogar/Tuberia de 50.jpeg', 'Tubería PVC de 50mm original. Diseño estándar y fácil instalación. Ideal para sistemas de desagüe y alcantarillado.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/barrillas1.jpg" alt="Varillas">
+          </div>
+          <div class="product-txt">
+            <h3>Varillas</h3>
+            <p class="description">Varillas de construcción para refuerzo de estructuras. Material resistente y duradero. Disponibles en diferentes diámetros y longitudes.</p>
+            <p class="precio">$50.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Varillas','Imagenes de Productos Utiles del Hogar/barrillas1.jpg', 'Varillas de construcción para refuerzo de estructuras. Material resistente y duradero. Disponibles en diferentes diámetros y longitudes.', 50)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Varillas', 50, 'Imagenes de Productos Utiles del Hogar/barrillas1.jpg', 'Varillas de construcción para refuerzo de estructuras. Material resistente y duradero. Disponibles en diferentes diámetros y longitudes.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+
+        <div class="box">
+          <div class="box-image-container">
+            <img src="Imagenes de Productos Utiles del Hogar/Yale de puerta.jpg" alt="Yale de Puerta">
+          </div>
+          <div class="product-txt">
+            <h3>Yale de Puerta</h3>
+            <p class="description">Cerradura de seguridad Yale para puertas. Mecanismo resistente y duradero. Diseño elegante y funcional. Ideal para puertas interiores y exteriores.</p>
+            <p class="precio">$5500.00</p>
+            <div class="product-actions">
+              <button class="details-btn" onclick="showDetails('Yale de Puerta' ,'Imagenes de Productos Utiles del Hogar/Yale de puerta.jpg', 'Cerradura de seguridad Yale para puertas. Mecanismo resistente y duradero. Diseño elegante y funcional. Ideal para puertas interiores y exteriores.', 5500)">Detalles</button>
+              <button class="add-to-cart-btn" onclick="addToCart('Yale de Puerta', 5500, 'Imagenes de Productos Utiles del Hogar/Yale de puerta.jpg', 'Cerradura de seguridad Yale para puertas. Mecanismo resistente y duradero. Diseño elegante y funcional. Ideal para puertas interiores y exteriores.')">Añadir</button>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div>
+            <h3 class="text-xl font-bold mb-4 flex items-center">
+              <i class="fas fa-tools text-red-500 mr-2"></i> Ferretería<span class="text-red-500">Starthre</span>
+            </h3>
+            <p class="text-gray-400">Todo lo que necesitas para construcción, plomería y más. Calidad y servicio desde 2020.</p>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-bold mb-4">Contacto</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>Calle 42 #  % Avenida 39 y Avenida 41</li>
+              <li class="flex items-center"><i class="fas fa-phone mr-2 text-red-500"></i>+53 56578961</li>
+              <li class="flex items-center"><i class="fas fa-envelope mr-2 text-red-500"></i>EmprendimientoDigital930518@gmail.com</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-bold mb-4">Horario</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li class="flex justify-between"><span>Lunes - Sábado:</span> <span>7:30am - 5:30pm</span></li>
+              <li class="flex justify-between"><span>Domingo:</span> <span>7:30am - 2:30pm</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 mb-4 md:mb-0">© Imperum. Todos los derechos reservados.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="https://api.whatsapp.com/send/?phone=56578961&text=Hola%2C+&type=phone_number&app_absent=0" class="text-gray-400 hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Variables del carrito
+      let cart = [];
+      
+      // Función para alternar la visibilidad del carrito
+      function toggleCart() {
+        const cartDropdown = document.getElementById('cart-dropdown');
+        if (cartDropdown.style.display === 'block') {
+          cartDropdown.style.display = 'none';
+        } else {
+          cartDropdown.style.display = 'block';
+        }
+      }
+      
+      // Función para añadir un producto al carrito
+      function addToCart(productName, productPrice, productImage, productDescription) {
+        // Verificar si el producto ya está en el carrito
+        const existingProduct = cart.find(item => item.name === productName);
+        
+        if (existingProduct) {
+          // Si ya existe, incrementar la cantidad
+          existingProduct.quantity += 1;
+        } else {
+          // Si no existe, agregarlo al carrito
+          cart.push({
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            description: productDescription,
+            quantity: 1
+          });
+        }
+        
+        // Actualizar el carrito en localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Actualizar la interfaz del carrito
+        updateCartUI();
+        
+        // Mostrar notificación
+        showNotification(`¡${productName} añadido al carrito!`);
+      }
+      
+      // Función para mostrar notificación
+      function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+          <i class="fas fa-check-circle"></i>
+          <span>${message}</span>
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.style.animation = 'slideIn 0.3s ease-out reverse';
+          setTimeout(() => {
+            notification.remove();
+          }, 300);
+        }, 2000);
+      }
+      
+      // Función para actualizar la interfaz del carrito
+      function updateCartUI() {
+        const cartItems = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+        
+        // Limpiar el contenedor de items del carrito
+        cartItems.innerHTML = '';
+        
+        // Inicializar el total y el contador
+        let total = 0;
+        let count = 0;
+        
+        // Recorrer cada item del carrito
+        cart.forEach(item => {
+          // Calcular el subtotal del item
+          const subtotal = item.price * item.quantity;
+          total += subtotal;
+          count += item.quantity;
+          
+          // Crear un elemento para el item del carrito
+          const cartItem = document.createElement('div');
+          cartItem.className = 'cart-item';
+          cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+              <div class="cart-item-subtotal">Subtotal: $${subtotal.toFixed(2)}</div>
+            </div>
+            <div class="cart-item-quantity">
+              <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">
+                <i class="fas fa-minus"></i>
+              </button>
+              <span>${item.quantity}</span>
+              <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          `;
+          
+          // Agregar el item al contenedor
+          cartItems.appendChild(cartItem);
+        });
+        
+        // Actualizar el contador y el total
+        cartCount.textContent = count;
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+        
+        // Si el carrito está vacío, mostrar mensaje
+        if (cart.length === 0) {
+          cartItems.innerHTML = `
+            <div class="empty-cart">
+              <i class="fas fa-shopping-cart"></i>
+              <p>Tu carrito está vacío</p>
+            </div>
+          `;
+        }
+      }
+      
+      // Función para actualizar la cantidad de un producto en el carrito
+      function updateQuantity(productName, change) {
+        const product = cart.find(item => item.name === productName);
+        
+        if (product) {
+          product.quantity += change;
+          
+          // Si la cantidad es 0 o menos, eliminar el producto del carrito
+          if (product.quantity <= 0) {
+            cart = cart.filter(item => item.name !== productName);
+          }
+          
+          // Actualizar el carrito en localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Actualizar la interfaz del carrito
+          updateCartUI();
+        }
+      }
+      
+      // Función para mostrar el modal de confirmación
+      function showConfirmModal() {
+        if (cart.length === 0) {
+          showNotification('Tu carrito ya está vacío');
+          return;
+        }
+        
+        document.getElementById('confirmModal').style.display = 'flex';
+      }
+      
+      // Función para cerrar el modal de confirmación
+      function closeConfirmModal() {
+        document.getElementById('confirmModal').style.display = 'none';
+      }
+      
+      // Función para confirmar y vaciar el carrito
+      function confirmClearCart() {
+        // Vaciar el carrito
+        cart = [];
+        localStorage.removeItem('cart');
+        updateCartUI();
+        
+        // Cerrar el modal de confirmación
+        closeConfirmModal();
+        
+        // Mostrar notificación de éxito
+        showNotification('Carrito vaciado exitosamente');
+        
+        // Actualizar el carrito en la interfaz
+        updateCartUI();
+      }
+      
+      // Función para vaciar el carrito (sin confirmación)
+      function clearCart() {
+        if (cart.length === 0) {
+          showNotification('Tu carrito ya está vacío');
+          return;
+        }
+        
+        if (confirm('¿Estás seguro de que deseas vaciar tu carrito?')) {
+          cart = [];
+          localStorage.removeItem('cart');
+          updateCartUI();
+          showNotification('Carrito vaciado exitosamente');
+        }
+      }
+      
+      // Función para procesar la compra
+      function checkout() {
+        if (cart.length === 0) {
+          showNotification('Tu carrito está vacío');
+          return;
+        }
+        
+        // Calcular el total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        // Crear mensaje para WhatsApp
+        let message = 'Hola, me gustaría realizar un pedido:\n\n';
+        cart.forEach(item => {
+          message += `${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
+        });
+        message += `\nTotal: $${total.toFixed(2)}\n\n`;
+        message += 'Por favor, confirmen disponibilidad y envíen los detalles de pago.';
+        
+        // Abrir WhatsApp
+        const phoneNumber = '5356578961';
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+        
+        // Vaciar el carrito después de la compra
+        cart = [];
+        localStorage.removeItem('cart');
+        updateCartUI();
+        
+        // Ocultar el carrito
+        document.getElementById('cart-dropdown').style.display = 'none';
+        
+        showNotification('¡Gracias por tu compra! Te contactaremos por WhatsApp');
+      }
+      
+      // Función para inicializar el carrito al cargar la página
+      function initCart() {
+        // Obtener el carrito de localStorage
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+          cart = JSON.parse(savedCart);
+          updateCartUI();
+        } else {
+          // Si no hay carrito guardado, mostrar mensaje vacío
+          updateCartUI();
+        }
+      }
+      
+      // Función para cerrar modales al hacer clic fuera
+      window.onclick = function(event) {
+        // Cerrar modal de producto
+        const modal = document.getElementById('productModal');
+        if (event.target == modal) {
+          closeModal();
+        }
+        
+        // Cerrar modal de confirmación
+        const confirmModal = document.getElementById('confirmModal');
+        if (event.target == confirmModal) {
+          closeConfirmModal();
+        }
+        
+        // Cerrar carrito si se hace clic fuera
+        const cartDropdown = document.getElementById('cart-dropdown');
+        const cartIcon = document.querySelector('.cart-icon');
+        
+        // Si el clic no fue en el carrito ni en su icono, cerrar el carrito
+        if (!cartDropdown.contains(event.target) && !cartIcon.contains(event.target)) {
+          cartDropdown.style.display = 'none';
+        }
+      }
+      
+      // Función para cerrar el modal de detalles
+      function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+      }
+      
+      // Función para mostrar detalles del producto
+      function showDetails(productName, productImage, productDescription, productPrice) {
+        const modal = document.getElementById('productModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
+        
+        modalImg.src = productImage;
+        modalImg.alt = productName;
+        modalTitle.textContent = productName;
+        modalDescription.textContent = productDescription;
+        modalPrice.textContent = `$${productPrice.toFixed(2)}`;
+        
+        modal.style.display = 'flex';
+      }
+      
+      // Función para contactar por WhatsApp desde el modal
+      function contactWhatsApp(productName) {
+        const phoneNumber = '5356578961';
+        const message = `Hola, estoy interesado en el producto: ${productName}. ¿Podrían darme más información?`;
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+      }
+      
+      // Función para buscar productos
+      function searchProducts() {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        const productBoxes = document.querySelectorAll('.box');
+        
+        // Si el campo de búsqueda está vacío, restaurar todos los productos
+        if (searchTerm === '') {
+          document.getElementById('lista-1').innerHTML = allProducts;
+          return;
+        }
+        
+        // Filtrar productos
+        productBoxes.forEach(box => {
+          const productName = box.querySelector('h3').textContent.toLowerCase();
+          if (productName.includes(searchTerm)) {
+            box.style.display = 'block';
+          } else {
+            box.style.display = 'none';
+          }
+        });
+      }
+      
+      // Guardar todos los productos inicialmente
+      const allProducts = document.getElementById('lista-1').innerHTML;
+      
+      // Llamar a initCart cuando la página se carga
+      window.onload = initCart;
+      
+      // Event delegation para botones de cantidad
+      document.getElementById('cart-items').addEventListener('click', function(e) {
+        // Si el clic fue en un botón de cantidad, detener la propagación
+        if (e.target.closest('.quantity-btn')) {
+          e.stopPropagation();
+        }
+      });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
