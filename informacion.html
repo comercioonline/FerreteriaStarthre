@@ -260,20 +260,20 @@
         
                 <nav class="navbar">
           <ul class="flex space-x-6">
-            <li><a href="https://ferreteriastarthree.com/" class="font-medium text-gray-700 hover:text-secondary transition"><i class="fas fa-home mr-1"></i>Inicio</a></li>
+            <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Inicio" class="font-medium text-gray-700 hover:text-secondary transition"><i class="fas fa-home mr-1"></i>Inicio</a></li>
             <li class="relative group">
               <a href="#" class="font-medium text-gray-700 hover:text-secondary transition flex items-center">
                 <i class="fas fa-tags mr-1"></i>Productos <i class="fas fa-chevron-down ml-1 text-xs"></i>
               </a>
               <ul class="absolute hidden group-hover:block bg-white py-2 rounded-md shadow-lg w-48">
-                <li><a href="https://ferreteriastarthree.com/UtilesdelHogar.html" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Utiles del Hogar</a></li>
-                <li><a href="https://ferreteriastarthree.com/PiezasRojas.html" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Piezas Rojas</a></li>
-                <li><a href="https://ferreteriastarthree.com/TermoFusion.html" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Termo Fusión</a></li>
-                <li><a href="https://ferreteriastarthree.com/Tornilleria.html" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Tornilleria</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Utiles%20del%20Hogar" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Utiles del Hogar</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Piezas%20Rojas" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Piezas Rojas</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Termo%20Fusion" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Termo Fusión</a></li>
+                <li><a href="https://comercioonline.github.io/FerreteriaStarthre/Tornilleria" class="block px-4 py-2 hover:bg-gray-100"><i class=""></i>Tornilleria</a></li>
               </ul>
             </li>
-             <li><a href="https://ferreteriastarthree.com/VentaMayorista.html" class="font-medium text-gray-700 hover:text-secondary transition"><i class="fas fa-info-circle mr-1"></i>Venta Mayorista</a></li>
-             <li><a href="https://ferreteriastarthree.com/informacion" class="font-medium text-gray-700 hover:text-secondary transition"><i class="fas fa-info-circle mr-1"></i>Informacion</a></li>
+             <li><a href="http://127.0.0.1:5501/img/informacion.html" class="font-medium text-gray-700 hover:text-secondary transition"><i class="fas fa-info-circle mr-1"></i>Venta Mayorista</a></li>
+             <li><a href="http://127.0.0.1:5501/img/informacion.html" class="font-medium text-gray-700 hover:text-secondary transition"><i class="fas fa-info-circle mr-1"></i>Informacion</a></li>
           </ul>
         </nav>
                 
@@ -325,11 +325,34 @@
                         <p class="text-gray-600 mb-4">Nuestro equipo está disponible para ayudarte con cualquier consulta o problema que puedas tener.</p>
                         <div class="space-y-2">
                             <p><i class="fas fa-phone-alt text-blue-600 mr-2"></i> +53 56578961</p>
-                            <p><i class="fas fa-envelope text-blue-600 mr-2"></i></p>
+                            <p><i class="fas fa-envelope text-blue-600 mr-2"></i>Mundodigital930518@gmail.com</p>
                             <p><i class="fas fa-clock text-blue-600 mr-2"></i> Lunes a Domingo: 8am - 6pm</p>
                         </div>
                     </div>
-                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-comments"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">Chat en Vivo</h3>
+                        <p class="text-gray-600 mb-4">Habla directamente con uno de nuestros representantes a través de nuestro chat en vivo.</p>
+                        <button id="openChatBtn" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
+                            <i class="fas fa-comment-dots mr-2"></i>Iniciar Chat
+                        </button>
+                        
+                        <!-- Chat Modal -->
+                        <div id="chatModal" class="chat-modal">
+                            <div class="chat-header">
+                                <h3>Chat con Soporte</h3>
+                                <button id="closeChatBtn" class="text-white">&times;</button>
+                            </div>
+                            <div class="chat-body" id="chatMessages">
+                                <div class="text-center text-gray-500 py-4">
+                                    Bienvenido al chat de soporte. ¿En qué podemos ayudarte?
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+                                <button id="sendChatBtn">Enviar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-8">
@@ -349,6 +372,8 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
             <!-- Preguntas Frecuentes -->
             <div id="faq" class="tab-content">
                 <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Preguntas Frecuentes</h2>
@@ -597,7 +622,7 @@
                     
                     <h3 class="text-xl font-semibold mb-3 text-blue-600">Contacto</h3>
                     <p>Si tienes preguntas sobre esta política o sobre el tratamiento de tus datos personales, contáctanos en:</p>
-                    <p class="mt-2"><strong>Email:</strong>Mundodigital930518@gmail.com</p>
+                    <p class="mt-2"><strong>Email:</strong> worldmarketing930518@gmail.com</p>
                     
                 </div>
             </div>
@@ -640,7 +665,7 @@
                     
                     <h3 class="text-xl font-semibold mb-3 text-blue-600">9. Contacto</h3>
                     <p>Para cualquier pregunta sobre estos términos, contáctanos en:</p>
-                    <p class="mt-2"><strong>Email:</strong> worldmarketing930518@gmail.com</p>
+                    <p class="mt-2"><strong>Email:</strong> Mundodigital930518@gmail.com</p>
                 </div>
             </div>
         </div>
@@ -779,9 +804,6 @@
     </script>
 </body>
 </html>
-
-
-
 
 
 
